@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/19 20:31:17 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/19 20:37:30 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_ps* check_for_length(int argc, t_ps *ps)
 				write(1, "here\n", 5);
 				write_and_exit();
 			}
-			else if (ft_strncmp(ft_itoa(num), split_input[j], ft_strlen(split_input[j])) != 0)
+			else if (split_input[j][0] != '+' && ft_strncmp(ft_itoa(num), split_input[j], ft_strlen(split_input[j])) != 0)
 			{
 				write(1, "there\n", 6);
 				write_and_exit();
