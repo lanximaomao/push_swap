@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/19 20:10:33 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/19 20:14:23 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,6 @@
 //{
 //	//check for any duplicates
 //}
-
-void error(char *msg, int error_code)
-{
-	perror(msg);
-	exit(error_code);
-}
-
-void write_and_exit()
-{
-	write(1, "Error\n", 6);
-	exit(1);
-}
 
 t_ps* check_for_length(int argc, t_ps *ps)
 {
@@ -64,6 +52,7 @@ t_ps* check_for_length(int argc, t_ps *ps)
 	return(ps);
 }
 
+//./a.out "+1 -2 3 5" -3 34 "125" 
 t_ps* parsing(int argc, t_ps *ps)
 {
 	int i;

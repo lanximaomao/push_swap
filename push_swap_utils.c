@@ -1,5 +1,16 @@
 #include "push_swap.h"
 
+void error(char *msg, int error_code)
+{
+	perror(msg);
+	exit(error_code);
+}
+
+void write_and_exit()
+{
+	write(1, "Error\n", 6);
+	exit(1);
+}
 
 void free_char(char **str)
 {
