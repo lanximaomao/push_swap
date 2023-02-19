@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/19 19:26:20 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/19 20:03:09 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,32 @@
 //	//check for any duplicates
 //}
 
+void error(char *msg, int error_code)
+{
+	perror(msg);
+	exit(error_code);
+}
 
-int parsing(int argc, char**argv)
+void write_and_exit()
+{
+	write(1, "Error\n", 6);
+	exit(1);
+}
+
+t_ps* check_for_length(int argc, t_ps *ps)
 {
 	int i;
 	int j;
 	int num;
-	int len;
-	char **input;
 	char **split_input;
 
 	i = 0;
 	j = 0;
-	len = 0;
-	input = argv + 1;
+	ps->len = 0;
 
-	while (input[i])
+	while (ps->input[i])
 	{
-		split_input = ft_split(input[i], ' ');//free in a loop
+		split_input = ft_split(ps->input[i], ' ');//free in a loop
 		if (!split_input)
 			error("split function fail", 1); // what if the input argument is ""
 		j = 0;
@@ -45,30 +53,80 @@ int parsing(int argc, char**argv)
 		{
 			num = ft_atoi(split_input[j]);
 			if (ft_strncmp(ft_itoa(num), split_input[j], ft_strlen(split_input[j])) != 0)
-			{
-				write(1, "error\n", 6);
-				exit(1);
-			}
-			len++;
+				write_and_exit();
+			ps->len++;
 			j++;
 		}
 		i++;
 	}
-	return(len);
+	return(ps);
 }
 
-
-void error(char *msg, int error_code)
+t_ps* parsing(int argc, t_ps *ps)
 {
-	perror(msg);
-	exit(error_code);
+	int i;
+	int j;
+	int k;
+	char **split_input;
+
+	i = 0;
+	j = 0;
+	k = 0;
+
+	while (ps->input[i])
+	{
+		split_input = ft_split(ps->input[i], ' ');//free in a loop
+		if (!split_input)
+			error("split function fail", 1); // what if the input argument is ""
+		j = 0;
+		while (split_input[j])
+		{
+			ps->int_array[k] = ft_atoi(split_input[j]);
+			j++;
+			k++;
+		}
+		i++;
+	}
+	return(ps);
+}
+
+void ft_print_int_array(int *int_arr, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		ft_printf("%d\n", int_arr[i]);
+		i++;
+	}
 }
 
 int main(int argc, char** argv)
 {
+	t_ps *ps;
+
 	if (argc == 1)
 		return(0);
-	ft_printf("len is %d\n", parsing(argc, argv));
-	//ft_printf("%s\n", ft_itoa(ft_atoi("a")));
+	ps = malloc(sizeof(t_ps)); //free
+	if (!ps)
+		error("malloc fail", 1);
+	ps->input = argv + 1;
+	check_for_length(argc, ps);
+	ft_printf("len is %d\n", ps->len);
+	//malloc
+	ps->int_array = malloc(sizeof(int)*ps->len);
+	if (!ps->int_array)
+		error("malloc fail", 1);
+	//
+	parsing(argc, ps);
+	ft_print_int_array(ps->int_array, ps->len);
+
+	//int_array = parsing(argc, input);
+	//if (!int_array)
+	//	error("malloc fail", 1);
+
 	return(0);
 }
+
+
