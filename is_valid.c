@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/19 20:37:30 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/19 20:38:22 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,9 @@ t_ps* check_for_length(int argc, t_ps *ps)
 			//ft_printf("combined string is %s\n", ft_strjoin("+", ft_itoa(num)));
 			//ft_printf("comparison result is %d\n", ft_strncmp(ft_strjoin("+", ft_itoa(num)), split_input[j], ft_strlen(split_input[j]) != 0));
 			if (split_input[j][0] == '+' && ft_strncmp(ft_strjoin("+", ft_itoa(num)), split_input[i], ft_strlen(split_input[j]) )!= 0)
-			{
-				write(1, "here\n", 5);
-				write_and_exit();
-			}
+				write_and_exit;
 			else if (split_input[j][0] != '+' && ft_strncmp(ft_itoa(num), split_input[j], ft_strlen(split_input[j])) != 0)
-			{
-				write(1, "there\n", 6);
 				write_and_exit();
-			}
 			ps->len++;
 			j++;
 		}
