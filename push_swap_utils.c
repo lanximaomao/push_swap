@@ -27,3 +27,14 @@ void free_int(int **num, int size)
 	free(num);
 }
 
+void ft_print_int_array(int *int_arr, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		ft_printf("%d\n", int_arr[i]);
+		i++;
+	}
+}
