@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/19 20:38:22 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/19 20:50:22 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,28 @@
 // ./push_swap "+1 -2 3 5abc" -3 34 "125"
 // should I save the parsing result linked before or after the validity check for all the input num?
 
-//int is_uniq(int num)
-//{
-//	//check for any duplicates
-//}
+t_ps* is_uniq(t_ps *ps)
+{
+	int i;
+	int j;
+
+	if (ps->len == 1)
+		return(0);
+	i = 0;
+	j = 1;
+	while (i < ps->len)
+	{
+		j = i + 1;
+		while (j < ps->len)
+		{
+			if (ps->int_array[i] == ps->int_array[j])
+				write_and_exit();
+			j++;
+		}
+		i++;
+	}
+	return(ps);
+}
 
 t_ps* check_for_length(int argc, t_ps *ps)
 {
@@ -41,12 +59,8 @@ t_ps* check_for_length(int argc, t_ps *ps)
 		while (split_input[j])
 		{
 			num = ft_atoi(split_input[j]);
-			//ft_printf("char is %c\n", split_input[j][0]);
-			//ft_printf("num is %d\n", num);
-			//ft_printf("combined string is %s\n", ft_strjoin("+", ft_itoa(num)));
-			//ft_printf("comparison result is %d\n", ft_strncmp(ft_strjoin("+", ft_itoa(num)), split_input[j], ft_strlen(split_input[j]) != 0));
 			if (split_input[j][0] == '+' && ft_strncmp(ft_strjoin("+", ft_itoa(num)), split_input[i], ft_strlen(split_input[j]) )!= 0)
-				write_and_exit;
+				write_and_exit();
 			else if (split_input[j][0] != '+' && ft_strncmp(ft_itoa(num), split_input[j], ft_strlen(split_input[j])) != 0)
 				write_and_exit();
 			ps->len++;
@@ -103,9 +117,10 @@ int main(int argc, char** argv)
 	ps->int_array = malloc(sizeof(int)*ps->len);
 	if (!ps->int_array)
 		error("malloc fail", 1);
-	parsing(argc, ps);
+	//
+	is_uniq(parsing(argc, ps));
 	ft_print_int_array(ps->int_array, ps->len);
-
+	//
 	free(ps->int_array);
 	free(ps);
 	return(0);
