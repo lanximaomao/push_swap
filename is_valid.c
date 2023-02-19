@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/19 20:14:23 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/19 20:31:17 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,20 @@ t_ps* check_for_length(int argc, t_ps *ps)
 		while (split_input[j])
 		{
 			num = ft_atoi(split_input[j]);
-			if (ft_strncmp(ft_itoa(num), split_input[j], ft_strlen(split_input[j])) != 0)
+			//ft_printf("char is %c\n", split_input[j][0]);
+			//ft_printf("num is %d\n", num);
+			//ft_printf("combined string is %s\n", ft_strjoin("+", ft_itoa(num)));
+			//ft_printf("comparison result is %d\n", ft_strncmp(ft_strjoin("+", ft_itoa(num)), split_input[j], ft_strlen(split_input[j]) != 0));
+			if (split_input[j][0] == '+' && ft_strncmp(ft_strjoin("+", ft_itoa(num)), split_input[i], ft_strlen(split_input[j]) )!= 0)
+			{
+				write(1, "here\n", 5);
 				write_and_exit();
+			}
+			else if (ft_strncmp(ft_itoa(num), split_input[j], ft_strlen(split_input[j])) != 0)
+			{
+				write(1, "there\n", 6);
+				write_and_exit();
+			}
 			ps->len++;
 			j++;
 		}
@@ -52,7 +64,7 @@ t_ps* check_for_length(int argc, t_ps *ps)
 	return(ps);
 }
 
-//./a.out "+1 -2 3 5" -3 34 "125" 
+//./a.out "+1 -2 3 5" -3 34 "125"
 t_ps* parsing(int argc, t_ps *ps)
 {
 	int i;
