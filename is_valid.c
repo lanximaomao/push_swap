@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/19 20:50:22 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/19 22:58:46 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,28 +102,6 @@ t_ps* parsing(int argc, t_ps *ps)
 	return(ps);
 }
 
-int main(int argc, char** argv)
-{
-	t_ps *ps;
 
-	if (argc == 1)
-		return(0);
-	ps = malloc(sizeof(t_ps));
-	if (!ps)
-		error("malloc fail", 1);
-	ps->input = argv + 1;
-	check_for_length(argc, ps);
-	ft_printf("len is %d\n", ps->len);
-	ps->int_array = malloc(sizeof(int)*ps->len);
-	if (!ps->int_array)
-		error("malloc fail", 1);
-	//
-	is_uniq(parsing(argc, ps));
-	ft_print_int_array(ps->int_array, ps->len);
-	//
-	free(ps->int_array);
-	free(ps);
-	return(0);
-}
 
 
