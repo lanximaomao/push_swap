@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/20 16:10:00 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/20 16:36:12 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ t_ps* check_for_length(t_ps *ps)
 
 	while (ps->input[i])
 	{
-		split_input = ft_split(ps->input[i], ' ');//free in a loop
+		split_input = ft_split(ps->input[i], ' ');
 		if (!split_input)
-			error("split function fail", 1); // what if the input argument is ""
+			error("split function fail", 1);
 		j = 0;
 		while (split_input[j])
 		{
@@ -87,9 +87,9 @@ t_ps* parsing(t_ps *ps)
 
 	while (ps->input[i])
 	{
-		split_input = ft_split(ps->input[i], ' ');//free in a loop
+		split_input = ft_split(ps->input[i], ' ');
 		if (!split_input)
-			error("split function fail", 1); // what if the input argument is ""
+			error("split function fail", 1);
 		j = 0;
 		while (split_input[j])
 		{
