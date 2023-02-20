@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/20 15:38:01 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/20 16:10:00 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 // gcc is_valid.c push_swap_utils.c libft/libft.a
 // ./push_swap "+1 -2 3 5abc" -3 34 "125"
+// ./push_swap "+"
 // should I save the parsing result linked before or after the validity check for all the input num?
 
 t_ps* is_uniq(t_ps *ps)
@@ -59,7 +60,7 @@ t_ps* check_for_length(t_ps *ps)
 		while (split_input[j])
 		{
 			num = ft_atoi(split_input[j]);
-			if (split_input[j][0] == '+' && ft_strncmp(ft_strjoin("+", ft_itoa(num)), split_input[i], ft_strlen(split_input[j]) )!= 0)
+			if (split_input[j][0] == '+' && ft_strncmp(ft_strjoin("+", ft_itoa(num)), split_input[i], ft_strlen(split_input[j])+1)!= 0)
 				write_and_exit();
 			else if (split_input[j][0] != '+' && ft_strncmp(ft_itoa(num), split_input[j], ft_strlen(split_input[j])) != 0)
 				write_and_exit();

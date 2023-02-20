@@ -43,9 +43,11 @@ void ft_print_int_array(int *int_arr, int len)
 	int i;
 
 	i = 0;
+	ft_printf("My array is:  ");
 	while (i < len)
 	{
-		ft_printf("%d\n", int_arr[i]);
+		ft_printf("%d  ", int_arr[i]);
 		i++;
 	}
+	ft_printf("\n");
 }
