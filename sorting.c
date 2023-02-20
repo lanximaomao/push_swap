@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:31 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/19 23:26:48 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/20 15:35:37 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,32 +69,3 @@ void quick_sort(int *num, int start, int end)
 
 //}
 
-int main(int argc, char** argv)
-{
-	t_ps *ps;
-
-	if (argc == 1)
-		return(0);
-	ps = malloc(sizeof(t_ps));
-	if (!ps)
-		error("malloc fail", 1);
-	ps->input = argv + 1;
-	check_for_length(argc, ps);
-	//ft_printf("len is %d\n", ps->len);
-	ps->int_array = malloc(sizeof(int)*ps->len);
-	if (!ps->int_array)
-		error("malloc fail", 1);
-	//
-	is_uniq(parsing(argc, ps));
-	//ft_print_int_array(ps->int_array, ps->len);
-	// sorting
-	//quick_sort(ps->int_array, 0, ps->len);
-	ft_print_int_array(ps->int_array, ps->len);
-	//create stack
-	create_stack(ps);
-
-	//free
-	free(ps->int_array);
-	free(ps);
-	return(0);
-}

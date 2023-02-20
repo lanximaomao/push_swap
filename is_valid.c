@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/19 22:58:46 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/20 15:38:01 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_ps* is_uniq(t_ps *ps)
 	return(ps);
 }
 
-t_ps* check_for_length(int argc, t_ps *ps)
+t_ps* check_for_length(t_ps *ps)
 {
 	int i;
 	int j;
@@ -73,7 +73,7 @@ t_ps* check_for_length(int argc, t_ps *ps)
 }
 
 //./a.out "+1 -2 3 5" -3 34 "125"
-t_ps* parsing(int argc, t_ps *ps)
+t_ps* parsing(t_ps *ps)
 {
 	int i;
 	int j;
@@ -102,6 +102,35 @@ t_ps* parsing(int argc, t_ps *ps)
 	return(ps);
 }
 
+int main(int argc, char** argv)
+{
+	t_ps *ps;
+
+	if (argc == 1)
+		return(0);
+	ps = malloc(sizeof(t_ps));
+	if (!ps)
+		error("malloc fail", 1);
+	ps->input = argv + 1;
+	check_for_length(ps);
+	//ft_printf("len is %d\n", ps->len);
+	ps->int_array = malloc(sizeof(int)*ps->len);
+	if (!ps->int_array)
+		error("malloc fail", 1);
+	//
+	is_uniq(parsing(ps));
+	//ft_print_int_array(ps->int_array, ps->len);
+	// sorting
+	//quick_sort(ps->int_array, 0, ps->len);
+	ft_print_int_array(ps->int_array, ps->len);
+	//create stack
+	//create_stack(ps);
+
+	//free
+	free(ps->int_array);
+	free(ps);
+	return(0);
+}
 
 
 
