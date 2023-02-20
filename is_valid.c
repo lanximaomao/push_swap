@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/20 16:36:12 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/20 16:59:02 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,23 @@ t_ps* is_uniq(t_ps *ps)
 	return(ps);
 }
 
+void is_numeric(char **str, int i, int j)
+{
+	int num;
+	char *res_itoa;
+	char *res_strjoin;
+
+	num = ft_atoi(str[j]);
+	res_itoa = ft_itoa(num);
+	res_strjoin = ft_strjoin("+", res_itoa);
+	if (str[j][0] == '+' && ft_strncmp(res_strjoin, str[i], ft_strlen(str[j])+1)!= 0)
+		write_and_exit();
+	else if (str[j][0] != '+' && ft_strncmp(res_itoa, str[j], ft_strlen(str[j])) != 0)
+		write_and_exit();
+	free(res_itoa);
+	free(res_strjoin);
+}
+
 t_ps* check_for_length(t_ps *ps)
 {
 	int i;
@@ -60,10 +77,7 @@ t_ps* check_for_length(t_ps *ps)
 		while (split_input[j])
 		{
 			num = ft_atoi(split_input[j]);
-			if (split_input[j][0] == '+' && ft_strncmp(ft_strjoin("+", ft_itoa(num)), split_input[i], ft_strlen(split_input[j])+1)!= 0)
-				write_and_exit();
-			else if (split_input[j][0] != '+' && ft_strncmp(ft_itoa(num), split_input[j], ft_strlen(split_input[j])) != 0)
-				write_and_exit();
+			is_numeric(split_input, i, j);
 			ps->len++;
 			j++;
 		}
@@ -73,7 +87,6 @@ t_ps* check_for_length(t_ps *ps)
 	return(ps);
 }
 
-//./a.out "+1 -2 3 5" -3 34 "125"
 t_ps* parsing(t_ps *ps)
 {
 	int i;
