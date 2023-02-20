@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:19:18 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/19 23:48:15 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/20 17:10:19 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 //create new node
 
-t_stack	*ft_new_node(int num)
+t_stack	*ft_new_node(int num, int pos)
 {
 	t_stack	*new;
 
@@ -42,6 +42,7 @@ t_stack	*ft_new_node(int num)
 	if (!new)
 		return (NULL);
 	new->num = num;
+	new->pos = pos;
 	new->next = NULL;
 	return(new);
 }
@@ -59,6 +60,36 @@ void ft_add_back(t_stack **head, t_stack *new)
 		temp = temp->next;
 	temp->next = new;
 }
+
+// how to create a stack a
+
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*new_lst;
+	t_list	*new_node;
+
+	if (lst)
+	{
+		new_lst = ft_lstnew(f(lst->content));
+		if (!new_lst)
+			return (NULL);
+		lst = lst->next;
+	}
+	while (lst)
+	{
+		new_node = ft_lstnew(f(lst->content));
+		if (!new_node)
+		{
+			ft_lstclear(&new_lst, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_lst, new_node);
+		lst = lst->next;
+	}
+	return (new_lst);
+}
+
+//
 
 void create_stack(t_ps *ps)
 {
