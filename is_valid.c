@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/20 16:59:02 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/21 13:36:16 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,36 +115,5 @@ t_ps* parsing(t_ps *ps)
 	}
 	return(ps);
 }
-
-int main(int argc, char** argv)
-{
-	t_ps *ps;
-
-	if (argc == 1)
-		return(0);
-	ps = malloc(sizeof(t_ps));
-	if (!ps)
-		error("malloc fail", 1);
-	ps->input = argv + 1;
-	check_for_length(ps);
-	//ft_printf("len is %d\n", ps->len);
-	ps->int_array = malloc(sizeof(int)*ps->len);
-	if (!ps->int_array)
-		error("malloc fail", 1);
-	//
-	is_uniq(parsing(ps));
-	//ft_print_int_array(ps->int_array, ps->len);
-	// sorting
-	//quick_sort(ps->int_array, 0, ps->len);
-	ft_print_int_array(ps->int_array, ps->len);
-	//create stack
-	//create_stack(ps);
-
-	//free
-	free(ps->int_array);
-	free(ps);
-	return(0);
-}
-
 
 

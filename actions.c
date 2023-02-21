@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:19:18 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/20 17:10:19 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/21 11:16:56 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void ft_add_back(t_stack **head, t_stack *new)
 {
 	t_stack *temp;
 
-	if (!head)
+	if (!head) // head is null
 		return;
-	if (!*head)
+	if (!*head) // the node that was pointed by the head is null, then we assign the new node as a head.
 		*head = new;
 	temp = head;
 	while (temp->next)

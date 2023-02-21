@@ -6,13 +6,13 @@
 #    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/20 15:20:32 by lsun              #+#    #+#              #
-#    Updated: 2023/02/20 15:43:04 by lsun             ###   ########.fr        #
+#    Updated: 2023/02/21 13:38:28 by lsun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS = is_valid.c push_swap_utils.c
+SRCS = is_valid.c push_swap_utils.c insertion_sort.c
 
 OBJS = $(SRCS:.c=.o)
 
