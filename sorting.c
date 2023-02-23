@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:31 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/23 22:29:00 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/23 23:17:52 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,10 @@ void quick_sort(int *num, int start, int end)
 	quick_sort(num, start, pivot_index-1);
 	quick_sort(num, pivot_index+1, end);
 }
+
+//int create_stack_a(char c)
+//{
+//	ft_lstnew(&c);
+
+//}
+
