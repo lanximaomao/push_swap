@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/23 23:22:20 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/24 00:06:57 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ t_ps* is_uniq(t_ps *ps)
 	int i;
 	int j;
 
-	if (ps->len == 1)
+	if (ps->len_a == 1)
 		return(0);
 	i = 0;
 	j = 1;
-	while (i < ps->len)
+	while (i < ps->len_a)
 	{
 		j = i + 1;
-		while (j < ps->len)
+		while (j < ps->len_a)
 		{
 			if (ps->a[i] == ps->a[j])
 				write_and_exit();
@@ -66,7 +66,7 @@ t_ps* check_for_length(t_ps *ps)
 
 	i = 0;
 	j = 0;
-	ps->len = 0;
+	ps->len_a = 0;
 
 	while (ps->input[i])
 	{
@@ -78,7 +78,7 @@ t_ps* check_for_length(t_ps *ps)
 		{
 			num = ft_atoi(split_input[j]);
 			is_numeric(split_input, i, j);
-			ps->len++;
+			ps->len_a++;
 			j++;
 		}
 		free_char(split_input);
