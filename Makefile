@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
+#    By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/20 15:20:32 by lsun              #+#    #+#              #
-#    Updated: 2023/02/20 15:43:04 by lsun             ###   ########.fr        #
+#    Updated: 2023/02/23 23:11:05 by linlinsun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS = is_valid.c push_swap_utils.c
+SRCS = is_valid.c push_swap_utils.c stack.c
 
 OBJS = $(SRCS:.c=.o)
 

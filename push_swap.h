@@ -6,20 +6,12 @@
 #include <stdio.h>
 #include <unistd.h>
 
-typedef struct s_stack
-{
-	int num;
-	int pos;
-	struct s_stack *next;
-} t_stack;
-
 typedef struct s_ps
 {
 	char** input;
-	int *int_array;
+	int *a;
+	int *b;
 	int len;
-	t_stack a;
-	t_stack b;
 } t_ps;
 
 void error(char *msg, int error_code);
@@ -36,6 +28,10 @@ t_ps* parsing(t_ps *ps);
 
 
 //actions
-void create_stack(t_ps *ps);
+
+//quick sort
+void quick_sort(int *num, int start, int end);
+int parition (int *num, int start, int end);
+void ft_swap (int i, int j);
 
 #endif
