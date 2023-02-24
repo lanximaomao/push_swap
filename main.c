@@ -49,6 +49,11 @@ void sort_three_b(t_ps *ps)
 		sa(ps);
 }
 
+//void sort_more(t_ps *ps)
+//{
+
+//}
+
 int ps_in_action(t_ps *ps)
 {
 	if (ps->len_a == 1)
@@ -67,6 +72,8 @@ int ps_in_action(t_ps *ps)
 		ft_print_int_array(ps->a, ps->len_a);
 		exit(0);
 	}
+	//if (ps->len_a >= 4)
+	//	sort_more(ps);
 	return(0);
 }
 
@@ -80,11 +87,11 @@ int main(int argc, char** argv)
 	if (!ps)
 		error("malloc fail", 1);
 	ps_init(ps, argv); // error catch?
-	ps_in_action(ps);
+	//ps_in_action(ps);
 	// find midian
 	ft_printf("before sorting: ");
 	ft_print_int_array(ps->a, ps->len_a);
-	bubble_sort(int_arr_dup(ps->a, ps->len_a), ps->len_a);
+	bubble_sort(int_arr_dup(ps->a, ps->len_a), 0, ps->len_a - 1);
 
 	//free
 	free(ps->a);
