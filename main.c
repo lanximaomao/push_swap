@@ -1,4 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
+/*   Updated: 2023/02/24 18:52:11 by lsun             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+/*
+** ./push_swap 0 2 1 8 3 4 10  5 6 9  7
+*/
 # include "push_swap.h"
 
 int ps_init(t_ps *ps, char** argv)
@@ -28,7 +42,6 @@ void divide_algo(t_ps *ps, int start, int end)
 	if (ps->len_a < 4)
 		return;
 	median = find_median(ps->a, start, end);
-	ft_printf("my median is %d \n", median);
 	while (median != find_min(ps->a, ps->len_a))
 	{
 		if (ps->a[0] < median)
