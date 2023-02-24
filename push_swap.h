@@ -40,8 +40,13 @@ void		rra(t_ps *ps);
 void		rrb(t_ps *ps);
 void		rrr(t_ps *ps);
 //quick sort
+int bubble_sort(int *num, int count);
 void		quick_sort(int *num, int start, int end);
 int			parition(int *num, int start, int end);
 void		ft_swap(int i, int j);
+int	find_median(int *num, int len);
+
+//utils
+int* int_arr_dup(int *num, int len);
 
 #endif

@@ -20,16 +20,22 @@ int main(int argc, char** argv)
 		error("malloc fail", 1);
 	//
 	is_uniq(parsing(ps));
-	ft_print_int_array(ps->a, ps->len_a);
-	pb(ps);
-	pb(ps);
-	pb(ps);
-	rrr(ps);
-	ft_print_int_array(ps->a, ps->len_a);
-	ft_print_int_array(ps->b, ps->len_b);
-	//rb(ps);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//pb(ps);
+	//pb(ps);
+	//pb(ps);
+	//rrr(ps);
 	//ft_print_int_array(ps->a, ps->len_a);
 	//ft_print_int_array(ps->b, ps->len_b);
+	//rb(ps);
+	//ft_print_int_array(ps->a, ps->len_a);
+
+
+	// find midian
+
+	bubble_sort(int_arr_dup(ps->a, ps->len_a), ps->len_a);
+	ft_printf("before sorting");
+	ft_print_int_array(ps->a, ps->len_a);
 	//free
 	free(ps->a);
 	free(ps);

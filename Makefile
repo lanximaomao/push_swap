@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+         #
+#    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/20 15:20:32 by lsun              #+#    #+#              #
-#    Updated: 2023/02/23 23:28:39 by linlinsun        ###   ########.fr        #
+#    Updated: 2023/02/24 11:52:13 by lsun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS = is_valid.c push_swap_utils.c insertion_sort.c actions.c main.c
+SRCS = is_valid.c push_swap_utils.c find_median.c bubble_sort.c actions.c main.c
 
 OBJS = $(SRCS:.c=.o)
 

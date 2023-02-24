@@ -1,60 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insertion_sort.c                                   :+:      :+:    :+:   */
+/*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 11:53:58 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/23 23:21:07 by linlinsun        ###   ########.fr       */
+/*   Created: 2023/02/24 11:07:23 by lsun              #+#    #+#             */
+/*   Updated: 2023/02/24 11:07:35 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void bubble_sort(int *num, int count)
-{
-	int i;
-	int j;
-	int temp;
-
-	i = 0;
-	j = 1;
-
-	while (i < count)
-	{
-		j = i + 1;
-		while (j < count)
-		{
-			if (num[i] > num[j])
-			{
-				temp = num[i];
-				num[i] = num[j];
-				num[j] = temp;
-			}
-			j++;
-		}
-		i++;
-	}
-	ft_print_int_array(num, count);
-}
-
-int find_max(int *num, int count)
-{
-	int i;
-	int max;
-
-	i = 0;
-	max = num[i];
-	while (i < count)
-	{
-		if (num[i] > max)
-			max = num[i];
-		i++;
-	}
-	ft_printf("my max is %d: \n", max);
-	return(max);
-}
 
 //int find_binary_digits(int num)
 //{
