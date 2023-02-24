@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:53:58 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 15:34:33 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/24 16:28:36 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int* bubble_sort(int *num, int start, int end)
 
 	i = start;
 	num_dup = int_arr_dup(num, end - start + 1);//free
+	write(1, "bubble sort in a duplicate string\n", ft_strlen("bubble sort in a duplicate string\n"));
+	ft_print_int_array(num_dup, end- start + 1);
 	while (i < end)
 	{
 		j = i + 1;
@@ -82,15 +84,33 @@ int	find_median(int *num, int start, int end)
 {
 	int *num_dup;
 	int len;
+	int median;
 
 	len = end - start + 1;
 	num_dup = bubble_sort(num, start, end);
-	ft_printf("after sort\n");
+	ft_printf("num_dup: ");
 	ft_print_int_array(num_dup, end - start + 1);
 	if (len < 3)
-		return(num_dup[len - 1]);
+		median = num_dup[len - 1];
 	if (len % 2 == 1)
-		return(num_dup[len/2]);
+		median = num_dup[len/2];
 	else
-		return(num_dup[len/2 - 1]);
+		median = num_dup[len/2 - 1];
+	free(num_dup);
+	return(median);
+	//if (len < 3)
+	//{
+	//	free(num_dup);
+	//	return(num_dup[len - 1]);
+	//}
+	//if (len % 2 == 1)
+	//{
+	//	free(num_dup);
+	//	return(num_dup[len/2]);
+	//}
+	//else
+	//{
+	//	free(num_dup);
+	//	return(num_dup[len/2 - 1]);
+	//}
 }

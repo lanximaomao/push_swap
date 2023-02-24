@@ -64,13 +64,18 @@ void divide_algo(t_ps *ps, int start, int end)
 		return;
 	median = find_median(ps->a, start, end);
 	ft_printf("my median is %d \n", median);
-	while (median < find_max(ps->a, ps->len_a))
+	while (median != find_min(ps->a, ps->len_a))
 	{
-		if (ps->a[0] > median)
+		if (ps->a[0] < median)
 			pb(ps); // push to b
 		else
 			ra(ps); // the first one become the last one
 	}
+	write(1, "a: ",3);
+	ft_print_int_array(ps->a, ps->len_a);
+	write(1, "b: ",3);
+	ft_print_int_array(ps->b, ps->len_b);
+	divide_algo(ps, start, ps->len_a - 1);
 }
 
 void sort_more(t_ps *ps)
@@ -86,6 +91,7 @@ void sort_more(t_ps *ps)
 	//	divide_algo(ps, start-count, end);
 	//}
 	divide_algo(ps, start, end);
+	sort_small(ps);
 }
 
 void sort_small(t_ps *ps)
@@ -113,10 +119,10 @@ int ps_in_action(t_ps *ps)
 	if (ps->len_a <= 3)
 		sort_small(ps);
 	sort_more(ps);
-	ft_printf("a: ");
-	ft_print_int_array(ps->a, ps->len_a);
-	ft_printf("b: ");
-	ft_print_int_array(ps->b, ps->len_b);
+	//ft_printf("a: ");
+	//ft_print_int_array(ps->a, ps->len_a);
+	//ft_printf("b: ");
+	//ft_print_int_array(ps->b, ps->len_b);
 	return(0);
 }
 

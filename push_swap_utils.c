@@ -68,6 +68,22 @@ int	find_max(int *num, int count)
 	return (max);
 }
 
+int find_min(int *num, int count)
+{
+	int i;
+	int min;
+
+	i = 0;
+	min = num[i];
+	while (i < count )
+	{
+		if (num[i] < min)
+			min = num[i];
+		i++;
+	}
+	return(min);
+}
+
 int* int_arr_dup(int *num, int len)
 {
 	int i;
