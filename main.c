@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 19:18:16 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/24 19:38:13 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ int ps_init(t_ps *ps, char** argv)
 {
 	ps->input = argv + 1;
 	check_for_length(ps);
+
+	//one number
+	if (ps->len_a == 1)
+		exit(0);
 	//ft_printf("len is %d\n", ps->len_a);
 	ps->a = malloc(sizeof(int)*ps->len_a);
 	ps->b = malloc(sizeof(int)*ps->len_a);
@@ -27,6 +31,11 @@ int ps_init(t_ps *ps, char** argv)
 		error("malloc fail", 1);
 	is_uniq(parsing(ps));
 	ps->action_count = 0;
+	if (ps->len_a <= 3)
+	{
+		sort_small_a(ps);
+		exit(0);
+	}
 	ft_printf("original len a is %d\n", ps->len_a);
 	return(0);
 }
