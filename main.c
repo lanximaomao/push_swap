@@ -12,6 +12,7 @@ int ps_init(t_ps *ps, char** argv)
 	if (!ps->a || !ps->b)
 		error("malloc fail", 1);
 	is_uniq(parsing(ps));
+	ps->action_count = 0;
 	return(0);
 }
 
@@ -87,7 +88,7 @@ void sort_more(t_ps *ps)
 	divide_algo(ps, start, end);
 }
 
-int ps_in_action(t_ps *ps)
+void sort_small(t_ps *ps)
 {
 	if (ps->len_a == 1)
 		exit(0);
@@ -105,15 +106,17 @@ int ps_in_action(t_ps *ps)
 		ft_print_int_array(ps->a, ps->len_a);
 		exit(0);
 	}
-	if (ps->len_a >= 4)
-	{
-		sort_more(ps);
-		ft_printf("a: ");
-		ft_print_int_array(ps->a, ps->len_a);
-		ft_printf("b: ");
-		ft_print_int_array(ps->b, ps->len_b);
-	}
+}
 
+int ps_in_action(t_ps *ps)
+{
+	if (ps->len_a <= 3)
+		sort_small(ps);
+	sort_more(ps);
+	ft_printf("a: ");
+	ft_print_int_array(ps->a, ps->len_a);
+	ft_printf("b: ");
+	ft_print_int_array(ps->b, ps->len_b);
 	return(0);
 }
 
@@ -132,6 +135,10 @@ int main(int argc, char** argv)
 	//ft_printf("before sorting: ");
 	//ft_print_int_array(ps->a, ps->len_a);
 	//ft_printf("median value is %d: ", find_median(ps->a, 0, ps->len_a - 1));
+
+	//count
+	ft_printf("my action count is now %d\n", ps->action_count);
+
 	//free
 	free(ps->a);
 	free(ps);

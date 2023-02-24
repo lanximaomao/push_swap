@@ -13,6 +13,7 @@ typedef struct s_ps
 	int		*b;
 	int		len_a;
 	int		len_b;
+	int		action_count;
 }			t_ps;
 
 void		error(char *msg, int error_code);

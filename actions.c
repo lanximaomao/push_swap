@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:19:18 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 13:27:28 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/24 15:38:53 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void sa(t_ps *ps)
 	temp = ps->a[0];
 	ps->a[0] = ps->a[1];
 	ps->a[1] = temp;
+	ps->action_count++;
 	write(1,"sa\n",3);
 }
 
@@ -39,6 +40,7 @@ void sb(t_ps *ps)
 	temp = ps->b[0];
 	ps->b[0] = ps->b[1];
 	ps->b[1] = temp;
+	ps->action_count++;
 	write(1,"sb\n",3);
 }
 
@@ -50,6 +52,7 @@ void ss(t_ps *ps)
 		return;
 	sa(ps);
 	sb(ps);
+	ps->action_count++;
 }
 
 //pa (push a): Take the first element at the top of b and put it at the top of a.
@@ -78,6 +81,7 @@ void pa(t_ps *ps)
 	ps->a[0] = temp;
 	ps->len_b--;
 	ps->len_a++;
+	ps->action_count++;
 	write(1,"pa\n",3);
 }
 
@@ -108,6 +112,7 @@ void pb(t_ps *ps)
 	ps->b[0] = temp;
 	ps->len_a--;
 	ps->len_b++;
+	ps->action_count++;
 	write(1, "pb\n", 3);
 }
 
@@ -127,6 +132,7 @@ void ra(t_ps *ps)
 		i++;
 	}
 	ps->a[ps->len_a - 1] = first;
+	ps->action_count++;
 	write(1, "ra\n", 3);
 }
 
@@ -146,6 +152,7 @@ void rb(t_ps *ps)
 		i++;
 	}
 	ps->b[ps->len_b - 1] = first;
+	ps->action_count++;
 	write(1, "rb\n", 3);
 }
 
@@ -155,6 +162,7 @@ void rr(t_ps *ps)
 {
 	ra(ps);
 	rb(ps);
+	ps->action_count++;
 }
 
 //rra (reverse rotate a): Shift down all elements of stack a by 1.
@@ -174,6 +182,7 @@ void rra(t_ps *ps)
 		i++;
 	}
 	ps->a[0] = last;
+	ps->action_count++;
 	write(1, "rra\n", 4);
 }
 
@@ -193,6 +202,7 @@ void rrb(t_ps *ps)
 		i++;
 	}
 	ps->b[0] = last;
+	ps->action_count++;
 	write(1, "rrb\n", 4);
 }
 
@@ -203,4 +213,5 @@ void rrr(t_ps *ps)
 {
 	rra(ps);
 	rrb(ps);
+	ps->action_count++;
 }
