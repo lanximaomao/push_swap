@@ -15,41 +15,6 @@ int ps_init(t_ps *ps, char** argv)
 	ps->action_count = 0;
 	return(0);
 }
-
-void sort_two_a(t_ps *ps)
-{
-	if(ps->a[0] < ps->a[1])
-		return;
-	sa(ps);
-}
-
-void sort_two_b(t_ps *ps)
-{
-	if(ps->b[0] < ps->b[1])
-		return;
-	sb(ps);
-}
-
-void sort_three_a(t_ps *ps)
-{
-	if (ps->a[0] > ps->a[1] && ps->a[0] > ps->a[2])
-		ra(ps);
-	else if (ps->a[1] > ps->a[0] && ps->a[1] > ps->a[2])
-		rra(ps);
-	if (ps->a[0] > ps->a[1])
-		sa(ps);
-}
-
-void sort_three_b(t_ps *ps)
-{
-	if (ps->b[0] > ps->b[1] && ps->b[0] > ps->b[2])
-		ra(ps);
-	else if (ps->b[1] > ps->b[0] && ps->b[1] > ps->b[2])
-		rra(ps);
-	if (ps->b[0] > ps->b[1])
-		sa(ps);
-}
-
 //median value stays at a
 
 void divide_algo(t_ps *ps, int start, int end)
@@ -78,6 +43,12 @@ void divide_algo(t_ps *ps, int start, int end)
 	divide_algo(ps, start, ps->len_a - 1);
 }
 
+void optimizer(t_ps *ps)
+{
+	if (ps->a[0] == find_max(ps->a, ps->len_a) || ps->a[ps->len_a-1] == find_min(ps->a, ps->len_a))
+		rra(ps); // if the first num is big, put it
+}
+
 void sort_more(t_ps *ps)
 {
 	int start;
@@ -90,34 +61,17 @@ void sort_more(t_ps *ps)
 	//{
 	//	divide_algo(ps, start-count, end);
 	//}
+	optimizer(ps);
 	divide_algo(ps, start, end);
-	sort_small(ps);
-}
-
-void sort_small(t_ps *ps)
-{
-	if (ps->len_a == 1)
-		exit(0);
-	if (ps->len_a == 2)
-	{
-		sort_two_a(ps);
-		ft_printf("after sorting: ");
-		ft_print_int_array(ps->a, ps->len_a);
-		exit(0);
-	}
-	if (ps->len_a == 3)
-	{
-		sort_three_a(ps);
-		ft_printf("after sorting: ");
-		ft_print_int_array(ps->a, ps->len_a);
-		exit(0);
-	}
+	sort_small_a(ps);
+	if (ps->len_b <= 3)
+		sort_small_b(ps);
 }
 
 int ps_in_action(t_ps *ps)
 {
 	if (ps->len_a <= 3)
-		sort_small(ps);
+		sort_small_a(ps);
 	sort_more(ps);
 	//ft_printf("a: ");
 	//ft_print_int_array(ps->a, ps->len_a);
