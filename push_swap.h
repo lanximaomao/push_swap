@@ -59,7 +59,7 @@ void sort_two_a(t_ps *ps);
 void sort_two_b(t_ps *ps);
 void sort_three_a(t_ps *ps);
 void sort_three_b(t_ps *ps);
-void sort_more(t_ps *ps);
+void sort_algo(t_ps *ps);
 void sort_small_a(t_ps *ps);
 void sort_small_b(t_ps *ps);
 int ps_in_action(t_ps *ps);

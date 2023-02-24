@@ -43,13 +43,14 @@ void divide_algo(t_ps *ps, int start, int end)
 	divide_algo(ps, start, ps->len_a - 1);
 }
 
+//possibe to expand the same logic
 void optimizer(t_ps *ps)
 {
 	if (ps->a[0] == find_max(ps->a, ps->len_a) || ps->a[ps->len_a-1] == find_min(ps->a, ps->len_a))
 		rra(ps); // if the first num is big, put it
 }
 
-void sort_more(t_ps *ps)
+void sort_algo(t_ps *ps)
 {
 	int start;
 	int end;
@@ -72,7 +73,7 @@ int ps_in_action(t_ps *ps)
 {
 	if (ps->len_a <= 3)
 		sort_small_a(ps);
-	sort_more(ps);
+	sort_algo(ps);
 	//ft_printf("a: ");
 	//ft_print_int_array(ps->a, ps->len_a);
 	//ft_printf("b: ");
@@ -104,15 +105,3 @@ int main(int argc, char** argv)
 	free(ps);
 	return(0);
 }
-
-// action
-
-	//ft_print_int_array(ps->a, ps->len_a);
-	//pb(ps);
-	//pb(ps);
-	//pb(ps);
-	//rrr(ps);
-	//ft_print_int_array(ps->a, ps->len_a);
-	//ft_print_int_array(ps->b, ps->len_b);
-	//rb(ps);
-	//ft_print_int_array(ps->a, ps->len_a);
