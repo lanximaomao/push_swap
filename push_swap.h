@@ -41,7 +41,7 @@ void		rrb(t_ps *ps);
 void		rrr(t_ps *ps);
 
 //sort
-int bubble_sort(int *num, int start, int end);
+int* bubble_sort(int *num, int start, int end);
 void		quick_sort(int *num, int start, int end);
 int			parition(int *num, int start, int end);
 void		ft_swap(int i, int j);
@@ -49,13 +49,14 @@ void		ft_swap(int i, int j);
 
 //utils
 int* int_arr_dup(int *num, int len);
-int	find_median(int *num, int len);
+int	find_median(int *num, int start, int end);
 
 int ps_init(t_ps *ps, char** argv);
 void sort_two_a(t_ps *ps);
 void sort_two_b(t_ps *ps);
 void sort_three_a(t_ps *ps);
 void sort_three_b(t_ps *ps);
+void sort_more(t_ps *ps);
 int ps_in_action(t_ps *ps);
 
 #endif

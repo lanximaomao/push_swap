@@ -6,21 +6,13 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 11:11:28 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 14:03:59 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/24 14:19:59 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_median(int *num, int len)
-{
-	if (len < 3)
-		return(num[len - 1]);
-	if (len % 2 == 1)
-		return(num[len/2]);
-	else
-		return(num[len/2 - 1]);
-}
+
 
 //int	main(void)
 //{

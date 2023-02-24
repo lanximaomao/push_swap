@@ -49,8 +49,14 @@ void sort_three_b(t_ps *ps)
 		sa(ps);
 }
 
+//void divide_algo(t_ps *ps)
+//{
+//	find_median()
+//}
+
 //void sort_more(t_ps *ps)
 //{
+//	divide_algo(ps);
 
 //}
 
@@ -89,10 +95,9 @@ int main(int argc, char** argv)
 	ps_init(ps, argv); // error catch?
 	//ps_in_action(ps);
 	// find midian
-	ft_printf("before sorting: ");
-	ft_print_int_array(ps->a, ps->len_a);
-	bubble_sort(int_arr_dup(ps->a, ps->len_a), 0, ps->len_a - 1);
-
+	//ft_printf("before sorting: ");
+	//ft_print_int_array(ps->a, ps->len_a);
+	ft_printf("median value is %d: ", find_median(ps->a, 0, ps->len_a - 1));
 	//free
 	free(ps->a);
 	free(ps);

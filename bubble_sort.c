@@ -6,42 +6,70 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:53:58 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 14:11:06 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/24 14:30:54 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//sort in place
-int bubble_sort(int *num, int start, int end)
+//first duplicate the int array and then sort in place
+
+int* bubble_sort(int *num, int start, int end)
 {
 	int i;
 	int j;
 	int temp;
-	int median;
+	int *num_dup;
 
 	i = start;
+	num_dup = int_arr_dup(num, end - start + 1);//free
 	while (i < end)
 	{
 		j = i + 1;
 		while (j <= end)
 		{
-			if (num[i] > num[j])
+			if (num_dup[i] > num_dup[j])
 			{
-				temp = num[i];
-				num[i] = num[j];
-				num[j] = temp;
+				temp = num_dup[i];
+				num_dup[i] = num_dup[j];
+				num_dup[j] = temp;
 			}
 			j++;
 		}
 		i++;
 	}
-	median = find_median(num, end - start + 1);
-	ft_printf("after sorting: ");
-	ft_print_int_array(num, end - start + 1);
-	ft_printf("my median value is %d\n", median);
-	return(median);
+	return(num_dup);
 }
+
+//int bubble_sort(int *num, int start, int end)
+//{
+//	int i;
+//	int j;
+//	int temp;
+//	int median;
+
+//	i = start;
+//	while (i < end)
+//	{
+//		j = i + 1;
+//		while (j <= end)
+//		{
+//			if (num[i] > num[j])
+//			{
+//				temp = num[i];
+//				num[i] = num[j];
+//				num[j] = temp;
+//			}
+//			j++;
+//		}
+//		i++;
+//	}
+//	median = find_median(num, end - start + 1);
+//	ft_printf("after sorting: ");
+//	ft_print_int_array(num, end - start + 1);
+//	ft_printf("my median value is %d\n", median);
+//	return(median);
+//}
 
 //int main(void)
 //{
@@ -49,3 +77,18 @@ int bubble_sort(int *num, int start, int end)
 //	bubble_sort(arr, 8);
 //	return(0);
 //}
+
+int	find_median(int *num, int start, int end)
+{
+	int *num_dup;
+	int len;
+
+	len = end - start + 1;
+	num_dup = bubble_sort(num, start, end);
+	if (len < 3)
+		return(num[len - 1]);
+	if (len % 2 == 1)
+		return(num[len/2]);
+	else
+		return(num[len/2 - 1]);
+}
