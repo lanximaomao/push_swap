@@ -49,4 +49,11 @@ int	find_median(int *num, int len);
 //utils
 int* int_arr_dup(int *num, int len);
 
+int ps_init(t_ps *ps, char** argv);
+void sort_two_a(t_ps *ps);
+void sort_two_b(t_ps *ps);
+void sort_three_a(t_ps *ps);
+void sort_three_b(t_ps *ps);
+int ps_in_action(t_ps *ps);
+
 #endif

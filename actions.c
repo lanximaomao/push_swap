@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:19:18 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 00:55:51 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/24 13:27:28 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void ss(t_ps *ps)
 		return;
 	sa(ps);
 	sb(ps);
-	write(1,"ss\n",3);
 }
 
 //pa (push a): Take the first element at the top of b and put it at the top of a.
@@ -79,6 +78,7 @@ void pa(t_ps *ps)
 	ps->a[0] = temp;
 	ps->len_b--;
 	ps->len_a++;
+	write(1,"pa\n",3);
 }
 
 //pb (push b): Take the first element at the top of a and put it at the top of b.
@@ -108,6 +108,7 @@ void pb(t_ps *ps)
 	ps->b[0] = temp;
 	ps->len_a--;
 	ps->len_b++;
+	write(1, "pb\n", 3);
 }
 
 //ra (rotate a): Shift up all elements of stack a by 1.
@@ -126,6 +127,7 @@ void ra(t_ps *ps)
 		i++;
 	}
 	ps->a[ps->len_a - 1] = first;
+	write(1, "ra\n", 3);
 }
 
 //rb (rotate b): Shift up all elements of stack b by 1.
@@ -144,6 +146,7 @@ void rb(t_ps *ps)
 		i++;
 	}
 	ps->b[ps->len_b - 1] = first;
+	write(1, "rb\n", 3);
 }
 
 //rr : ra and rb at the same time.
@@ -171,6 +174,7 @@ void rra(t_ps *ps)
 		i++;
 	}
 	ps->a[0] = last;
+	write(1, "rra\n", 4);
 }
 
 //rrb (reverse rotate b): Shift down all elements of stack b by 1.
@@ -189,6 +193,7 @@ void rrb(t_ps *ps)
 		i++;
 	}
 	ps->b[0] = last;
+	write(1, "rrb\n", 4);
 }
 
 //The last element becomes the first one.

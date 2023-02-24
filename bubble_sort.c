@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:53:58 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 12:06:19 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/24 13:10:25 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int bubble_sort(int *num, int count)
 		i++;
 	}
 	median = find_median(num, count);
-	ft_printf("after sorting:");
+	ft_printf("after sorting: ");
 	ft_print_int_array(num, count);
 	ft_printf("my median value is %d\n", median);
 	return(median);
