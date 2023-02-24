@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 18:52:11 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/24 18:56:17 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int ps_init(t_ps *ps, char** argv)
 		error("malloc fail", 1);
 	is_uniq(parsing(ps));
 	ps->action_count = 0;
+	ft_printf("original len a is %d\n", ps->len_a);
 	return(0);
 }
 //median value stays at a
