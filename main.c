@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 19:38:13 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/24 19:42:38 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,6 @@ void sort_algo(t_ps *ps)
 	ft_print_int_array(ps->a, ps->len_a);
 }
 
-void add_back(t_ps *ps)
-{
-	if (ps->len_b <= 3)
-		sort_small_b(ps);
-}
-
 int ps_in_action(t_ps *ps)
 {
 	if (ps->len_a <= 3)
@@ -111,6 +105,14 @@ int ps_in_action(t_ps *ps)
 	//ft_printf("b: ");
 	//ft_print_int_array(ps->b, ps->len_b);
 	return(0);
+}
+
+//!!!!!!!!
+void add_back(t_ps *ps)
+{
+	if (ps->len_b <= 3)
+		sort_small_b(ps);
+	//when the b is longer than 3, what to do?
 }
 
 int main(int argc, char** argv)
