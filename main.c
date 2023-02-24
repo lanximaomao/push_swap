@@ -49,16 +49,43 @@ void sort_three_b(t_ps *ps)
 		sa(ps);
 }
 
-//void divide_algo(t_ps *ps)
-//{
-//	find_median()
-//}
+//median value stays at a
 
-//void sort_more(t_ps *ps)
-//{
-//	divide_algo(ps);
+void divide_algo(t_ps *ps, int start, int end)
+{
+	int i;
+	int count;
+	int median;
 
-//}
+	i = 0;
+	count = 0;
+	if (ps->len_a < 4)
+		return;
+	median = find_median(ps->a, start, end);
+	ft_printf("my median is %d \n", median);
+	while (median < find_max(ps->a, ps->len_a))
+	{
+		if (ps->a[0] > median)
+			pb(ps); // push to b
+		else
+			ra(ps); // the first one become the last one
+	}
+}
+
+void sort_more(t_ps *ps)
+{
+	int start;
+	int end;
+
+	start = 0;
+	end = ps->len_a - 1;
+	//count = 0;
+	//while (ps->len_a > 3)
+	//{
+	//	divide_algo(ps, start-count, end);
+	//}
+	divide_algo(ps, start, end);
+}
 
 int ps_in_action(t_ps *ps)
 {
@@ -78,8 +105,15 @@ int ps_in_action(t_ps *ps)
 		ft_print_int_array(ps->a, ps->len_a);
 		exit(0);
 	}
-	//if (ps->len_a >= 4)
-	//	sort_more(ps);
+	if (ps->len_a >= 4)
+	{
+		sort_more(ps);
+		ft_printf("a: ");
+		ft_print_int_array(ps->a, ps->len_a);
+		ft_printf("b: ");
+		ft_print_int_array(ps->b, ps->len_b);
+	}
+
 	return(0);
 }
 
@@ -93,11 +127,11 @@ int main(int argc, char** argv)
 	if (!ps)
 		error("malloc fail", 1);
 	ps_init(ps, argv); // error catch?
-	//ps_in_action(ps);
+	ps_in_action(ps);
 	// find midian
 	//ft_printf("before sorting: ");
 	//ft_print_int_array(ps->a, ps->len_a);
-	ft_printf("median value is %d: ", find_median(ps->a, 0, ps->len_a - 1));
+	//ft_printf("median value is %d: ", find_median(ps->a, 0, ps->len_a - 1));
 	//free
 	free(ps->a);
 	free(ps);

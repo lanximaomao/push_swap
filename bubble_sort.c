@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:53:58 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 14:30:54 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/24 15:34:33 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,12 @@ int	find_median(int *num, int start, int end)
 
 	len = end - start + 1;
 	num_dup = bubble_sort(num, start, end);
+	ft_printf("after sort\n");
+	ft_print_int_array(num_dup, end - start + 1);
 	if (len < 3)
-		return(num[len - 1]);
+		return(num_dup[len - 1]);
 	if (len % 2 == 1)
-		return(num[len/2]);
+		return(num_dup[len/2]);
 	else
-		return(num[len/2 - 1]);
+		return(num_dup[len/2 - 1]);
 }

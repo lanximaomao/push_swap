@@ -50,6 +50,7 @@ void		ft_swap(int i, int j);
 //utils
 int* int_arr_dup(int *num, int len);
 int	find_median(int *num, int start, int end);
+int	find_max(int *num, int count);
 
 int ps_init(t_ps *ps, char** argv);
 void sort_two_a(t_ps *ps);

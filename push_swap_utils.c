@@ -64,7 +64,7 @@ int	find_max(int *num, int count)
 			max = num[i];
 		i++;
 	}
-	ft_printf("my max is %d: \n", max);
+	//ft_printf("my max is %d: \n", max);
 	return (max);
 }
 
