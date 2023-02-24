@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 18:56:17 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/24 19:18:16 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ void sort_algo(t_ps *ps)
 	optimizer(ps);
 	divide_algo(ps, start, end);
 	sort_small_a(ps);
+	add_back(ps);
+
+	//check out final result
+	ft_printf("\n---- sorted stack a ----\n");
+	ft_print_int_array(ps->a, ps->len_a);
+}
+
+void add_back(t_ps *ps)
+{
 	if (ps->len_b <= 3)
 		sort_small_b(ps);
 }

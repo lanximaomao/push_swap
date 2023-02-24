@@ -65,5 +65,6 @@ void sort_small_b(t_ps *ps);
 int ps_in_action(t_ps *ps);
 
 void optimizer(t_ps *ps);
+void add_back(t_ps *ps);
 
 #endif
