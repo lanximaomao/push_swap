@@ -11,6 +11,7 @@ typedef struct s_ps
 	char	**input;
 	int		*a;
 	int		*b;
+	int		len;
 	int		len_a;
 	int		len_b;
 	int		action_count;
@@ -63,8 +64,16 @@ void sort_algo(t_ps *ps);
 void sort_small_a(t_ps *ps);
 void sort_small_b(t_ps *ps);
 int ps_in_action(t_ps *ps);
+int add_back(t_ps *ps);
 
 void optimizer(t_ps *ps);
-void add_back(t_ps *ps);
+void divide_algo_a(t_ps *ps, int start, int end);
+void divide_algo_b(t_ps *ps, int start, int end);
+
+void push_two_b(t_ps *ps);
+void push_three_b(t_ps *ps);
+
+int level(int len);
+
 
 #endif

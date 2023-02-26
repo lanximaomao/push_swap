@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 19:42:38 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/26 20:03:34 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ int ps_init(t_ps *ps, char** argv)
 		sort_small_a(ps);
 		exit(0);
 	}
-	ft_printf("original len a is %d\n", ps->len_a);
+	ps->len = ps->len_a;
+	ft_printf("\nstack a has %d numbers.\n\n", ps->len);
 	return(0);
 }
 //median value stays at a
 
-void divide_algo(t_ps *ps, int start, int end)
+void divide_algo_a(t_ps *ps, int start, int end)
 {
 	int i;
 	int count;
@@ -59,11 +60,36 @@ void divide_algo(t_ps *ps, int start, int end)
 		else
 			ra(ps); // the first one become the last one
 	}
-	write(1, "a: ",3);
+	write(1, "\na: ",3);
 	ft_print_int_array(ps->a, ps->len_a);
 	write(1, "b: ",3);
 	ft_print_int_array(ps->b, ps->len_b);
-	divide_algo(ps, start, ps->len_a - 1);
+	write(1, "\n", 1);
+	divide_algo_a(ps, start, ps->len_a - 1);
+}
+
+//differ than divide_algo_a, this is not a recursive function
+void divide_algo_b(t_ps *ps, int start, int end)
+{
+	int i;
+	int count;
+	int median;
+
+	i = 0;
+	count = 0;
+	median = find_median(ps->b, start, end);
+	while (median != find_max(ps->b, ps->len_b))
+	{
+		if (ps->b[0] > median)
+			pa(ps); // push to a
+		else
+			rb(ps); // the first one become the last one
+	}
+	//write(1, "\na: ",3);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//write(1, "b: ",3);
+	//ft_print_int_array(ps->b, ps->len_b);
+	//write(1, "\n", 1);
 }
 
 //possibe to expand the same logic
@@ -86,13 +112,10 @@ void sort_algo(t_ps *ps)
 	//	divide_algo(ps, start-count, end);
 	//}
 	optimizer(ps);
-	divide_algo(ps, start, end);
+	divide_algo_a(ps, start, end);
 	sort_small_a(ps);
-	add_back(ps);
 
 	//check out final result
-	ft_printf("\n---- sorted stack a ----\n");
-	ft_print_int_array(ps->a, ps->len_a);
 }
 
 int ps_in_action(t_ps *ps)
@@ -100,20 +123,66 @@ int ps_in_action(t_ps *ps)
 	if (ps->len_a <= 3)
 		sort_small_a(ps);
 	sort_algo(ps);
-	//ft_printf("a: ");
-	//ft_print_int_array(ps->a, ps->len_a);
-	//ft_printf("b: ");
-	//ft_print_int_array(ps->b, ps->len_b);
+	add_back(ps);
+	ft_printf("a: ");
+	ft_print_int_array(ps->a, ps->len_a);
+	ft_printf("b: ");
+	ft_print_int_array(ps->b, ps->len_b);
 	return(0);
 }
 
-//!!!!!!!!
-void add_back(t_ps *ps)
+int level(int len)
 {
-	if (ps->len_b <= 3)
-		sort_small_b(ps);
-	//when the b is longer than 3, what to do?
+	int i;
+
+	i = 1;
+	while (len / 2 + len % 2 > 3)
+	{
+		len = len / 2  + len % 2;
+		i++;
+	}
+	len = len / 2;
+	ft_printf("\nlast level is %d. \n", i);
+	ft_printf("\nmy last level len is now %d\n\n", len);
+	return(len);
 }
+
+//this will be recursive
+//
+int add_back(t_ps *ps)
+{
+
+	if (ps->len_b <= 3)
+	{
+		sort_small_b(ps);
+		if (ps->len_a == ps->len)
+		{
+			ft_printf("a: ");
+			ft_print_int_array(ps->a, ps->len_a);
+			ft_printf("b: ");
+			ft_print_int_array(ps->b, ps->len_b);
+			exit(1);
+		}
+	}
+	//check the top chuck, which is always 2-3 nums
+	if (level(ps->len) == 2)
+		push_two_b(ps);
+	else if (level(ps->len == 3))
+		push_three_b(ps);
+	if (ps->len_b > 3)
+	{
+		divide_algo_b(ps, 0, 3);//?
+	}
+	add_back(ps);
+
+	// or sort_three_b(ps), 11 number will get b at 3+5
+
+
+	//dive b and push to a the smaller half
+	//divide_algo_b(ps, 0, 1);
+	return(0);
+}
+
 
 int main(int argc, char** argv)
 {

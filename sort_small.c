@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:20:04 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 19:33:23 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/26 19:45:19 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void sort_small_a(t_ps *ps)
 		sort_two_a(ps);
 	if (ps->len_a == 3)
 		sort_three_a(ps);
-	ft_printf("--- sorting small a ----\n ");
-	ft_print_int_array(ps->a, ps->len_a);
+	//ft_printf("--- sorting small a ----\n ");
+	//ft_print_int_array(ps->a, ps->len_a);
 }
 
 void sort_small_b(t_ps *ps)
@@ -35,8 +35,8 @@ void sort_small_b(t_ps *ps)
 		sort_two_b(ps);
 	if (ps->len_b == 3)
 		sort_three_b(ps);
-	ft_printf("--- sorting small b ---\n");
-	ft_print_int_array(ps->b, ps->len_b);
+	//ft_printf("--- sorting small b ---\n");
+	//ft_print_int_array(ps->b, ps->len_b);
 	while (ps->len_b != 0)
 		pa(ps);
 }
@@ -74,3 +74,33 @@ void sort_three_b(t_ps *ps)
 	if (ps->b[0] < ps->b[1])
 		sb(ps);
 }
+
+void push_three_b(t_ps *ps)
+{
+	if (ps->b[0] > ps->b[1] && ps->b[0] > ps->b[2])
+		pa(ps);
+	else if (ps->b[1] > ps->b[0] && ps->b[1] > ps->b[2])
+	{
+		sb(ps);
+		pa(ps);
+	}
+	else if (ps->b[2] > ps->b[0] && ps->b[2] > ps->b[1])
+	{
+		rb(ps);
+		rb(ps);
+		pa(ps);
+		rrb(ps);
+		rrb(ps);
+	}
+	push_two_b(ps);
+}
+
+void push_two_b(t_ps *ps)
+{
+	if (ps->b[0] < ps->b[1])
+		sb(ps);
+	pa(ps);
+	pa(ps);
+}
+
+
