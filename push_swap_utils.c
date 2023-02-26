@@ -51,18 +51,16 @@ void	ft_print_int_array(int *int_arr, int len)
 	ft_printf("\n");
 }
 
-int	find_max(int *num, int count)
+int	find_max(int *num, int start, int end)
 {
-	int	i;
 	int	max;
 
-	i = 0;
-	max = num[i];
-	while (i < count)
+	max = num[start];
+	while (start <= end)
 	{
-		if (num[i] > max)
-			max = num[i];
-		i++;
+		if (num[start] > max)
+			max = num[start];
+		start++;
 	}
 	//ft_printf("my max is %d: \n", max);
 	return (max);

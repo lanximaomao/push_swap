@@ -1,0 +1,180 @@
+
+stack a has 21 numbers.
+
+lvl in b is 3
+level 0 is has 10 numbers
+level 1 is has 5 numbers
+level 2 is has 3 numbers
+pb
+pb
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+pb
+pb
+pb
+pb
+pb
+ra
+pb
+ra
+pb
+pb
+
+a:12  13  14  16  20  17  18  19  15  10  11  
+b: 7  0  3  6  9  2  5  4  8  1  
+
+pb
+pb
+pb
+ra
+ra
+ra
+ra
+ra
+ra
+pb
+pb
+
+a:16  20  17  18  19  15  
+b: 11  10  14  13  12  7  0  3  6  9  2  5  4  8  1  
+
+pb
+ra
+ra
+ra
+ra
+pb
+
+a:20  17  18  19  
+b: 15  16  11  10  14  13  12  7  0  3  6  9  2  5  4  8  1  
+
+ra
+pb
+
+a:18  19  20  
+b: 17  15  16  11  10  14  13  12  7  0  3  6  9  2  5  4  8  1  
+
+
+
+!loop!
+lvl is 3
+end 3
+pa
+sb
+pa
+pa
+a after loop: 15  16  17  18  19  20  
+b after loop: 11  10  14  13  12  7  0  3  6  9  2  5  4  8  1  
+
+
+!loop!
+lvl is 3
+end 5
+my median is 12
+my max is 14
+rb
+my max is 14
+rb
+my max is 14
+pa
+my max is 13
+pa
+rrb
+rrb
+divide algo a: 13  14  15  16  17  18  19  20  
+divide algo b: 11  10  12  7  0  3  6  9  2  5  4  8  1  
+rb
+rb
+pa
+rrb
+rrb
+pa
+pa
+here
+a after loop: 10  11  12  13  14  15  16  17  18  19  20  
+b after loop: 7  0  3  6  9  2  5  4  8  1  
+
+
+!loop!
+lvl is 3
+end 10
+my median is 4
+my max is 9
+pa
+my max is 9
+rb
+my max is 9
+rb
+my max is 9
+pa
+my max is 9
+pa
+my max is 8
+rb
+my max is 8
+pa
+my max is 8
+rb
+my max is 8
+pa
+rrb
+rrb
+rrb
+rrb
+divide algo a: 8  5  9  6  7  10  11  12  13  14  15  16  17  18  19  20  
+divide algo b: 0  3  2  4  1  
+ra
+pb
+ra
+pb
+
+a:7  10  11  12  13  14  15  16  17  18  19  20  8  9  
+b: 6  5  0  3  2  4  1  
+
+pb
+pb
+pb
+pb
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+pb
+pb
+
+a:13  14  15  16  17  18  19  20  
+b: 9  8  12  11  10  7  6  5  0  3  2  4  1  
+
+pb
+pb
+pb
+
+a:16  17  18  19  20  
+b: 15  14  13  9  8  12  11  10  7  6  5  0  3  2  4  1  
+
+pb
+pb
+
+a:18  19  20  
+b: 17  16  15  14  13  9  8  12  11  10  7  6  5  0  3  2  4  1  
+
+pa
+pa
+pa
+here
+a after loop: 15  16  17  18  19  20  
+b after loop: 14  13  9  8  12  11  10  7  6  5  0  3  2  4  1  
+a: 15  16  17  18  19  20  
+b: 14  13  9  8  12  11  10  7  6  5  0  3  2  4  1  
+my action count is now 96

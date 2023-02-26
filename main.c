@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/26 21:58:43 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/27 01:21:30 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,24 +80,39 @@ void divide_algo_b(t_ps *ps, int start, int end)
 	i = 0;
 	count = 0;
 	median = find_median(ps->b, start, end);
-	while (median != find_max(ps->b, ps->len_b))
+	ft_printf("my median is %d\n", median);
+	while (median != find_max(ps->b, start, end))
 	{
+		ft_printf("my max is %d\n", find_max(ps->b, start, end));
 		if (ps->b[0] > median)
 			pa(ps); // push to a
 		else
+		{
 			rb(ps); // the first one become the last one
+			count++;
+		}
 	}
+	while (count > 0)
+	{
+		rrb(ps);
+		count--;
+	}
+
 	//write(1, "\na: ",3);
 	//ft_print_int_array(ps->a, ps->len_a);
 	//write(1, "b: ",3);
 	//ft_print_int_array(ps->b, ps->len_b);
 	//write(1, "\n", 1);
+	ft_printf("divide algo a: ");
+	ft_print_int_array(ps->a, ps->len_a);
+	ft_printf("divide algo b: ");
+	ft_print_int_array(ps->b, ps->len_b);
 }
 
 //possibe to expand the same logic
 void optimizer(t_ps *ps)
 {
-	if (ps->a[0] == find_max(ps->a, ps->len_a) || ps->a[ps->len_a-1] == find_min(ps->a, ps->len_a))
+	if (ps->a[0] == find_max(ps->a, 0, ps->len_a) || ps->a[ps->len_a-1] == find_min(ps->a, ps->len_a))
 		rra(ps); // if the first num is big, put it
 }
 
@@ -160,59 +175,110 @@ void level(t_ps *ps)
 	}
 }
 
+
 //this will be recursive
-//
+
+void throw_and_catch(t_ps *ps, int start, int end)
+{
+	int range;
+
+	range = end - start + 1;
+	if (range < 1)
+		return;
+	if (range == 2) // 2 nums
+	{
+		push_two_b(ps);
+		return;
+	}
+	if (range == 3)// 3 nums
+	{
+		push_three_b(ps);
+		return;
+	}
+	divide_algo_b(ps, start, end); // at least 4 nums
+	if (range/2 + range % 2 > 3)
+	{
+		divide_algo_a(ps, 0, range/2 + range % 2);
+	}
+	// so far the code looks good until here!!!
+
+	sort_top_three_a(ps);
+	push_three_b(ps);
+	write(1, "here\n", 5);
+	//throw_and_catch(ps, 0, range - 3);//not optimal
+}
+
 int add_back(t_ps *ps)
 {
 	int i;
-	int leftover;
 
-	if (ps->len_b <= 3)
+	i = 0;
+	while (i < ps->lvl)
 	{
-		sort_small_b(ps);
-		if (ps->len_a == ps->len)
-		{
-			ft_printf("a: ");
-			ft_print_int_array(ps->a, ps->len_a);
-			ft_printf("b: ");
-			ft_print_int_array(ps->b, ps->len_b);
-			exit(1);
-		}
-	}
-	//check the top chuck, which is always 2-3 nums
-	if (ps->lvl_b[ps->lvl - 1] == 2)
-		push_two_b(ps);
-	else if (ps->lvl_b[ps->lvl - 1] == 3)
-		push_three_b(ps);
-	//
-	//	loop through different level of b
-	//
-	i = 2;
-	while (ps->len_b > 3 && i < ps->lvl - 1)
-	{
-		divide_algo_b(ps, 0, ps->lvl_b[ps->lvl - i]);
-		if (ps->lvl_b[ps->lvl - i] > 3)
-		{
-			//threw everything but the biggest three in a
-			divide_algo_a(ps, 0, ps->lvl_b[ps->lvl - i]/2 + ps->lvl_b[ps->lvl - i] % 2);
-			// sort the top three at a
-			sort_top_three_a(ps);
-			//what is the leftover at b
-			leftover = ps->lvl_b[ps->lvl - i] - 3;
-			if (leftover == 2)
-				push_two_b(ps);
-			if (leftover == 3)
-				push_three_b(ps); // not test?
-			if (leftover > 3)
-				add_back(ps);
-		}
+		write(1, "\n\n!loop!\n\n", 9);
+		ft_printf("lvl is %d\n", ps->lvl);
+		ft_printf("end %d\n", ps->lvl_b[ps->lvl - 1 - i]);
+		throw_and_catch(ps, 0, ps->lvl_b[ps->lvl - 1 - i]-1);
+		ft_printf("a after loop: ");
+		ft_print_int_array(ps->a, ps->len_a);
+		ft_printf("b after loop: ");
+		ft_print_int_array(ps->b, ps->len_b);
 		i++;
 	}
-	// or sort_three_b(ps), 11 number will get b at 3+5
-	//dive b and push to a the smaller half
-	//divide_algo_b(ps, 0, 1);
 	return(0);
 }
+//
+//int add_back(t_ps *ps)
+//{
+//	int i;
+//	int leftover;
+
+//	if (ps->len_b <= 3)
+//	{
+//		sort_small_b(ps);
+//		if (ps->len_a == ps->len)
+//		{
+//			ft_printf("a: ");
+//			ft_print_int_array(ps->a, ps->len_a);
+//			ft_printf("b: ");
+//			ft_print_int_array(ps->b, ps->len_b);
+//			exit(1);
+//		}
+//	}
+//	//check the top chuck, which is always 2-3 nums
+//	if (ps->lvl_b[ps->lvl - 1] == 2)
+//		push_two_b(ps);
+//	else if (ps->lvl_b[ps->lvl - 1] == 3)
+//		push_three_b(ps);
+//	//
+//	//	loop through different level of b
+//	//
+//	i = 2;
+//	while (ps->len_b > 3 && i < ps->lvl - 1)
+//	{
+//		divide_algo_b(ps, 0, ps->lvl_b[ps->lvl - i]);
+//		if (ps->lvl_b[ps->lvl - i] > 3)
+//		{
+//			//threw everything but the biggest three in a
+//			divide_algo_a(ps, 0, ps->lvl_b[ps->lvl - i]/2 + ps->lvl_b[ps->lvl - i] % 2);
+//			// sort the top three at a
+//			sort_top_three_a(ps);
+//			//what is the leftover at b
+//			leftover = ps->lvl_b[ps->lvl - i] - 3;
+//			if (leftover == 2)
+//				push_two_b(ps);
+//			if (leftover == 3)
+//				push_three_b(ps); // not test?
+//			if (leftover > 3)
+//				add_back(ps);
+//		}
+//		i++;
+//	}
+//	// or sort_three_b(ps), 11 number will get b at 3+5
+//	//dive b and push to a the smaller half
+//	//divide_algo_b(ps, 0, 1);
+//	return(0);
+//}
 
 
 int main(int argc, char** argv)
