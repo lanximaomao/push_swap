@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/27 01:21:30 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/27 01:59:39 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,32 @@ void divide_algo_a(t_ps *ps, int start, int end)
 
 	i = 0;
 	count = 0;
-	if (ps->len_a < 4)
+	if (end - start < 3)
 		return;
 	median = find_median(ps->a, start, end);
-	while (median != find_min(ps->a, ps->len_a))
+	while (median != find_min(ps->a, start, end))
 	{
 		if (ps->a[0] < median)
 			pb(ps); // push to b
 		else
+		{
 			ra(ps); // the first one become the last one
+			count++;
+		}
+	}
+	while (count > 0)
+	{
+		rra(ps);
+		count--;
 	}
 	write(1, "\na: ",3);
 	ft_print_int_array(ps->a, ps->len_a);
 	write(1, "b: ",3);
 	ft_print_int_array(ps->b, ps->len_b);
 	write(1, "\n", 1);
-	divide_algo_a(ps, start, ps->len_a - 1);
+	//!! recursive condition is wrong
+	divide_algo_a(ps, 0, (end - start ));
+
 }
 
 //differ than divide_algo_a, this is not a recursive function
@@ -112,7 +122,7 @@ void divide_algo_b(t_ps *ps, int start, int end)
 //possibe to expand the same logic
 void optimizer(t_ps *ps)
 {
-	if (ps->a[0] == find_max(ps->a, 0, ps->len_a) || ps->a[ps->len_a-1] == find_min(ps->a, ps->len_a))
+	if (ps->a[0] == find_max(ps->a, 0, ps->len_a) || ps->a[ps->len_a-1] == find_min(ps->a, 0, ps->len_a))
 		rra(ps); // if the first num is big, put it
 }
 
@@ -199,6 +209,7 @@ void throw_and_catch(t_ps *ps, int start, int end)
 	if (range/2 + range % 2 > 3)
 	{
 		divide_algo_a(ps, 0, range/2 + range % 2);
+		write(1, "TTTTT\n", 6);
 	}
 	// so far the code looks good until here!!!
 

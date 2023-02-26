@@ -66,18 +66,16 @@ int	find_max(int *num, int start, int end)
 	return (max);
 }
 
-int find_min(int *num, int count)
+int find_min(int *num, int start, int end)
 {
-	int i;
 	int min;
 
-	i = 0;
-	min = num[i];
-	while (i < count )
+	min = num[start];
+	while (start <= end )
 	{
-		if (num[i] < min)
-			min = num[i];
-		i++;
+		if (num[start] < min)
+			min = num[start];
+		start++;
 	}
 	return(min);
 }
