@@ -14,6 +14,9 @@ typedef struct s_ps
 	int		len;
 	int		len_a;
 	int		len_b;
+	int		lvl;
+	int*	lvl_a;
+	int* 	lvl_b;
 	int		action_count;
 }			t_ps;
 
@@ -72,8 +75,7 @@ void divide_algo_b(t_ps *ps, int start, int end);
 
 void push_two_b(t_ps *ps);
 void push_three_b(t_ps *ps);
-
-int level(int len);
+void level(t_ps *ps);
 
 
 #endif

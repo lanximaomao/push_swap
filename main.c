@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/26 20:03:34 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/26 21:04:52 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int ps_init(t_ps *ps, char** argv)
 	}
 	ps->len = ps->len_a;
 	ft_printf("\nstack a has %d numbers.\n\n", ps->len);
+	level(ps);
 	return(0);
 }
 //median value stays at a
@@ -131,20 +132,31 @@ int ps_in_action(t_ps *ps)
 	return(0);
 }
 
-int level(int len)
+void level(t_ps *ps)
 {
-	int i;
+	int	i;
+	int tmp;
 
-	i = 1;
-	while (len / 2 + len % 2 > 3)
+	i = 0;
+	ps->lvl = 0;
+	tmp = ps->len;;
+	while (tmp > 3)
 	{
-		len = len / 2  + len % 2;
+		tmp = tmp / 2 + tmp % 2;
+		ps->lvl++;
+	}
+	ft_printf("lvl in b is %d\n", ps->lvl);
+	ps->lvl_b = malloc(sizeof(int) * ps->lvl);//free
+	if (!ps->lvl_b)
+		error("malloc fail", 1);
+	tmp = ps->len;
+	while (tmp > 3)
+	{
+		ps->lvl_b[i] = tmp/2;
+		ft_printf("level %d is has %d numbers\n", i, ps->lvl_b[i]);
+		tmp = tmp / 2 + tmp % 2;
 		i++;
 	}
-	len = len / 2;
-	ft_printf("\nlast level is %d. \n", i);
-	ft_printf("\nmy last level len is now %d\n\n", len);
-	return(len);
 }
 
 //this will be recursive
@@ -165,9 +177,9 @@ int add_back(t_ps *ps)
 		}
 	}
 	//check the top chuck, which is always 2-3 nums
-	if (level(ps->len) == 2)
+	if (ps->lvl_b[ps->lvl - 1] == 2)
 		push_two_b(ps);
-	else if (level(ps->len == 3))
+	else if (ps->lvl_b[ps->lvl - 1] == 3)
 		push_three_b(ps);
 	if (ps->len_b > 3)
 	{
