@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/26 21:04:52 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/26 21:57:07 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,8 @@ void level(t_ps *ps)
 //
 int add_back(t_ps *ps)
 {
+	int i;
+	int leftover;
 
 	if (ps->len_b <= 3)
 	{
@@ -181,15 +183,31 @@ int add_back(t_ps *ps)
 		push_two_b(ps);
 	else if (ps->lvl_b[ps->lvl - 1] == 3)
 		push_three_b(ps);
-	if (ps->len_b > 3)
+	//
+	//	loop through different level of b
+	//
+	i = 2;
+	while (ps->len_b > 3 && i < ps->lvl - 1)
 	{
-		divide_algo_b(ps, 0, 3);//?
+		divide_algo_b(ps, 0, ps->lvl_b[ps->lvl - i]);
+		if (ps->lvl_b[ps->lvl - i] > 3)
+		{
+			//threw everything but the biggest three in a
+			divide_algo_a(ps, 0, ps->lvl_b[ps->lvl - i]/2 + ps->lvl_b[ps->lvl - i] % 2);
+			// sort the top three at a
+			sort_top_three_a(ps);
+			//what is the leftover at b
+			leftover = ps->lvl_b[ps->lvl - i] - 3;
+			if (leftover == 2)
+				push_two_b(ps);
+			if (leftover == 3)
+				push_three_b(ps); // not test?
+			if (leftover > 3)
+				add_back(ps);
+		}
+		i++;
 	}
-	add_back(ps);
-
 	// or sort_three_b(ps), 11 number will get b at 3+5
-
-
 	//dive b and push to a the smaller half
 	//divide_algo_b(ps, 0, 1);
 	return(0);

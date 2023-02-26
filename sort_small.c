@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:20:04 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/26 19:45:19 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/02/26 21:42:54 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,20 @@ void sort_three_a(t_ps *ps)
 		ra(ps);
 	else if (ps->a[1] > ps->a[0] && ps->a[1] > ps->a[2])
 		rra(ps);
+	if (ps->a[0] > ps->a[1])
+		sa(ps);
+}
+
+void sort_top_three_a(t_ps *ps)
+{
+	if (ps->a[0] > ps->a[1])
+		sa(ps);
+	if (ps->a[1] > ps->a[0] && ps->a[1] > ps->a[2])
+	{
+		ra(ps);
+		sa(ps);
+		rra(ps);
+	}
 	if (ps->a[0] > ps->a[1])
 		sa(ps);
 }

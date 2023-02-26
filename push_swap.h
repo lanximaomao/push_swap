@@ -77,5 +77,7 @@ void push_two_b(t_ps *ps);
 void push_three_b(t_ps *ps);
 void level(t_ps *ps);
 
+void sort_top_three_a(t_ps *ps);
+
 
 #endif
