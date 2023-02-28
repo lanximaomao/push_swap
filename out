@@ -1,15 +1,173 @@
 
 
 ---------------------------------
-stack a has 8 numbers.
+stack a has 13 numbers.
 ---------------------------------
 
 
 
 ---------------------------------
-lvl in b is 2
-level 0 is has 4 numbers
-level 1 is has 2 numbers
+lvl in b is 3
+level 0 is has 6 numbers
+level 1 is has 3 numbers
+level 2 is has 2 numbers
 ---------------------------------
 
-stack a is alreay sorted.
+
+
+---------------------------------
+msg from divide_a_to_b:
+a: 2  1  5  12  11  13  4  10  7  9  6  8  3  
+b: 
+
+
+Division is based on median value 7
+
+pb
+pb
+pb
+ra
+ra
+ra
+pb
+ra
+ra
+ra
+pb
+ra
+pb
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+
+a: 12  11  13  10  7  9  8  
+b: 3  6  4  5  1  2  
+
+send 6 numbers to stack b
+---------------------------------
+
+
+
+---------------------------------
+msg from divide_a_to_b:
+a: 12  11  13  10  7  9  8  
+b: 3  6  4  5  1  2  
+
+
+Division is based on median value 10
+
+ra
+ra
+ra
+ra
+pb
+pb
+pb
+rra
+rra
+rra
+rra
+
+a: 12  11  13  10  
+b: 8  9  7  3  6  4  5  1  2  
+
+send 3 numbers to stack b
+---------------------------------
+
+
+
+---------------------------------
+msg from divide_a_to_b:
+a: 12  11  13  10  
+b: 8  9  7  3  6  4  5  1  2  
+
+
+Division is based on median value 11
+
+ra
+pb
+ra
+pb
+rra
+rra
+
+a: 12  13  
+b: 10  11  8  9  7  3  6  4  5  1  2  
+
+send 2 numbers to stack b
+---------------------------------
+
+
+
+---------------------------------
+start to add back process: loop 0 with 2 numbers.
+sb
+pa
+pa
+
+a: 10  11  12  13  
+b: 8  9  7  3  6  4  5  1  2  
+
+---------------------------------
+
+
+
+---------------------------------
+start to add back process: loop 1 with 3 numbers.
+am i here??
+sb
+pa
+pa
+pa
+i am here!!
+
+a: 7  8  9  10  11  12  13  
+b: 3  6  4  5  1  2  
+
+---------------------------------
+
+
+
+---------------------------------
+start to add back process: loop 2 with 6 numbers.
+
+
+---------------------------------
+msg from divide_b_to_a:
+a: 7  8  9  10  11  12  13  
+b: 3  6  4  5  1  2  
+
+
+Division is based on median value 3
+
+rb
+pa
+pa
+pa
+rrb
+
+a: 5  4  6  7  8  9  10  11  12  13  
+b: 3  1  2  
+
+send 3 numbers to stack a
+---------------------------------
+
+sa
+am i here??
+pa
+sb
+pa
+pa
+i am here!!
+
+a: 1  2  3  4  5  6  7  8  9  10  11  12  13  
+b: 
+
+---------------------------------
+
+main function - after sorting: 1  2  3  4  5  6  7  8  9  10  11  12  13  
+my action count is now 54

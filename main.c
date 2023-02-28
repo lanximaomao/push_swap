@@ -6,13 +6,15 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/28 18:57:13 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/28 20:04:35 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 ** ./push_swap 0 2 1 8 3 4 10  5 6 9  7
 ** ARG="1 8  12 13 14 15 20 16 18 19  17  4 5 2 9 6 10 3 11 0 7"; ./push_swap $ARG
+** ./push_swap  2 1 5  12 11 13 4 10 7 9 6 8 3 14 > out
+** ./push_swap  2 1 5  12 11 13 4 10 7 9 6 8 3 > out
 */
 # include "push_swap.h"
 
@@ -123,9 +125,9 @@ int divide_a_to_b(t_ps *ps, int start, int end)
 	ft_printf("\nDivision is based on median value %d\n\n", median);
 	//as long as median is not the smallest in the stack, we have got something to push
 	//this will also keep the median value itself inside my stack a
-	while ( ps->len_b - b_init_size  != range / 2)
+	while ( ps->len_b - b_init_size  < range / 2 )
 	{
-		if (ps->a[0] <= median)
+		if (ps->a[0] < median || (ps->a[0] == median && range %  2 == 0))
 		{
 			pb(ps); // push to b
 			end--;
@@ -160,9 +162,14 @@ int divide_b_to_a(t_ps *ps, int start, int end)
 	int count;
 	int median;
 	int a_init_size;
+	int range;
 
 	i = 0;
 	count = 0;
+	//if less than three numbers, not need to divide
+	range = end - start + 1;
+	if (range <= 3)
+		return (0);
 	median = find_median(ps->b, start, end);
 	ft_printf("\n\n---------------------------------");
 	ft_printf("\nmsg from divide_b_to_a:");
@@ -176,9 +183,9 @@ int divide_b_to_a(t_ps *ps, int start, int end)
 	a_init_size = ps->len_a;
 	//as long as the median is not the biggest, you will always have something to push from b to a
 	// how about medium value?
-	while (median != find_max(ps->b, start, end))
+	while (ps->len_a - a_init_size <  range / 2)
 	{
-		if (ps->b[0] > median)
+		if (ps->b[0] > median || (ps->b[0] > median && range % 2 == 0 ))
 			pa(ps); // push to a
 		else
 		{
@@ -211,8 +218,15 @@ int add_back(t_ps *ps)
 	while (i < ps->lvl)
 	{
 		ft_printf("\n\n---------------------------------");
-		ft_printf("\nloop %d with %d numbers.\n", i, ps->lvl_b[ps->lvl - 1 - i]);
+		ft_printf("\nstart to add back process: ");
+		ft_printf("loop %d with %d numbers.\n", i, ps->lvl_b[ps->lvl - 1 - i]);
 		throw_and_catch(ps, 0, ps->lvl_b[ps->lvl - 1 - i]-1);
+		write(1, "\n", 1);
+		write(1, "a: ",3);
+		ft_print_int_array(ps->a, ps->len_a);
+		write(1, "b: ",3);
+		ft_print_int_array(ps->b, ps->len_b);
+		write(1, "\n", 1);
 		ft_printf("---------------------------------\n\n");
 		i++;
 	}
@@ -234,15 +248,16 @@ void throw_and_catch(t_ps *ps, int start, int end)
 		return;
 	}
 	divide_b_to_a(ps, start, end); // at least 4 nums
+
+	//this part is problemetic!!
 	if (range/2 + range % 2 > 3)
 	{
-		divide_a_to_b(ps, 0, range/2 + range % 2);
-		write(1, "TTTTT\n", 6);
+		write(1, "\nTTTTT\n", 7);
+		divide_a_to_b(ps, 0, ps->len_b - 1);
+		write(1, "\nTTTTT\n", 7);
 	}
-	// so far the code looks good until here!!!
 
 	sort_top_three_a(ps);
-	push_three_b_to_a(ps);
-	write(1, "here\n", 5);
+	push_less_than_three_b_to_a(ps, ps->len_b);
 	//throw_and_catch(ps, 0, range - 3);//not optimal
 }
