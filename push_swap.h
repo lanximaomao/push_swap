@@ -63,18 +63,18 @@ void sort_two_a(t_ps *ps);
 void sort_two_b(t_ps *ps);
 void sort_three_a(t_ps *ps);
 void sort_three_b(t_ps *ps);
-void sort_algo(t_ps *ps);
+int sort_algo(t_ps *ps);
 void sort_small_a(t_ps *ps);
 void sort_small_b(t_ps *ps);
-int ps_in_action(t_ps *ps);
 int add_back(t_ps *ps);
 
 void optimizer(t_ps *ps);
-void divide_algo_a(t_ps *ps, int start, int end);
-void divide_algo_b(t_ps *ps, int start, int end);
+int divide_a_to_b(t_ps *ps, int start, int end);
+int divide_b_to_a(t_ps *ps, int start, int end);
 
-void push_two_b(t_ps *ps);
-void push_three_b(t_ps *ps);
+void push_less_than_three_b_to_a(t_ps *ps, int range);
+void push_three_b_to_a(t_ps *ps);
+void push_two_b_to_a(t_ps *ps);
 void level(t_ps *ps);
 
 void sort_top_three_a(t_ps *ps);

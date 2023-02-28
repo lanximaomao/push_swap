@@ -80,19 +80,31 @@ int find_min(int *num, int start, int end)
 	return(min);
 }
 
-int* int_arr_dup(int *num, int len)
+void level(t_ps *ps)
 {
-	int i;
-	int *int_dup;
+	int	i;
+	int tmp;
 
 	i = 0;
-	int_dup = malloc(sizeof(int) * len);
-	if (!int_dup)
-		error("malloc fail", 1);
-	while (i < len)
+	ps->lvl = 0;
+	tmp = ps->len;;
+	while (tmp > 3)
 	{
-		int_dup[i] = num[i];
+		tmp = tmp / 2 + tmp % 2;
+		ps->lvl++;
+	}
+	ft_printf("\n\n---------------------------------");
+	ft_printf("\nlvl in b is %d\n", ps->lvl);
+	ps->lvl_b = malloc(sizeof(int) * ps->lvl);//free
+	if (!ps->lvl_b)
+		error("malloc fail", 1);
+	tmp = ps->len;
+	while (tmp > 3)
+	{
+		ps->lvl_b[i] = tmp/2;
+		ft_printf("level %d is has %d numbers\n", i, ps->lvl_b[i]);
+		tmp = tmp / 2 + tmp % 2;
 		i++;
 	}
-	return(int_dup);
+	ft_printf("---------------------------------\n\n");
 }

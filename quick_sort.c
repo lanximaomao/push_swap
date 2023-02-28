@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting.c                                          :+:      :+:    :+:   */
+/*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 11:07:31 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/23 23:17:52 by linlinsun        ###   ########.fr       */
+/*   Created: 2023/02/27 17:22:45 by lsun              #+#    #+#             */
+/*   Updated: 2023/02/27 17:22:53 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int parition (int *num, int start, int end)
 {
 	int i;
 	int pivot;
+	int temp;
 	int pivot_index;
 
 	i = start;
@@ -33,7 +34,9 @@ int parition (int *num, int start, int end)
 	{
 		if (num[i] > pivot)
 		{
-			ft_swap(num[i], pivot);
+			temp = num[i];
+			num[i] = pivot;
+			pivot = temp;
 			pivot_index = i;
 		}
 		i++;
@@ -53,10 +56,3 @@ void quick_sort(int *num, int start, int end)
 	quick_sort(num, start, pivot_index-1);
 	quick_sort(num, pivot_index+1, end);
 }
-
-//int create_stack_a(char c)
-//{
-//	ft_lstnew(&c);
-
-//}
-
