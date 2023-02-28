@@ -46,6 +46,7 @@ void		rrb(t_ps *ps);
 void		rrr(t_ps *ps);
 
 //sort
+int is_sorted(int *num, int len);
 int* bubble_sort(int *num, int start, int end);
 void		quick_sort(int *num, int start, int end);
 int			parition(int *num, int start, int end);

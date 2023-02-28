@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/28 18:43:12 by lsun             ###   ########.fr       */
+/*   Updated: 2023/02/28 18:57:13 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ void optimizer(t_ps *ps)
 {
 	if (ps->a[0] == find_max(ps->a, 0, ps->len_a - 1) || ps->a[ps->len_a-1] == find_min(ps->a, 0, ps->len_a - 1))
 		rra(ps);
+	if (is_sorted(ps->a, ps->len) == 1)
+	{
+		ft_printf("stack a is alreay sorted.");
+		exit(0);
+	}
 }
 
 //median value stays at a?

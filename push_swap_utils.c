@@ -108,3 +108,17 @@ void level(t_ps *ps)
 	}
 	ft_printf("---------------------------------\n\n");
 }
+
+int is_sorted(int *num, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len - 1)
+	{
+		if (num[i] > num[i + 1])
+			return(0);
+		i++;
+	}
+	return(1);
+}
