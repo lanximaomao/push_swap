@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/27 01:59:39 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/01 15:02:12 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int ps_init(t_ps *ps, char** argv)
 		exit(0);
 	}
 	ps->len = ps->len_a;
-	ft_printf("\nstack a has %d numbers.\n\n", ps->len);
-	level(ps);
+	//ft_printf("\nstack a has %d numbers.\n\n", ps->len);
+	//level(ps);
 	return(0);
 }
 //median value stays at a
@@ -49,14 +49,19 @@ void divide_algo_a(t_ps *ps, int start, int end)
 	int i;
 	int count;
 	int median;
+	int len;
 
 	i = 0;
 	count = 0;
+	len = ps->len_a;
 	if (end - start < 3)
 		return;
 	median = find_median(ps->a, start, end);
+
 	while (median != find_min(ps->a, start, end))
 	{
+		ft_printf("median is %d\n", median);
+		ft_printf("min is %d\n", find_min(ps->a, start, end));
 		if (ps->a[0] < median)
 			pb(ps); // push to b
 		else
@@ -76,7 +81,7 @@ void divide_algo_a(t_ps *ps, int start, int end)
 	ft_print_int_array(ps->b, ps->len_b);
 	write(1, "\n", 1);
 	//!! recursive condition is wrong
-	divide_algo_a(ps, 0, (end - start ));
+	divide_algo_a(ps, 0, len - ps->len_a);
 
 }
 
@@ -291,10 +296,35 @@ int add_back(t_ps *ps)
 //	return(0);
 //}
 
+void my_lazy_sort(t_ps *ps, int *index_arr)
+{
+	int i;
+	i = 0;
+
+	ps->a = index_arr;
+
+	while (ps->len_a != 0 && i < ps->len)
+	{
+		while (index_arr[0] != i + 1)
+		{
+			ra(ps);
+		}
+		pb(ps);
+		i++;
+	}
+	i = 0;
+	while ( i < ps->len)
+	{
+		pa(ps);
+		i++;
+	}
+}
 
 int main(int argc, char** argv)
 {
 	t_ps *ps;
+	int * num_dup;
+	int *index_arr;
 
 	if (argc == 1)
 		return(0);
@@ -302,14 +332,21 @@ int main(int argc, char** argv)
 	if (!ps)
 		error("malloc fail", 1);
 	ps_init(ps, argv); // error catch?
-	ps_in_action(ps);
+
+	num_dup = bubble_sort(ps->a, 0, ps->len_a - 1);
+	//ft_printf("num_dup: ");
+	//ft_print_int_array(num_dup, ps->len_a);
+	index_arr = index_num(ps->a, num_dup, ps->len_a);
+	my_lazy_sort(ps, index_arr);
+
+	//ps_in_action(ps);
 	// find midian
 	//ft_printf("before sorting: ");
 	//ft_print_int_array(ps->a, ps->len_a);
 	//ft_printf("median value is %d: ", find_median(ps->a, 0, ps->len_a - 1));
 
 	//count
-	ft_printf("my action count is now %d\n", ps->action_count);
+	//ft_printf("my action count is now %d\n", ps->action_count);
 
 	//free
 	free(ps->a);

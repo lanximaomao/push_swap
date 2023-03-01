@@ -79,6 +79,7 @@ void level(t_ps *ps);
 
 void sort_top_three_a(t_ps *ps);
 void throw_and_catch(t_ps *ps, int start, int end);
+int* index_num(int *num, int *num_dup, int len);
 
 
 #endif

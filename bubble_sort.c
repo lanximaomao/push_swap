@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:53:58 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/27 00:59:26 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/01 14:33:01 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,34 @@ int* bubble_sort(int *num, int start, int end)
 		i++;
 	}
 	return(num_dup);
+}
+
+int* index_num(int *num, int *num_dup, int len)
+{
+	int i;
+	int j;
+	int k;
+	int *index_arr;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	index_arr = malloc(sizeof(int) * len);
+	while (i < len)
+	{
+		j = 0;
+		while (j < len)
+		{
+			if (num[i] == num_dup[j])
+			{
+				index_arr[k] = j + 1;
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
+	return(index_arr);
 }
 
 //int bubble_sort(int *num, int start, int end)
