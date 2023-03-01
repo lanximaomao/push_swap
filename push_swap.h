@@ -63,6 +63,8 @@ int ps_init(t_ps *ps, char** argv);
 void sort_two_a(t_ps *ps);
 void sort_two_b(t_ps *ps);
 void sort_three_a(t_ps *ps);
+void sort_four_a(t_ps *ps);
+void sort_five_a(t_ps *ps);
 void sort_three_b(t_ps *ps);
 int sort_algo(t_ps *ps);
 void sort_small_a(t_ps *ps);

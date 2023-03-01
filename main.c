@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/01 22:54:49 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/02 00:17:03 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int ps_init(t_ps *ps, char** argv)
 		error("malloc fail", 1);
 	is_uniq(parsing(ps));
 	ps->action_count = 0;
-	if (ps->len_a <= 3)
+	if (ps->len_a <= 4)
 	{
 		sort_small_a(ps);
 		exit(0);
