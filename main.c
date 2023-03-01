@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/28 20:04:35 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/01 22:14:06 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 ** ARG="1 8  12 13 14 15 20 16 18 19  17  4 5 2 9 6 10 3 11 0 7"; ./push_swap $ARG
 ** ./push_swap  2 1 5  12 11 13 4 10 7 9 6 8 3 14 > out
 ** ./push_swap  2 1 5  12 11 13 4 10 7 9 6 8 3 > out
+** tester: bash ../push_swap_tester/tester.sh ../push_swap 13 100
+**
+** fix this!
+** ./push_swap 0 2147483647 9487 -2147483647 -2147483648  --> 13 moves
+** ./push_swap 2147483647 9487 0 -2147483647 -2147483648 --> 13 moves
 */
 # include "push_swap.h"
 
@@ -31,12 +36,15 @@ int main(int argc, char** argv)
 
 	sort_algo(ps);
 
-	ft_printf("main function - after sorting: ");
-	ft_print_int_array(ps->a, ps->len_a);
-	ft_printf("my action count is now %d\n", ps->action_count);
+	//ft_printf("main function - after sorting: ");
+	//ft_print_int_array(ps->a, ps->len_a);
+	//ft_printf("\n");
+	//ft_printf("my action count is now %d\n", ps->action_count);
 
 	//free
 	free(ps->a);
+	free(ps->b);
+	free(ps->lvl_b);
 	free(ps);
 	return(0);
 }
@@ -63,9 +71,9 @@ int ps_init(t_ps *ps, char** argv)
 		exit(0);
 	}
 	ps->len = ps->len_a;
-	ft_printf("\n\n---------------------------------");
-	ft_printf("\nstack a has %d numbers.\n", ps->len);
-	ft_printf("---------------------------------\n\n");
+	//ft_printf("\n\n---------------------------------");
+	//ft_printf("\nstack a has %d numbers.\n", ps->len);
+	//ft_printf("---------------------------------\n\n");
 	level(ps);
 	return(0);
 }
@@ -89,11 +97,16 @@ int sort_algo(t_ps *ps)
 // if the last number is the min, put it at the beginning
 void optimizer(t_ps *ps)
 {
-	if (ps->a[0] == find_max(ps->a, 0, ps->len_a - 1) || ps->a[ps->len_a-1] == find_min(ps->a, 0, ps->len_a - 1))
+	if (ps->a[ps->len_a-1] == find_min(ps->a, 0, ps->len_a - 1))
+	{
 		rra(ps);
+		//ft_printf("op after sorting: \n");
+		//ft_print_int_array(ps->a, ps->len_a);
+		//ft_printf("\n");
+	}
 	if (is_sorted(ps->a, ps->len) == 1)
 	{
-		ft_printf("stack a is alreay sorted.");
+		//ft_printf("stack a is alreay sorted.");
 		exit(0);
 	}
 }
@@ -114,15 +127,15 @@ int divide_a_to_b(t_ps *ps, int start, int end)
 	if (range <= 3)
 		return (0);
 	median = find_median(ps->a, start, end);
-	ft_printf("\n\n---------------------------------");
-	ft_printf("\nmsg from divide_a_to_b:");
-	write(1, "\n", 1);
-	write(1, "a: ",3);
-	ft_print_int_array(ps->a, ps->len_a);
-	write(1, "b: ",3);
-	ft_print_int_array(ps->b, ps->len_b);
-	write(1, "\n", 1);
-	ft_printf("\nDivision is based on median value %d\n\n", median);
+	//ft_printf("\n\n---------------------------------");
+	//ft_printf("\nmsg from divide_a_to_b:");
+	//write(1, "\n", 1);
+	//write(1, "a: ",3);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//write(1, "b: ",3);
+	//ft_print_int_array(ps->b, ps->len_b);
+	//write(1, "\n", 1);
+	//ft_printf("\nDivision is based on median value %d\n\n", median);
 	//as long as median is not the smallest in the stack, we have got something to push
 	//this will also keep the median value itself inside my stack a
 	while ( ps->len_b - b_init_size  < range / 2 )
@@ -130,27 +143,47 @@ int divide_a_to_b(t_ps *ps, int start, int end)
 		if (ps->a[0] < median || (ps->a[0] == median && range %  2 == 0))
 		{
 			pb(ps); // push to b
+			//write(1, "\n", 1);
+			//write(1, "a: ",3);
+			//ft_print_int_array(ps->a, ps->len_a);
+			//write(1, "\n", 1);
+			//write(1, "b: ",3);
+			//ft_print_int_array(ps->b, ps->len_b);
+			//write(1, "\n\n", 1);
 			end--;
 		}
 		else
 		{
 			ra(ps); // the first one become the last one
+			//write(1, "\n", 1);
+			//write(1, "a: ",3);
+			//ft_print_int_array(ps->a, ps->len_a);
+			//write(1, "\n", 1);
+			//write(1, "b: ",3);
+			//ft_print_int_array(ps->b, ps->len_b);
+			//write(1, "\n", 1);
 			count++;
 		}
 	}
 	while (count > 0)
 	{
 		rra(ps);
+		//write(1, "\n", 1);
+		//write(1, "a: ",3);
+		//ft_print_int_array(ps->a, ps->len_a);
+		//write(1, "b: ",3);
+		//ft_print_int_array(ps->b, ps->len_b);
+		//write(1, "\n", 1);
 		count--;
 	}
-	write(1, "\n", 1);
-	write(1, "a: ",3);
-	ft_print_int_array(ps->a, ps->len_a);
-	write(1, "b: ",3);
-	ft_print_int_array(ps->b, ps->len_b);
-	write(1, "\n", 1);
-	ft_printf("send %d numbers to stack b\n", ps->len_b - b_init_size );
-	ft_printf("---------------------------------\n\n");
+	//write(1, "\n", 1);
+	//write(1, "a: ",3);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//write(1, "b: ",3);
+	//ft_print_int_array(ps->b, ps->len_b);
+	//write(1, "\n", 1);
+	//ft_printf("send %d numbers to stack b\n", ps->len_b - b_init_size );
+	//ft_printf("---------------------------------\n\n");
 	divide_a_to_b(ps, 0, ps->len_a- 1);
 	return(ps->len_b - b_init_size);
 }
@@ -171,15 +204,15 @@ int divide_b_to_a(t_ps *ps, int start, int end)
 	if (range <= 3)
 		return (0);
 	median = find_median(ps->b, start, end);
-	ft_printf("\n\n---------------------------------");
-	ft_printf("\nmsg from divide_b_to_a:");
-	write(1, "\n", 1);
-	write(1, "a: ",3);
-	ft_print_int_array(ps->a, ps->len_a);
-	write(1, "b: ",3);
-	ft_print_int_array(ps->b, ps->len_b);
-	write(1, "\n", 1);
-	ft_printf("\nDivision is based on median value %d\n\n", median);
+	//ft_printf("\n\n---------------------------------");
+	//ft_printf("\nmsg from divide_b_to_a:");
+	//write(1, "\n", 1);
+	//write(1, "a: ",3);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//write(1, "b: ",3);
+	//ft_print_int_array(ps->b, ps->len_b);
+	//write(1, "\n", 1);
+	//ft_printf("\nDivision is based on median value %d\n\n", median);
 	a_init_size = ps->len_a;
 	//as long as the median is not the biggest, you will always have something to push from b to a
 	// how about medium value?
@@ -198,14 +231,14 @@ int divide_b_to_a(t_ps *ps, int start, int end)
 		rrb(ps);
 		count--;
 	}
-	write(1, "\n", 1);
-	write(1, "a: ",3);
-	ft_print_int_array(ps->a, ps->len_a);
-	write(1, "b: ",3);
-	ft_print_int_array(ps->b, ps->len_b);
-	write(1, "\n", 1);
-	ft_printf("send %d numbers to stack a\n", ps->len_a - a_init_size);
-	ft_printf("---------------------------------\n\n");
+	//write(1, "\n", 1);
+	//write(1, "a: ",3);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//write(1, "b: ",3);
+	//ft_print_int_array(ps->b, ps->len_b);
+	//write(1, "\n", 1);
+	//ft_printf("send %d numbers to stack a\n", ps->len_a - a_init_size);
+	//ft_printf("---------------------------------\n\n");
 	return(ps->len_a - a_init_size);
 }
 
@@ -217,17 +250,17 @@ int add_back(t_ps *ps)
 	i = 0;
 	while (i < ps->lvl)
 	{
-		ft_printf("\n\n---------------------------------");
-		ft_printf("\nstart to add back process: ");
-		ft_printf("loop %d with %d numbers.\n", i, ps->lvl_b[ps->lvl - 1 - i]);
+		//ft_printf("\n\n---------------------------------");
+		//ft_printf("\nstart to add back process: ");
+		//ft_printf("loop %d with %d numbers.\n", i, ps->lvl_b[ps->lvl - 1 - i]);
 		throw_and_catch(ps, 0, ps->lvl_b[ps->lvl - 1 - i]-1);
-		write(1, "\n", 1);
-		write(1, "a: ",3);
-		ft_print_int_array(ps->a, ps->len_a);
-		write(1, "b: ",3);
-		ft_print_int_array(ps->b, ps->len_b);
-		write(1, "\n", 1);
-		ft_printf("---------------------------------\n\n");
+		//write(1, "\n", 1);
+		//write(1, "a: ",3);
+		//ft_print_int_array(ps->a, ps->len_a);
+		//write(1, "b: ",3);
+		//ft_print_int_array(ps->b, ps->len_b);
+		//write(1, "\n", 1);
+		//ft_printf("---------------------------------\n\n");
 		i++;
 	}
 	return(0);
@@ -238,6 +271,7 @@ int add_back(t_ps *ps)
 void throw_and_catch(t_ps *ps, int start, int end)
 {
 	int range;
+	int ret;
 
 	range = end - start + 1;
 	if (range < 1)
@@ -247,15 +281,15 @@ void throw_and_catch(t_ps *ps, int start, int end)
 		push_less_than_three_b_to_a(ps, range);
 		return;
 	}
-	divide_b_to_a(ps, start, end); // at least 4 nums
+	ret = divide_b_to_a(ps, start, end); // at least 4 nums
 
 	//this part is problemetic!!
-	if (range/2 + range % 2 > 3)
-	{
-		write(1, "\nTTTTT\n", 7);
-		divide_a_to_b(ps, 0, ps->len_b - 1);
-		write(1, "\nTTTTT\n", 7);
-	}
+	//if (ret > 3)
+	//{
+	//	write(1, "\nTTTTT\n", 7);
+	//	divide_a_to_b(ps, 0, ps->len_b - 1);
+	//	write(1, "\nTTTTT\n", 7);
+	//}
 
 	sort_top_three_a(ps);
 	push_less_than_three_b_to_a(ps, ps->len_b);

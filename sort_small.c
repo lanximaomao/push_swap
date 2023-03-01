@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:20:04 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/28 19:50:56 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/01 16:47:38 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void push_less_than_three_b_to_a(t_ps *ps, int range)
 
 void push_three_b_to_a(t_ps *ps)
 {
-	ft_printf("am i here??\n");
 	if (ps->b[0] > ps->b[1] && ps->b[0] > ps->b[2])
 		pa(ps);
 	else if (ps->b[1] > ps->b[0] && ps->b[1] > ps->b[2])
@@ -108,7 +107,6 @@ void push_three_b_to_a(t_ps *ps)
 		rrb(ps);
 	}
 	push_two_b_to_a(ps);
-	ft_printf("i am here!!\n");
 }
 
 void push_two_b_to_a(t_ps *ps)

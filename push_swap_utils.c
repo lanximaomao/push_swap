@@ -8,7 +8,7 @@ void	error(char *msg, int error_code)
 
 void	write_and_exit(void)
 {
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	exit(1);
 }
 
@@ -48,7 +48,7 @@ void	ft_print_int_array(int *int_arr, int len)
 		ft_printf("%d  ", int_arr[i]);
 		i++;
 	}
-	ft_printf("\n");
+	//ft_printf("\n");
 }
 
 int	find_max(int *num, int start, int end)
@@ -93,8 +93,8 @@ void level(t_ps *ps)
 		tmp = tmp / 2 + tmp % 2;
 		ps->lvl++;
 	}
-	ft_printf("\n\n---------------------------------");
-	ft_printf("\nlvl in b is %d\n", ps->lvl);
+	//ft_printf("\n\n---------------------------------");
+	//ft_printf("\nlvl in b is %d\n", ps->lvl);
 	ps->lvl_b = malloc(sizeof(int) * ps->lvl);//free
 	if (!ps->lvl_b)
 		error("malloc fail", 1);
@@ -102,11 +102,11 @@ void level(t_ps *ps)
 	while (tmp > 3)
 	{
 		ps->lvl_b[i] = tmp/2;
-		ft_printf("level %d is has %d numbers\n", i, ps->lvl_b[i]);
+		//ft_printf("level %d is has %d numbers\n", i, ps->lvl_b[i]);
 		tmp = tmp / 2 + tmp % 2;
 		i++;
 	}
-	ft_printf("---------------------------------\n\n");
+	//ft_printf("---------------------------------\n\n");
 }
 
 int is_sorted(int *num, int len)
