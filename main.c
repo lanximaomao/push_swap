@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/01 22:14:06 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/01 22:54:49 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 ** fix this!
 ** ./push_swap 0 2147483647 9487 -2147483647 -2147483648  --> 13 moves
 ** ./push_swap 2147483647 9487 0 -2147483647 -2147483648 --> 13 moves
+** -160503775 1032067362 394109596 -465545840 -478337097 --> 13 moves
 */
+
 # include "push_swap.h"
 
 int main(int argc, char** argv)
@@ -95,6 +97,14 @@ int sort_algo(t_ps *ps)
 
 // if the first num is big, put it in the end;
 // if the last number is the min, put it at the beginning
+
+/*
+** 	while (ps->a[ps->len_a-1] == find_min(ps->a, i, ps->len_a - 1) && i < ps->len_a - 1)
+	{
+		rra(ps);
+		i++;
+	}
+*/
 void optimizer(t_ps *ps)
 {
 	if (ps->a[ps->len_a-1] == find_min(ps->a, 0, ps->len_a - 1))
