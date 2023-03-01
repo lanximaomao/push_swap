@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:20:04 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/02 00:33:07 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/02 00:54:21 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,20 @@ void sort_four_a(t_ps *ps)
 
 void sort_five_a(t_ps *ps)
 {
-	//pb(ps);
+	
+	pb(ps);
+	sort_four_a(ps);
+	pa(ps);
+	sort_top_three_a(ps);
+	if (is_sorted (ps->a, ps->len_a) == 0)
+	{
+		pb(ps);
+		sort_four_a(ps);
+		pa(ps);
+	}
 	//sort_four_a(ps);
 	//pa(ps);
-	//sort_four_a(ps);
+
 }
 
 void sort_top_three_a(t_ps *ps)
