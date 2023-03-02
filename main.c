@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/02 00:57:25 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/02 10:56:29 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int ps_init(t_ps *ps, char** argv)
 		error("malloc fail", 1);
 	is_uniq(parsing(ps));
 	ps->action_count = 0;
-	if (ps->len_a <= 4)
+	if (ps->len_a <= 5)
 	{
 		sort_small_a(ps);
 		exit(0);
@@ -98,28 +98,30 @@ int sort_algo(t_ps *ps)
 // if the first num is big, put it in the end;
 // if the last number is the min, put it at the beginning
 
+
+
 /*
-** 	while (ps->a[ps->len_a-1] == find_min(ps->a, i, ps->len_a - 1) && i < ps->len_a - 1)
+** 	while (ps->a[ps->len_a-1] == find_min(ps->a, i, ps->len_a - 1) && i < ps->len_a/2)
 	{
 		rra(ps);
 		i++;
 	}
 */
-void optimizer(t_ps *ps)
-{
-	if (ps->a[ps->len_a-1] == find_min(ps->a, 0, ps->len_a - 1))
-	{
-		rra(ps);
-		//ft_printf("op after sorting: \n");
-		//ft_print_int_array(ps->a, ps->len_a);
-		//ft_printf("\n");
-	}
-	if (is_sorted(ps->a, ps->len) == 1)
-	{
-		//ft_printf("stack a is alreay sorted.");
-		exit(0);
-	}
-}
+//void optimizer(t_ps *ps)
+//{
+//	if (ps->a[ps->len_a-1] == find_min(ps->a, 0, ps->len_a - 1))
+//	{
+//		rra(ps);
+//		//ft_printf("op after sorting: \n");
+//		//ft_print_int_array(ps->a, ps->len_a);
+//		//ft_printf("\n");
+//	}
+//	if (is_sorted(ps->a, ps->len) == 1)
+//	{
+//		//ft_printf("stack a is alreay sorted.");
+//		exit(0);
+//	}
+//}
 
 //median value stays at a?
 int divide_a_to_b(t_ps *ps, int start, int end)
