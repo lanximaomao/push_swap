@@ -1,13 +1,37 @@
+
+
+---------------------------------
+stack a has 14 numbers.
+---------------------------------
+
+
+
+---------------------------------
+lvl in b is 3
+level 0 is has 7 numbers
+level 1 is has 3 numbers
+level 2 is has 2 numbers
+---------------------------------
+
+
+
+---------------------------------
+msg from divide_a_to_b:
+a: 2  1  5  12  11  13  4  9  7  10  6  8  3  14  
+b:
+
+Division is based on median value 7
+
 pb
 pb
 pb
 ra
 ra
-pb
-ra
-ra
 ra
 pb
+ra
+pb
+ra
 pb
 ra
 pb
@@ -17,6 +41,22 @@ rra
 rra
 rra
 rra
+
+a: 12  11  13  9  10  8  14  
+b: 3  6  7  4  5  1  2  
+
+sucessfully sent 7 numbers to stack b
+---------------------------------
+
+
+
+---------------------------------
+msg from divide_a_to_b:
+a: 12  11  13  9  10  8  14  
+b:3  6  7  4  5  1  2  
+
+Division is based on median value 11
+
 ra
 ra
 ra
@@ -26,19 +66,82 @@ pb
 rra
 rra
 rra
+
+a: 12  11  13  14  
+b: 8  10  9  3  6  7  4  5  1  2  
+
+sucessfully sent 3 numbers to stack b
+---------------------------------
+
+
+
+---------------------------------
+msg from divide_a_to_b:
+a: 12  11  13  14  
+b:8  10  9  3  6  7  4  5  1  2  
+
+Division is based on median value 12
+
 pb
 pb
+
+a: 13  14  
+b: 11  12  8  10  9  3  6  7  4  5  1  2  
+
+sucessfully sent 2 numbers to stack b
+---------------------------------
+
+
+
+---------------------------------
+start to add back process: loop 0 with 2 numbers.
+
+a: 13  14  
+b: 11  12  8  10  9  3  6  7  4  5  1  2  
+
 sb
 pa
 pa
-rb
-rb
+
+a: 11  12  13  14  
+b: 8  10  9  3  6  7  4  5  1  2  
+---------------------------------
+
+
+
+---------------------------------
+start to add back process: loop 1 with 3 numbers.
+
+a: 11  12  13  14  
+b: 8  10  9  3  6  7  4  5  1  2  
+
+sb
 pa
-rrb
-rrb
 sb
 pa
 pa
+
+a: 8  9  10  11  12  13  14  
+b: 3  6  7  4  5  1  2  
+---------------------------------
+
+
+
+---------------------------------
+start to add back process: loop 2 with 7 numbers.
+
+a: 8  9  10  11  12  13  14  
+b: 3  6  7  4  5  1  2  
+
+************ Epic loop starts ************
+
+---------------------------------
+msg from divide_b_to_a:
+a: 8  9  10  11  12  13  14  
+b: 3  6  7  4  5  1  2  
+
+Division is based on median value 4
+
 rb
 pa
 pa
@@ -46,6 +149,31 @@ rb
 pa
 rrb
 rrb
+
+a: 5  7  6  8  9  10  11  12  13  14  
+b: 3  4  1  2  
+
+sucessfully sent 3 numbers back to stack a
+---------------------------------
+
+
+new ret is 3: 
 ra
 sa
 rra
+rb
+pa
+rrb
+pa
+sb
+pa
+pa
+
+a: 1  2  3  4  5  6  7  8  9  10  11  12  13  14  
+b: 
+---------------------------------
+
+main function - after sorting: 
+a: 1  2  3  4  5  6  7  8  9  10  11  12  13  14  
+b: 
+my action count is now 55

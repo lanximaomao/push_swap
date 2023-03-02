@@ -20,6 +20,7 @@ typedef struct s_ps
 	int		action_count;
 }			t_ps;
 
+
 void		error(char *msg, int error_code);
 void		write_and_exit(void);
 void		free_char(char **str);
@@ -75,13 +76,19 @@ void optimizer(t_ps *ps);
 int divide_a_to_b(t_ps *ps, int start, int end);
 int divide_b_to_a(t_ps *ps, int start, int end);
 
-void push_less_than_three_b_to_a(t_ps *ps, int range);
-void push_three_b_to_a(t_ps *ps);
+void push_less_than_five_b_to_a(t_ps *ps, int range);
+
 void push_two_b_to_a(t_ps *ps);
+void push_three_b_to_a(t_ps *ps);
+void push_four_b_to_a(t_ps *ps);
+void push_five_b_to_a(t_ps *ps);
 void level(t_ps *ps);
 
 void sort_top_three_a(t_ps *ps);
 void throw_and_catch(t_ps *ps, int start, int end);
+
+
+void optimizer_b(t_ps *ps);
 
 
 #endif

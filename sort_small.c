@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:20:04 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/02 11:10:28 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/02 15:11:18 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,31 +122,63 @@ void sort_three_b(t_ps *ps)
 		sb(ps);
 }
 
-void push_less_than_three_b_to_a(t_ps *ps, int range)
+void push_less_than_five_b_to_a(t_ps *ps, int range)
 {
 	if(range == 2)
 		push_two_b_to_a(ps);
 	if (range == 3)
 		push_three_b_to_a(ps);
+	if (range == 4)
+		push_four_b_to_a(ps);
+	if (range == 5)
+		push_five_b_to_a(ps);
 }
 
+void optimizer_b(t_ps *ps)
+{
+	int i;
+
+	i = ps->len_b/2;
+	while (i > 0)
+	{
+		if (ps->b[ps->len_b-i] == find_max(ps->b, 0, ps->len_b - 1))
+			rrb(ps);
+		i--;
+	}
+}
+
+void push_five_b_to_a(t_ps *ps)
+{
+	int i;
+
+	i = 0;
+	optimizer_b(ps);
+	while (ps->b[0] != find_max(ps->b, 0, ps->len_b - 1))
+		rb(ps);
+	pa(ps);
+	push_four_b_to_a(ps);
+}
+
+void push_four_b_to_a(t_ps *ps)
+{
+	int i;
+
+	i = 0;
+	optimizer_b(ps);
+	while (ps->b[0] != find_max(ps->b, 0, ps->len_b - 1))
+		rb(ps);
+	pa(ps);
+	push_three_b_to_a(ps);
+}
+
+//update
 void push_three_b_to_a(t_ps *ps)
 {
-	if (ps->b[0] > ps->b[1] && ps->b[0] > ps->b[2])
-		pa(ps);
-	else if (ps->b[1] > ps->b[0] && ps->b[1] > ps->b[2])
-	{
+	if (ps->b[1] > ps->b[0] && ps->b[1] > ps->b[2])
 		sb(ps);
-		pa(ps);
-	}
 	else if (ps->b[2] > ps->b[0] && ps->b[2] > ps->b[1])
-	{
-		rb(ps);
-		rb(ps);
-		pa(ps);
 		rrb(ps);
-		rrb(ps);
-	}
+	pa(ps);
 	push_two_b_to_a(ps);
 }
 
