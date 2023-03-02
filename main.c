@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/02 15:25:43 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/02 19:52:01 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,18 +106,22 @@ int sort_algo(t_ps *ps)
 ** median value stays at a?
 */
 
-int divide_a_to_b(t_ps *ps, int start, int end)
+int* divide_a_to_b(t_ps *ps, int start, int end)
 {
 	int i;
+	int j;
 	int count;
 	int median;
 	int b_init_size;
 	int range;
+	int *b_sub;
 
 	i = 0;
+	j = 0;
 	count = 0;
 	b_init_size = ps->len_b;
 	range = end - start + 1;
+	b_sub = sub_level_b(ps);
 	if (range <= 3)
 		return (0);
 	median = find_median(ps->a, start, end);
@@ -175,10 +179,11 @@ int divide_a_to_b(t_ps *ps, int start, int end)
 	write(1, "\nb: ",4);
 	ft_print_int_array(ps->b, ps->len_b);
 	write(1, "\n", 1);
+	b_sub[j++] = ps->len_b - b_init_size;
 	ft_printf("\nsucessfully sent %d numbers to stack b\n", ps->len_b - b_init_size );
 	ft_printf("---------------------------------\n\n");
 	divide_a_to_b(ps, 0, ps->len_a- 1);
-	return(ps->len_b - b_init_size);
+	return(b_sub);
 }
 
 //differ than divide_a_to_b, this is not a recursive function
@@ -287,10 +292,9 @@ void throw_and_catch(t_ps *ps, int start, int end)
 	int range;
 	int ret;
 	int *b_sub;
-	//int left_over;
+	int left_over;
 
 	i = 0;
-	ret = 4;
 	range = end - start + 1;
 	if (range < 1)
 		return;
@@ -303,7 +307,7 @@ void throw_and_catch(t_ps *ps, int start, int end)
 	b_sub = sub_level_b(ps);
 	if (!b_sub)
 		error("malloc fail", 1);
-	while (ret > 3)
+	while (1)
 	{
 		ft_printf("************ Epic loop starts ************");
 		ret = divide_b_to_a(ps, start, end); // at least 4 nums
@@ -311,23 +315,29 @@ void throw_and_catch(t_ps *ps, int start, int end)
 		if (ret <= 3)
 		{
 			sort_top_three_a(ps);
-			//left_over = ps->lvl_b[ps->lvl - 1 - i] - ret;
-			////fetch the leftover from the last division
-			//push_less_than_five_b_to_a(ps, left_over);
-			push_less_than_five_b_to_a(ps, ps->len_b);
+			left_over = end - ret + 1;
+			ft_printf("leftover is %d\n", left_over);
+			push_less_than_five_b_to_a(ps, left_over);
 			return;
 		}
 		ft_printf("my b len is %d\n", ps->len_b);
 		if (ps->len_b <= 5)
 		{
 			push_less_than_five_b_to_a(ps, ps->len_b);
+			return;
+		}
+		else //which means stack b has more than 5 nums
+		//should we just continue with the loop?
+		{
+			start = 0;
+			end = ps->len_b - 1;
 		}
 
-		if (ret > 3)
-		{
-			b_sub[i] = divide_a_to_b(ps, 0, ret - 1);
-			i++;
-		}
+		//if (ret > 3)
+		//{
+		//	b_sub = divide_a_to_b(ps, 0, ret - 1);
+		//	i++;
+		//}
 		ft_printf("************ Epic loop ends ************");
 		// if (b_sub[i])
 	}

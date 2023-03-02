@@ -73,7 +73,7 @@ void sort_small_b(t_ps *ps);
 int add_back(t_ps *ps);
 
 void optimizer(t_ps *ps);
-int divide_a_to_b(t_ps *ps, int start, int end);
+int* divide_a_to_b(t_ps *ps, int start, int end);
 int divide_b_to_a(t_ps *ps, int start, int end);
 
 void push_less_than_five_b_to_a(t_ps *ps, int range);
@@ -90,5 +90,6 @@ void throw_and_catch(t_ps *ps, int start, int end);
 
 void optimizer_b(t_ps *ps);
 
+int *sub_level_b(t_ps *ps);
 
 #endif
