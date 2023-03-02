@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/02 19:52:01 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/02 21:08:15 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,18 +320,31 @@ void throw_and_catch(t_ps *ps, int start, int end)
 			push_less_than_five_b_to_a(ps, left_over);
 			return;
 		}
+		if (ret >= 4)
+		{
+			// sort in a
+			b_sub = divide_a_to_b(ps, 0, ret - 1);
+			sort_top_three_a(ps);
+			//loop through b_sub
+			ft_printf("b_sub is %d\n\n");
+			ft_print_int_array(b_sub, ps->lvl-1);
+			ft_printf("b_sub is %d\n\n");
+			// sort b
+			if (ps->len_b <= 5)
+			{
+				push_less_than_five_b_to_a(ps, ps->len_b);
+				return;
+			}
+			else
+			{
+				//when b is still very long
+				//continue with the loop
+				start = 0;
+				end = ret - 1;
+			}
+		}
 		ft_printf("my b len is %d\n", ps->len_b);
-		if (ps->len_b <= 5)
-		{
-			push_less_than_five_b_to_a(ps, ps->len_b);
-			return;
-		}
-		else //which means stack b has more than 5 nums
-		//should we just continue with the loop?
-		{
-			start = 0;
-			end = ps->len_b - 1;
-		}
+
 
 		//if (ret > 3)
 		//{
