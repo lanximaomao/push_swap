@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/03 17:59:58 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/03 20:32:49 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,7 +345,7 @@ void throw_and_catch(t_ps *ps, int start, int end)
 			if (left_over <= 3)
 			{
 				push_n_and_sort_a(ps, left_over);//!!
-				return;
+				return;//// should not return here!!
 			}
 			if (left_over > 3)
 			{
@@ -385,6 +385,10 @@ void throw_and_catch(t_ps *ps, int start, int end)
 			}
 			while (ps->lvl_b[j] != 0) // continue with the loop by reset the ending point
 			{
+				ft_printf("\n\nTTTTTT LOOP in b sections TTTTT\n\n");
+				ft_print_int_array(ps->lvl_b, ps->lvl + 2);
+				ft_printf("\n\nnow I looking at %d\n", ps->lvl_b[j]);
+				ft_printf("\n\n");
 				if (ps->lvl_b[j] <= 3)
 				{
 					push_n_and_sort_a(ps, ps->lvl_b[j]);
@@ -396,10 +400,11 @@ void throw_and_catch(t_ps *ps, int start, int end)
 					ft_printf("i am here!!\n");
 				}
 				j++;
-				ft_printf("my leftover is the same %d\n", left_over);
-				ft_printf("\n and it is showing here %d\n", ps->lvl_b[j - 1]);
+				if (ps->lvl_b[j] > 3)
+					break;
 			}
-			end = ps->lvl_b[j - 1] - 1;
+			end = ps->lvl_b[j] - 1;
+			//end = left_over - 1;
 			ft_printf("my new end is now %d\n", end);
 		}
 	}

@@ -2,14 +2,14 @@ hello world !!!!
 
 
 ---------------------------------
-stack a has 31 numbers.
+stack a has 32 numbers.
 ---------------------------------
 
 
 
 ---------------------------------
 lvl in b is 4
-level 0 is has 15 numbers
+level 0 is has 16 numbers
 level 1 is has 8 numbers
 level 2 is has 4 numbers
 level 3 is has 2 numbers
@@ -19,7 +19,7 @@ level 3 is has 2 numbers
 
 ---------------------------------
 msg from divide_a_to_b:
-a: 2  1  5  12  21  11  22  19  13  20  23  4  18  17  15  16  10  30  7  28  9  27  29  6  26  8  3  25  31  24  14  
+a: 2  1  5  12  21  11  22  19  13  20  23  4  18  17  15  16  10  30  7  28  9  27  29  6  26  8  3  25  31  24  32  14  
 b:
 
 Division is based on median value 16
@@ -39,18 +39,19 @@ pb
 ra
 ra
 pb
+pb
+pb
 ra
 pb
 ra
 pb
 ra
-pb
-ra
 ra
 pb
 ra
 pb
 pb
+ra
 ra
 ra
 ra
@@ -72,23 +73,23 @@ rra
 rra
 rra
 
-a: 21  22  19  20  23  18  17  16  30  28  27  29  26  25  31  24  
-b: 14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 21  22  19  20  23  18  17  30  28  27  29  26  25  31  24  32  
+b: 14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 
-!!!!lvl_b is 15
+!!!!lvl_b is 16
 
-sucessfully sent 15 numbers to stack b
+sucessfully sent 16 numbers to stack b
 ---------------------------------
 
 
 
 ---------------------------------
 msg from divide_a_to_b:
-a: 21  22  19  20  23  18  17  16  30  28  27  29  26  25  31  24  
-b:14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 21  22  19  20  23  18  17  30  28  27  29  26  25  31  24  32  
+b:14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
-Division is based on median value 23
+Division is based on median value 24
 
 pb
 pb
@@ -97,10 +98,24 @@ pb
 pb
 pb
 pb
+ra
+ra
+ra
+ra
+ra
+ra
+ra
 pb
+rra
+rra
+rra
+rra
+rra
+rra
+rra
 
-a: 30  28  27  29  26  25  31  24  
-b: 16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 30  28  27  29  26  25  31  32  
+b: 24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 
 !!!!lvl_b is 8
@@ -112,26 +127,22 @@ sucessfully sent 8 numbers to stack b
 
 ---------------------------------
 msg from divide_a_to_b:
-a: 30  28  27  29  26  25  31  24  
-b:16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 30  28  27  29  26  25  31  32  
+b:24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
-Division is based on median value 27
+Division is based on median value 28
 
 ra
-ra
-pb
-ra
 pb
 pb
 ra
 pb
-rra
-rra
+pb
 rra
 rra
 
-a: 30  28  29  31  
-b: 24  25  26  27  16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 30  29  31  32  
+b: 25  26  27  28  24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 
 !!!!lvl_b is 4
@@ -143,18 +154,16 @@ sucessfully sent 4 numbers to stack b
 
 ---------------------------------
 msg from divide_a_to_b:
-a: 30  28  29  31  
-b:24  25  26  27  16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 30  29  31  32  
+b:25  26  27  28  24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
-Division is based on median value 29
+Division is based on median value 30
 
-ra
 pb
 pb
-rra
 
-a: 30  31  
-b: 29  28  24  25  26  27  16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 31  32  
+b: 29  30  25  26  27  28  24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 
 !!!!lvl_b is 2
@@ -167,14 +176,15 @@ sucessfully sent 2 numbers to stack b
 ---------------------------------
 start to add back process: loop 0 with 2 numbers.
 
-a: 30  31  
-b: 29  28  24  25  26  27  16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 31  32  
+b: 29  30  25  26  27  28  24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
+sb
 pa
 pa
 
-a: 28  29  30  31  
-b: 24  25  26  27  16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 29  30  31  32  
+b: 25  26  27  28  24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 ---------------------------------
 
 
@@ -182,8 +192,8 @@ b: 24  25  26  27  16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4 
 ---------------------------------
 start to add back process: loop 1 with 4 numbers.
 
-a: 28  29  30  31  
-b: 24  25  26  27  16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 29  30  31  32  
+b: 25  26  27  28  24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 
 ************ Epic loop starts ************
@@ -191,10 +201,10 @@ b: 24  25  26  27  16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4 
 
 ---------------------------------
 msg from divide_b_to_a:
-a: 28  29  30  31  
-b: 24  25  26  27  16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 29  30  31  32  
+b: 25  26  27  28  24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
-Division is based on median value 25
+Division is based on median value 26
 
 rb
 rb
@@ -203,8 +213,8 @@ pa
 rrb
 rrb
 
-a: 27  26  28  29  30  31  
-b: 24  25  16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 28  27  29  30  31  32  
+b: 25  26  24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 sucessfully sent 2 numbers back to stack a
 ---------------------------------
@@ -217,8 +227,8 @@ pa
 pa
 sa
 
-a: 24  25  26  27  28  29  30  31  
-b: 16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 25  26  27  28  29  30  31  32  
+b: 24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 ---------------------------------
 
 
@@ -226,8 +236,8 @@ b: 16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  
 ---------------------------------
 start to add back process: loop 2 with 8 numbers.
 
-a: 24  25  26  27  28  29  30  31  
-b: 16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 25  26  27  28  29  30  31  32  
+b: 24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 
 ************ Epic loop starts ************
@@ -235,16 +245,16 @@ b: 16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  
 
 ---------------------------------
 msg from divide_b_to_a:
-a: 24  25  26  27  28  29  30  31  
-b: 16  17  18  23  20  19  22  21  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 25  26  27  28  29  30  31  32  
+b: 24  17  18  23  20  19  22  21  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
-Division is based on median value 19
+Division is based on median value 20
 
-rb
+pa
 rb
 rb
 pa
-pa
+rb
 rb
 pa
 pa
@@ -253,8 +263,8 @@ rrb
 rrb
 rrb
 
-a: 21  22  20  23  24  25  26  27  28  29  30  31  
-b: 16  17  18  19  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 21  22  23  24  25  26  27  28  29  30  31  32  
+b: 17  18  20  19  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 sucessfully sent 4 numbers back to stack a
 ---------------------------------
@@ -266,7 +276,7 @@ leftover is 4
 
 befor level b init: 
 lvl is 4
-2  4  8  15  0  0  
+2  4  8  16  0  0  
 
 
 after level b init: 0  0  0  0  0  0  
@@ -275,18 +285,16 @@ after level b init: 0  0  0  0  0  0
 
 ---------------------------------
 msg from divide_a_to_b:
-a: 21  22  20  23  24  25  26  27  28  29  30  31  
-b:16  17  18  19  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 21  22  23  24  25  26  27  28  29  30  31  32  
+b:17  18  20  19  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
-Division is based on median value 21
+Division is based on median value 22
 
 pb
-ra
 pb
-rra
 
-a: 22  23  24  25  26  27  28  29  30  31  
-b: 20  21  16  17  18  19  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 23  24  25  26  27  28  29  30  31  32  
+b: 22  21  17  18  20  19  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 
 !!!!lvl_b is 2
@@ -301,20 +309,22 @@ after divide a  to b, level b init:
 after saving my leftover 4, my b level becomes
 0  0  0  2  4  0  
 
-pa
-pa
-sa
 
-a: 20  21  22  23  24  25  26  27  28  29  30  31  
-b: 16  17  18  19  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+
+TTTTTT LOOP in b sections TTTTT
+
+0  0  0  2  4  0  
+
+now I looking at 2
+
+
+pa
+pa
+
+a: 21  22  23  24  25  26  27  28  29  30  31  32  
+b: 17  18  20  19  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 i am here!!
-my leftover is the same 4
-
- and it is showing here 2
-my leftover is the same 4
-
- and it is showing here 4
 my new end is now 3
 
 ************ Epic loop starts ************
@@ -322,10 +332,10 @@ my new end is now 3
 
 ---------------------------------
 msg from divide_b_to_a:
-a: 20  21  22  23  24  25  26  27  28  29  30  31  
-b: 16  17  18  19  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 21  22  23  24  25  26  27  28  29  30  31  32  
+b: 17  18  20  19  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
-Division is based on median value 17
+Division is based on median value 18
 
 rb
 rb
@@ -334,8 +344,8 @@ pa
 rrb
 rrb
 
-a: 19  18  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 16  17  14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b: 17  18  14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 sucessfully sent 2 numbers back to stack a
 ---------------------------------
@@ -343,22 +353,21 @@ sucessfully sent 2 numbers back to stack a
 
 new ret is 2: 
 leftover is 2
-sa
 pa
 pa
 sa
 
-a: 16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b: 14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 ---------------------------------
 
 
 
 ---------------------------------
-start to add back process: loop 3 with 15 numbers.
+start to add back process: loop 3 with 16 numbers.
 
-a: 16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b: 14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 
 ************ Epic loop starts ************
@@ -366,8 +375,8 @@ b: 14  3  8  6  9  7  10  15  4  13  11  12  5  1  2
 
 ---------------------------------
 msg from divide_b_to_a:
-a: 16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 14  3  8  6  9  7  10  15  4  13  11  12  5  1  2  
+a: 17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b: 14  3  8  6  9  7  10  16  15  4  13  11  12  5  1  2  
 
 Division is based on median value 8
 
@@ -379,6 +388,7 @@ pa
 rb
 pa
 pa
+pa
 rb
 pa
 pa
@@ -389,14 +399,14 @@ rrb
 rrb
 rrb
 
-a: 12  11  13  15  10  9  14  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
+a: 12  11  13  15  16  10  9  14  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
 b: 3  8  6  7  4  5  1  2  
 
-sucessfully sent 7 numbers back to stack a
+sucessfully sent 8 numbers back to stack a
 ---------------------------------
 
 
-new ret is 7: 
+new ret is 8: 
 leftover is 8
 
 
@@ -411,13 +421,14 @@ after level b init: 0  0  0  0  0  0
 
 ---------------------------------
 msg from divide_a_to_b:
-a: 12  11  13  15  10  9  14  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
+a: 12  11  13  15  16  10  9  14  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
 b:3  8  6  7  4  5  1  2  
 
 Division is based on median value 12
 
-ra
 pb
+pb
+ra
 ra
 ra
 pb
@@ -426,29 +437,33 @@ rra
 rra
 rra
 
-a: 12  13  15  14  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 9  10  11  3  8  6  7  4  5  1  2  
+a: 13  15  16  14  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b: 9  10  11  12  3  8  6  7  4  5  1  2  
 
 
-!!!!lvl_b is 3
+!!!!lvl_b is 4
 
-sucessfully sent 3 numbers to stack b
+sucessfully sent 4 numbers to stack b
 ---------------------------------
 
 
 
 ---------------------------------
 msg from divide_a_to_b:
-a: 12  13  15  14  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b:9  10  11  3  8  6  7  4  5  1  2  
+a: 13  15  16  14  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b:9  10  11  12  3  8  6  7  4  5  1  2  
 
-Division is based on median value 13
+Division is based on median value 14
 
 pb
+ra
+ra
 pb
+rra
+rra
 
-a: 15  14  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 13  12  9  10  11  3  8  6  7  4  5  1  2  
+a: 15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b: 14  13  9  10  11  12  3  8  6  7  4  5  1  2  
 
 
 !!!!lvl_b is 2
@@ -458,123 +473,27 @@ sucessfully sent 2 numbers to stack b
 
 
 after divide a  to b, level b init: 
-0  0  2  3  0  0  
+0  0  2  4  0  0  
 
 after saving my leftover 8, my b level becomes
-0  0  2  3  8  0  
+0  0  2  4  8  0  
 
-sa
+
+
+TTTTTT LOOP in b sections TTTTT
+
+0  0  2  4  8  0  
+
+now I looking at 2
+
+
 pa
 pa
 
-a: 12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 9  10  11  3  8  6  7  4  5  1  2  
+a: 13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b: 9  10  11  12  3  8  6  7  4  5  1  2  
 
 i am here!!
-my leftover is the same 8
-
- and it is showing here 2
-pa
-pa
-pa
-sa
-ra
-sa
-rra
-sa
-
-a: 9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 3  8  6  7  4  5  1  2  
-
-i am here!!
-my leftover is the same 8
-
- and it is showing here 3
-my leftover is the same 8
-
- and it is showing here 8
-my new end is now 7
-
-************ Epic loop starts ************
-
-
----------------------------------
-msg from divide_b_to_a:
-a: 9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 3  8  6  7  4  5  1  2  
-
-Division is based on median value 4
-
-rb
-pa
-pa
-pa
-rb
-pa
-rrb
-rrb
-
-a: 5  7  6  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 3  4  1  2  
-
-sucessfully sent 4 numbers back to stack a
----------------------------------
-
-
-new ret is 4: 
-leftover is 4
-
-
-befor level b init: 
-lvl is 4
-0  0  2  3  8  0  
-
-
-after level b init: 0  0  0  0  0  0  
-
-
-
----------------------------------
-msg from divide_a_to_b:
-a: 5  7  6  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b:3  4  1  2  
-
-Division is based on median value 6
-
-pb
-ra
-pb
-rra
-
-a: 7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 6  5  3  4  1  2  
-
-
-!!!!lvl_b is 2
-
-sucessfully sent 2 numbers to stack b
----------------------------------
-
-
-after divide a  to b, level b init: 
-0  0  0  2  0  0  
-
-after saving my leftover 4, my b level becomes
-0  0  0  2  4  0  
-
-pa
-pa
-
-a: 5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 3  4  1  2  
-
-i am here!!
-my leftover is the same 4
-
- and it is showing here 2
-my leftover is the same 4
-
- and it is showing here 4
 my new end is now 3
 
 ************ Epic loop starts ************
@@ -582,16 +501,20 @@ my new end is now 3
 
 ---------------------------------
 msg from divide_b_to_a:
-a: 5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 3  4  1  2  
+a: 13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b: 9  10  11  12  3  8  6  7  4  5  1  2  
 
-Division is based on median value 2
+Division is based on median value 10
 
+rb
+rb
 pa
 pa
+rrb
+rrb
 
-a: 4  3  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 1  2  
+a: 12  11  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b: 9  10  3  8  6  7  4  5  1  2  
 
 sucessfully sent 2 numbers back to stack a
 ---------------------------------
@@ -604,11 +527,11 @@ pa
 pa
 sa
 
-a: 1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 
+a: 9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b: 3  8  6  7  4  5  1  2  
 ---------------------------------
 
 main function - after sorting: 
-a: 1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  
-b: 
-my action count is now 171
+a: 9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  
+b: 3  8  6  7  4  5  1  2  
+my action count is now 164
