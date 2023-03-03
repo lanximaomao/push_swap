@@ -107,9 +107,13 @@ void level(t_ps *ps)
 		i++;
 	}
 	ft_printf("---------------------------------\n\n");
-	ps->lvl_b = malloc(sizeof(int) * ps->lvl);
+	ps->lvl_b = ft_calloc(sizeof(int), ps->lvl + 2);
+	// allocate for two extra space
+	// last digit is used as a marker;
+	// second last digit is for leftovers;
 	if (!ps->lvl_b)
 		error("malloc fail", 1);
+	level_b_init(ps);
 }
 
 int is_sorted(int *num, int len)

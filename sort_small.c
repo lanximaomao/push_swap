@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:20:04 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/02 15:11:18 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/03 17:28:24 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,35 @@ void sort_top_three_a(t_ps *ps)
 	}
 	if (ps->a[0] > ps->a[1])
 		sa(ps);
+}
+
+
+
+void sort_top_three_b(t_ps *ps) // double check
+{
+	if (ps->b[0] < ps->b[1])
+		sb(ps);
+	if (ps->b[1] < ps->b[0] && ps->b[1] < ps->b[2])
+	{
+		rb(ps);
+		sb(ps);
+		rrb(ps);
+	}
+	if (ps->b[0] < ps->b[1])
+		sb(ps);
+}
+
+void sort_top_small_b(t_ps *ps, int range) // double check
+{
+	if (range == 2)
+		sort_two_b(ps);
+	if (range == 3)
+	{
+		sort_top_three_b(ps);
+		pa(ps);
+	}
+	pa(ps);
+	pa(ps);
 }
 
 void sort_small_b(t_ps *ps)

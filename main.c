@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/03 14:15:21 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/03 17:59:58 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 ** ./push_swap 0 2147483647 9487 -2147483647 -2147483648  --> 13 moves
 ** ./push_swap 2147483647 9487 0 -2147483647 -2147483648 --> 13 moves
 ** -160503775 1032067362 394109596 -465545840 -478337097 --> 13 moves
+**
+**
+./push_swap  2 1 5  12 21 11 22 19 13 20 23 4 18 17 15 16 10 30 7 28 9 27 29 6 26 8 3 25 24  14 > out
 */
 
 # include "push_swap.h"
@@ -30,6 +33,7 @@ int main(int argc, char** argv)
 {
 	t_ps *ps;
 
+	ft_printf("hello world !!!!\n");
 	if (argc == 1)
 		return(0);
 	ps = malloc(sizeof(t_ps));
@@ -180,13 +184,37 @@ int divide_a_to_b(t_ps *ps, int start, int end)
 	write(1, "\nb: ",4);
 	ft_print_int_array(ps->b, ps->len_b);
 	write(1, "\n", 1);
-	ps->lvl_b[j] = ps->len_b - b_init_size;
-	ft_printf("\n\n!!!!lvl_b is %d\n", ps->lvl_b[j]);
-	j++;
+	//assign the value if it is not zero
+
+	if (is_init(ps->lvl_b, ps->lvl + 2) == 0)
+		ps->lvl_b[ps->lvl-1] = ps->len_b - b_init_size;
+	else
+	{
+		while (ps->lvl_b[ps->lvl - 1- j] != 0)
+		{
+			j++;
+		}
+		ps->lvl_b[ps->lvl - 1- j] = ps->len_b - b_init_size;
+	}
+	ft_printf("\n\n!!!!lvl_b is %d\n", ps->lvl_b[ps->lvl - 1- j]);
 	ft_printf("\nsucessfully sent %d numbers to stack b\n", ps->len_b - b_init_size );
 	ft_printf("---------------------------------\n\n");
-	divide_a_to_b(ps, 0, end_cpy / 2);//change  this!
+	divide_a_to_b(ps, 0, end_cpy / 2);
 	return(ps->len_b - b_init_size);
+}
+
+int is_init(int *num, int count)
+{
+	int i;
+
+	i = 0;
+	while (i < count)
+	{
+		if (num[i] != 0)
+			return (1); //not in init status
+		i++;
+	}
+	return(0); // is in init status
 }
 
 //differ than divide_a_to_b, this is not a recursive function
@@ -277,7 +305,7 @@ void level_b_init(t_ps *ps)
 	int i;
 
 	i = 0;
-	while (i < ps->lvl)
+	while (i < ps->lvl + 2)
 	{
 		ps->lvl_b[i] = 0;
 		i++;
@@ -287,11 +315,13 @@ void level_b_init(t_ps *ps)
 void throw_and_catch(t_ps *ps, int start, int end)
 {
 	int i;
+	int j;
 	int range;
 	int ret;
 	int left_over;
 
 	i = 0;
+	j = 0;
 	range = end - start + 1;
 	if (range < 1)
 		return;
@@ -328,31 +358,56 @@ void throw_and_catch(t_ps *ps, int start, int end)
 		{
 		//	reset lvl_b
 			ft_printf("\n\nbefor level b init: ");
+			ft_printf("\nlvl is %d\n", ps->lvl);
+			ft_print_int_array(ps->lvl_b, ps->lvl + 2);
+			ft_printf("\n\n");
 			level_b_init(ps);
 			ft_printf("\nafter level b init: ");
-			ft_print_int_array(ps->lvl_b, ps->lvl);
+			ft_print_int_array(ps->lvl_b, ps->lvl + 2);
 			ft_printf("\n\n");
-		//	//assign leftover to b sub levels;!!
 			divide_a_to_b(ps, 0, ret - 1);
-			ft_printf("\nafter divide a  to b, level b init: ");
-			ft_print_int_array(ps->lvl_b, ps->lvl);
+			ft_printf("\nafter divide a  to b, level b init: \n");
+			ft_print_int_array(ps->lvl_b, ps->lvl + 2);
 			ft_printf("\n\n");
+			//save left over
+
+			ps->lvl_b[ps->lvl] = left_over;
+			ft_printf("after saving my leftover %d, my b level becomes\n", left_over);
+			ft_print_int_array(ps->lvl_b, ps->lvl + 2);
+			ft_printf("\n\n");
+
 			//after this, b will have the leftover + whatever is given by a, saved at ps->lvl_b
 			sort_top_three_a(ps);
-		//	//loop through b_sub
-		//	sort b
-
-		//	ft_printf("\nb sections:\n");
-		//	ft_print_int_array(ps->lvl_b, ps->lvl);
-		//	ft_printf("TTTTTTTTTT");
-
+			j = 0;
+			while (ps->lvl_b[j] == 0 && j < ps->lvl + 2 )
+			{
+				j++;
+			}
+			while (ps->lvl_b[j] != 0) // continue with the loop by reset the ending point
+			{
+				if (ps->lvl_b[j] <= 3)
+				{
+					push_n_and_sort_a(ps, ps->lvl_b[j]);
+					write(1, "\na: ",4);
+					ft_print_int_array(ps->a, ps->len_a);
+					write(1, "\nb: ",4);
+					ft_print_int_array(ps->b, ps->len_b);
+					write(1, "\n\n", 2);
+					ft_printf("i am here!!\n");
+				}
+				j++;
+				ft_printf("my leftover is the same %d\n", left_over);
+				ft_printf("\n and it is showing here %d\n", ps->lvl_b[j - 1]);
+			}
+			end = ps->lvl_b[j - 1] - 1;
+			ft_printf("my new end is now %d\n", end);
 		}
-		ft_printf("\n************ Epic loop ends ************\n");
 	}
+		ft_printf("\n************ Epic loop ends ************\n");
+}
 
 
 	//throw_and_catch(ps, 0, range - 3);//not optimal
-}
 
 void push_n_and_sort_a(t_ps *ps, int count)
 {

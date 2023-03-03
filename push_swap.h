@@ -92,5 +92,9 @@ void optimizer_b(t_ps *ps);
 
 void level_b_init(t_ps *ps);
 void push_n_and_sort_a(t_ps *ps, int count);
+int is_init(int *num, int count);
+
+void sort_top_three_b(t_ps *ps);
+void sort_top_small_b(t_ps *ps, int range);
 
 #endif
