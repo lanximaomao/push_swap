@@ -95,18 +95,21 @@ void level(t_ps *ps)
 	}
 	ft_printf("\n\n---------------------------------");
 	ft_printf("\nlvl in b is %d\n", ps->lvl);
-	ps->lvl_b = malloc(sizeof(int) * ps->lvl);
-	if (!ps->lvl_b)
+	ps->lvl_a = malloc(sizeof(int) * ps->lvl);
+	if (!ps->lvl_a)
 		error("malloc fail", 1);
 	tmp = ps->len;
 	while (tmp > 3)
 	{
-		ps->lvl_b[i] = tmp/2;
-		ft_printf("level %d is has %d numbers\n", i, ps->lvl_b[i]);
+		ps->lvl_a[i] = tmp/2;
+		ft_printf("level %d is has %d numbers\n", i, ps->lvl_a[i]);
 		tmp = tmp / 2 + tmp % 2;
 		i++;
 	}
 	ft_printf("---------------------------------\n\n");
+	ps->lvl_b = malloc(sizeof(int) * ps->lvl);
+	if (!ps->lvl_b)
+		error("malloc fail", 1);
 }
 
 int is_sorted(int *num, int len)

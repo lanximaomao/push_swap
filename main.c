@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/02 21:08:15 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/03 14:15:21 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 ** ARG="1 8  12 13 14 15 20 16 18 19  17  4 5 2 9 6 10 3 11 0 7"; ./push_swap $ARG
 ** ./push_swap  2 1 5  12 11 13 4 10 7 9 6 8 3 14 > out
 ** ./push_swap  2 1 5  12 11 13 4 10 7 9 6 8 3 > out
+**  ./push_swap  2 1 5  12 21 11 22 19 13 20 23 4 18 17 15 16 10 30 7 28 9 27 29 6 26 8 3 25 24  14 > out
 ** tester: bash ../push_swap_tester/tester.sh ../push_swap 13 100
 **
 ** fix this!
@@ -106,7 +107,7 @@ int sort_algo(t_ps *ps)
 ** median value stays at a?
 */
 
-int* divide_a_to_b(t_ps *ps, int start, int end)
+int divide_a_to_b(t_ps *ps, int start, int end)
 {
 	int i;
 	int j;
@@ -114,14 +115,14 @@ int* divide_a_to_b(t_ps *ps, int start, int end)
 	int median;
 	int b_init_size;
 	int range;
-	int *b_sub;
+	int end_cpy;
 
 	i = 0;
 	j = 0;
 	count = 0;
+	end_cpy = end;
 	b_init_size = ps->len_b;
 	range = end - start + 1;
-	b_sub = sub_level_b(ps);
 	if (range <= 3)
 		return (0);
 	median = find_median(ps->a, start, end);
@@ -179,11 +180,13 @@ int* divide_a_to_b(t_ps *ps, int start, int end)
 	write(1, "\nb: ",4);
 	ft_print_int_array(ps->b, ps->len_b);
 	write(1, "\n", 1);
-	b_sub[j++] = ps->len_b - b_init_size;
+	ps->lvl_b[j] = ps->len_b - b_init_size;
+	ft_printf("\n\n!!!!lvl_b is %d\n", ps->lvl_b[j]);
+	j++;
 	ft_printf("\nsucessfully sent %d numbers to stack b\n", ps->len_b - b_init_size );
 	ft_printf("---------------------------------\n\n");
-	divide_a_to_b(ps, 0, ps->len_a- 1);
-	return(b_sub);
+	divide_a_to_b(ps, 0, end_cpy / 2);//change  this!
+	return(ps->len_b - b_init_size);
 }
 
 //differ than divide_a_to_b, this is not a recursive function
@@ -249,13 +252,13 @@ int add_back(t_ps *ps)
 	{
 		ft_printf("\n\n---------------------------------");
 		ft_printf("\nstart to add back process: ");
-		ft_printf("loop %d with %d numbers.\n", i, ps->lvl_b[ps->lvl - 1 - i]);
+		ft_printf("loop %d with %d numbers.\n", i, ps->lvl_a[ps->lvl - 1 - i]);
 		write(1, "\na: ",4);
 		ft_print_int_array(ps->a, ps->len_a);
 		write(1, "\nb: ",4);
 		ft_print_int_array(ps->b, ps->len_b);
 		write(1, "\n\n", 2);
-		throw_and_catch(ps, 0, ps->lvl_b[ps->lvl - 1 - i]-1);
+		throw_and_catch(ps, 0, ps->lvl_a[ps->lvl - 1 - i]-1);
 		write(1, "\na: ",4);
 		ft_print_int_array(ps->a, ps->len_a);
 		write(1, "\nb: ",4);
@@ -269,21 +272,16 @@ int add_back(t_ps *ps)
 
 //this will be recursive
 
-int *sub_level_b(t_ps *ps)
+void level_b_init(t_ps *ps)
 {
 	int i;
-	int *b_sub_lvl;
 
 	i = 0;
-	b_sub_lvl = malloc(sizeof(int) * ps->lvl);
-	if (!b_sub_lvl)
-		error("malloc fail", 1);
 	while (i < ps->lvl)
 	{
-		b_sub_lvl[i] = 0;
+		ps->lvl_b[i] = 0;
 		i++;
 	}
-	return(b_sub_lvl);
 }
 
 void throw_and_catch(t_ps *ps, int start, int end)
@@ -291,7 +289,6 @@ void throw_and_catch(t_ps *ps, int start, int end)
 	int i;
 	int range;
 	int ret;
-	int *b_sub;
 	int left_over;
 
 	i = 0;
@@ -303,58 +300,69 @@ void throw_and_catch(t_ps *ps, int start, int end)
 		push_less_than_five_b_to_a(ps, range);
 		return;
 	}
+	left_over = 1;
 	//this part is problemetic!!
-	b_sub = sub_level_b(ps);
-	if (!b_sub)
-		error("malloc fail", 1);
-	while (1)
+	while (left_over > 0)
 	{
-		ft_printf("************ Epic loop starts ************");
+		ft_printf("\n************ Epic loop starts ************\n");
 		ret = divide_b_to_a(ps, start, end); // at least 4 nums
+		left_over = end - ret + 1;
 		ft_printf("\nnew ret is %d: \n", ret);
+		ft_printf("leftover is %d\n", left_over);
 		if (ret <= 3)
 		{
 			sort_top_three_a(ps);
-			left_over = end - ret + 1;
-			ft_printf("leftover is %d\n", left_over);
-			push_less_than_five_b_to_a(ps, left_over);
-			return;
-		}
-		if (ret >= 4)
-		{
-			// sort in a
-			b_sub = divide_a_to_b(ps, 0, ret - 1);
-			sort_top_three_a(ps);
-			//loop through b_sub
-			ft_printf("b_sub is %d\n\n");
-			ft_print_int_array(b_sub, ps->lvl-1);
-			ft_printf("b_sub is %d\n\n");
-			// sort b
-			if (ps->len_b <= 5)
+			if (left_over <= 3)
 			{
-				push_less_than_five_b_to_a(ps, ps->len_b);
+				push_n_and_sort_a(ps, left_over);//!!
 				return;
 			}
-			else
+			if (left_over > 3)
 			{
-				//when b is still very long
-				//continue with the loop
 				start = 0;
-				end = ret - 1;
+				end = left_over  - 1;
 			}
 		}
-		ft_printf("my b len is %d\n", ps->len_b);
+		// ret = 7 and leftover = 8
+		if (ret >= 4)
+		{
+		//	reset lvl_b
+			ft_printf("\n\nbefor level b init: ");
+			level_b_init(ps);
+			ft_printf("\nafter level b init: ");
+			ft_print_int_array(ps->lvl_b, ps->lvl);
+			ft_printf("\n\n");
+		//	//assign leftover to b sub levels;!!
+			divide_a_to_b(ps, 0, ret - 1);
+			ft_printf("\nafter divide a  to b, level b init: ");
+			ft_print_int_array(ps->lvl_b, ps->lvl);
+			ft_printf("\n\n");
+			//after this, b will have the leftover + whatever is given by a, saved at ps->lvl_b
+			sort_top_three_a(ps);
+		//	//loop through b_sub
+		//	sort b
 
+		//	ft_printf("\nb sections:\n");
+		//	ft_print_int_array(ps->lvl_b, ps->lvl);
+		//	ft_printf("TTTTTTTTTT");
 
-		//if (ret > 3)
-		//{
-		//	b_sub = divide_a_to_b(ps, 0, ret - 1);
-		//	i++;
-		//}
-		ft_printf("************ Epic loop ends ************");
-		// if (b_sub[i])
+		}
+		ft_printf("\n************ Epic loop ends ************\n");
 	}
 
 
 	//throw_and_catch(ps, 0, range - 3);//not optimal
+}
+
+void push_n_and_sort_a(t_ps *ps, int count)
+{
+	int i;
+
+	i = 0;
+	while (i < count)
+	{
+		pa(ps);
+		i++;
+	}
+	sort_top_three_a(ps);
 }
