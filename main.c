@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/06 11:56:28 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/06 15:57:42 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,7 @@ int divide_b_to_a(t_ps *ps, int start, int end)
 	write(1, "\n", 1);
 	ft_printf("\nsucessfully sent %d numbers back to stack a\n", ps->len_a - a_init_size);
 	ft_printf("---------------------------------\n\n");
+	divide_a_to_b(ps, 0, ps->len_a - a_init_size - 1);
 	return(ps->len_a - a_init_size);
 }
 
