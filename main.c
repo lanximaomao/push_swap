@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/03 20:32:49 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/06 11:56:28 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,7 +276,7 @@ int add_back(t_ps *ps)
 	int i;
 
 	i = 0;
-	while (i < ps->lvl)
+	while (i < ps->lvl && ps->len_b != 0)
 	{
 		ft_printf("\n\n---------------------------------");
 		ft_printf("\nstart to add back process: ");
@@ -332,9 +332,12 @@ void throw_and_catch(t_ps *ps, int start, int end)
 	}
 	left_over = 1;
 	//this part is problemetic!!
+	level_b_init(ps);
 	while (left_over > 0)
 	{
 		ft_printf("\n************ Epic loop starts ************\n");
+		if (ps->len_b == 0)
+			return;
 		ret = divide_b_to_a(ps, start, end); // at least 4 nums
 		left_over = end - ret + 1;
 		ft_printf("\nnew ret is %d: \n", ret);
@@ -345,7 +348,12 @@ void throw_and_catch(t_ps *ps, int start, int end)
 			if (left_over <= 3)
 			{
 				push_n_and_sort_a(ps, left_over);//!!
-				return;//// should not return here!!
+				ft_printf("\n where should I return - level b: ");
+				ft_print_int_array(ps->lvl_b, ps->lvl + 2);
+				ft_printf("\n\n");
+				ft_printf("%d\n", ps->lvl_b[j + 1]);
+				if (ps->lvl_b[j + 1] == 0)
+					return;//// should not return here!!
 			}
 			if (left_over > 3)
 			{
