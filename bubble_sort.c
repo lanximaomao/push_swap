@@ -6,24 +6,22 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:53:58 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/28 13:25:21 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/06 17:06:16 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_median(int *num, int start, int end)
+int	find_median(int *num, int range)
 {
 	int *num_dup;
-	int len;
 	int median;
 
-	len = end - start + 1;
-	num_dup = bubble_sort(num, start, end);
-	if (len % 2 == 0)
-		median = num_dup[len/2 -1 ];
+	num_dup = bubble_sort(num, 0, range-1);
+	if (range % 2 == 0)
+		median = num_dup[range/2 -1 ];
 	else
-		median = num_dup[len / 2];
+		median = num_dup[range / 2];
 	free(num_dup);
 	return(median);
 }

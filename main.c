@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/06 15:57:42 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/06 17:27:58 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,8 @@ int ps_init(t_ps *ps, char** argv)
 
 int sort_algo(t_ps *ps)
 {
-	int start;
-	int end;
-
-	start = 0;
-	end = ps->len_a - 1;
 	optimizer(ps);
-	divide_a_to_b(ps, start, end);
+	divide_a_to_b(ps, ps->len_a);
 	sort_small_a(ps);
 	add_back(ps);
 	return(0);
@@ -111,25 +106,28 @@ int sort_algo(t_ps *ps)
 ** median value stays at a?
 */
 
-int divide_a_to_b(t_ps *ps, int start, int end)
+int divide_a_to_b(t_ps *ps, int range)
 {
 	int i;
 	int j;
 	int count;
 	int median;
 	int b_init_size;
-	int range;
 	int end_cpy;
+	int end;
 
+	end = range -1;
 	i = 0;
 	j = 0;
 	count = 0;
-	end_cpy = end;
+	end_cpy = range - 1 ;
 	b_init_size = ps->len_b;
-	range = end - start + 1;
 	if (range <= 3)
-		return (0);
-	median = find_median(ps->a, start, end);
+	{
+		sort_top_a(ps, range);
+		return (1);
+	}
+	median = find_median(ps->a, range);
 	ft_printf("\n\n---------------------------------");
 	ft_printf("\nmsg from divide_a_to_b:");
 	write(1, "\n", 1);
@@ -146,37 +144,17 @@ int divide_a_to_b(t_ps *ps, int start, int end)
 		if (ps->a[0] < median || (ps->a[0] == median && range %  2 == 0))
 		{
 			pb(ps); // push to b
-			//write(1, "\n", 1);
-			//write(1, "a: ",3);
-			//ft_print_int_array(ps->a, ps->len_a);
-			//write(1, "\n", 1);
-			//write(1, "b: ",3);
-			//ft_print_int_array(ps->b, ps->len_b);
-			//write(1, "\n\n", 1);
 			end--;
 		}
 		else
 		{
 			ra(ps); // the first one become the last one
-			//write(1, "\n", 1);
-			//write(1, "a: ",3);
-			//ft_print_int_array(ps->a, ps->len_a);
-			//write(1, "\n", 1);
-			//write(1, "b: ",3);
-			//ft_print_int_array(ps->b, ps->len_b);
-			//write(1, "\n", 1);
 			count++;
 		}
 	}
-	while (count > 0)
+	while (count > 0 && range != ps->len)
 	{
 		rra(ps);
-		//write(1, "\n", 1);
-		//write(1, "a: ",3);
-		//ft_print_int_array(ps->a, ps->len_a);
-		//write(1, "b: ",3);
-		//ft_print_int_array(ps->b, ps->len_b);
-		//write(1, "\n", 1);
 		count--;
 	}
 	write(1, "\na: ", 4);
@@ -199,8 +177,8 @@ int divide_a_to_b(t_ps *ps, int start, int end)
 	ft_printf("\n\n!!!!lvl_b is %d\n", ps->lvl_b[ps->lvl - 1- j]);
 	ft_printf("\nsucessfully sent %d numbers to stack b\n", ps->len_b - b_init_size );
 	ft_printf("---------------------------------\n\n");
-	divide_a_to_b(ps, 0, end_cpy / 2);
-	return(ps->len_b - b_init_size);
+	divide_a_to_b(ps, ps->len_b - b_init_size);
+	return(0);
 }
 
 int is_init(int *num, int count)
@@ -218,21 +196,19 @@ int is_init(int *num, int count)
 }
 
 //differ than divide_a_to_b, this is not a recursive function
-int divide_b_to_a(t_ps *ps, int start, int end)
+int divide_b_to_a(t_ps *ps, int range)
 {
 	int i;
 	int count;
 	int median;
 	int a_init_size;
-	int range;
 
 	i = 0;
 	count = 0;
 	//if less than three numbers, not need to divide
-	range = end - start + 1;
 	if (range <= 3)
 		return (0);
-	median = find_median(ps->b, start, end);
+	median = find_median(ps->b, range);
 	ft_printf("\n\n---------------------------------");
 	ft_printf("\nmsg from divide_b_to_a:");
 	write(1, "\na: ",4);
@@ -259,6 +235,7 @@ int divide_b_to_a(t_ps *ps, int start, int end)
 		rrb(ps);
 		count--;
 	}
+	divide_a_to_b(ps, ps->len_a - a_init_size);
 	write(1, "\n", 1);
 	write(1, "a: ",3);
 	ft_print_int_array(ps->a, ps->len_a);
@@ -267,8 +244,7 @@ int divide_b_to_a(t_ps *ps, int start, int end)
 	write(1, "\n", 1);
 	ft_printf("\nsucessfully sent %d numbers back to stack a\n", ps->len_a - a_init_size);
 	ft_printf("---------------------------------\n\n");
-	divide_a_to_b(ps, 0, ps->len_a - a_init_size - 1);
-	return(ps->len_a - a_init_size);
+	return(0);
 }
 
 //loop through each section of b
@@ -287,7 +263,7 @@ int add_back(t_ps *ps)
 		write(1, "\nb: ",4);
 		ft_print_int_array(ps->b, ps->len_b);
 		write(1, "\n\n", 2);
-		throw_and_catch(ps, 0, ps->lvl_a[ps->lvl - 1 - i]-1);
+		throw_and_catch(ps, ps->lvl_a[ps->lvl - 1 - i]);
 		write(1, "\na: ",4);
 		ft_print_int_array(ps->a, ps->len_a);
 		write(1, "\nb: ",4);
@@ -313,17 +289,15 @@ void level_b_init(t_ps *ps)
 	}
 }
 
-void throw_and_catch(t_ps *ps, int start, int end)
+void throw_and_catch(t_ps *ps, int range)
 {
 	int i;
 	int j;
-	int range;
 	int ret;
 	int left_over;
 
 	i = 0;
 	j = 0;
-	range = end - start + 1;
 	if (range < 1)
 		return;
 	if (range == 2 || range == 3) // 2 nums
@@ -339,8 +313,8 @@ void throw_and_catch(t_ps *ps, int start, int end)
 		ft_printf("\n************ Epic loop starts ************\n");
 		if (ps->len_b == 0)
 			return;
-		ret = divide_b_to_a(ps, start, end); // at least 4 nums
-		left_over = end - ret + 1;
+		ret = divide_b_to_a(ps, range); // at least 4 nums
+		left_over = range - ret;
 		ft_printf("\nnew ret is %d: \n", ret);
 		ft_printf("leftover is %d\n", left_over);
 		if (ret <= 3)
@@ -358,8 +332,7 @@ void throw_and_catch(t_ps *ps, int start, int end)
 			}
 			if (left_over > 3)
 			{
-				start = 0;
-				end = left_over  - 1;
+				range = left_over;
 			}
 		}
 		// ret = 7 and leftover = 8
@@ -374,7 +347,7 @@ void throw_and_catch(t_ps *ps, int start, int end)
 			ft_printf("\nafter level b init: ");
 			ft_print_int_array(ps->lvl_b, ps->lvl + 2);
 			ft_printf("\n\n");
-			divide_a_to_b(ps, 0, ret - 1);
+			divide_a_to_b(ps, ret);
 			ft_printf("\nafter divide a  to b, level b init: \n");
 			ft_print_int_array(ps->lvl_b, ps->lvl + 2);
 			ft_printf("\n\n");
@@ -412,9 +385,7 @@ void throw_and_catch(t_ps *ps, int start, int end)
 				if (ps->lvl_b[j] > 3)
 					break;
 			}
-			end = ps->lvl_b[j] - 1;
-			//end = left_over - 1;
-			ft_printf("my new end is now %d\n", end);
+			range = ps->lvl_b[j];
 		}
 	}
 		ft_printf("\n************ Epic loop ends ************\n");

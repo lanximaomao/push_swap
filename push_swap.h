@@ -56,7 +56,7 @@ void		ft_swap(int i, int j);
 
 //utils
 int* int_arr_dup(int *num, int len);
-int	find_median(int *num, int start, int end);
+int	find_median(int *num, int range);
 int	find_max(int *num, int start, int end);
 int find_min(int *num, int start, int end);
 
@@ -73,8 +73,8 @@ void sort_small_b(t_ps *ps);
 int add_back(t_ps *ps);
 
 void optimizer(t_ps *ps);
-int divide_a_to_b(t_ps *ps, int start, int end);
-int divide_b_to_a(t_ps *ps, int start, int end);
+int divide_a_to_b(t_ps *ps, int range);
+int divide_b_to_a(t_ps *ps, int range);
 
 void push_less_than_five_b_to_a(t_ps *ps, int range);
 
@@ -85,7 +85,7 @@ void push_five_b_to_a(t_ps *ps);
 void level(t_ps *ps);
 
 void sort_top_three_a(t_ps *ps);
-void throw_and_catch(t_ps *ps, int start, int end);
+void throw_and_catch(t_ps *ps, int range);
 
 
 void optimizer_b(t_ps *ps);
@@ -96,5 +96,8 @@ int is_init(int *num, int count);
 
 void sort_top_three_b(t_ps *ps);
 void sort_top_small_b(t_ps *ps, int range);
+
+void sort_top_a(t_ps *ps, int range);
+
 
 #endif

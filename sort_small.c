@@ -6,11 +6,36 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:20:04 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/03 17:28:24 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/06 17:16:37 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+
+void sort_top_a(t_ps *ps, int range)
+{
+	int count;
+
+	count = 0;
+	if (range == 2)
+		sort_two_a(ps);
+	if (range == 3)
+	{
+		if (ps->a[0] > ps->a[1] && ps->a[0] > ps->a[2])
+			ra(ps);
+		else if (ps->a[1] > ps->a[0] && ps->a[1] > ps->a[2])
+		{
+			rra(ps);
+			count++;
+		}
+		if (count > 0)
+			ra(ps);
+		if (ps->a[0] > ps->a[1])
+			sa(ps);
+	}
+}
+
 
 void sort_small_a(t_ps *ps)
 {
