@@ -15,7 +15,6 @@ typedef struct s_ps
 	int		len_a;
 	int		len_b;
 	int		lvl;
-	int*	lvl_a;
 	int* 	lvl_b;
 	int		action_count;
 }			t_ps;
@@ -51,53 +50,53 @@ int is_sorted(int *num, int len);
 int* bubble_sort(int *num, int start, int end);
 void		quick_sort(int *num, int start, int end);
 int			parition(int *num, int start, int end);
-void		ft_swap(int i, int j);
+void		ft_swap(int *i, int *j);
 
 
 //utils
-int* int_arr_dup(int *num, int len);
+
 int	find_median(int *num, int range);
 int	find_max(int *num, int start, int end);
 int find_min(int *num, int start, int end);
 
 int ps_init(t_ps *ps, char** argv);
+void optimizer(t_ps *ps);
+int first_divide_a_to_b(t_ps *ps, int range);
+int divide_a_to_b(t_ps *ps, int range);
+int divide_b_to_a(t_ps *ps, int range);
+int sort_algo(t_ps *ps);
+
+void optimizer_b(t_ps *ps);
+
+
+
+//int array operation
+void add_one_num_front(t_ps *ps, int data);
+void remove_one_num_front(t_ps *ps);
+int* int_arr_dup(int *num, int len);
+
+//sort_small
+void sort_small_a(t_ps *ps);
+void sort_top_b(t_ps *ps, int range);
+
+void sort_top_three_b(t_ps *ps);
+void sort_top_small_b(t_ps *ps, int range);
 void sort_two_a(t_ps *ps);
 void sort_two_b(t_ps *ps);
 void sort_three_a(t_ps *ps);
 void sort_four_a(t_ps *ps);
 void sort_five_a(t_ps *ps);
 void sort_three_b(t_ps *ps);
-int sort_algo(t_ps *ps);
 void sort_small_a(t_ps *ps);
 void sort_small_b(t_ps *ps);
-int add_back(t_ps *ps);
-
-void optimizer(t_ps *ps);
-int divide_a_to_b(t_ps *ps, int range);
-int divide_b_to_a(t_ps *ps, int range);
-
-void push_less_than_five_b_to_a(t_ps *ps, int range);
-
 void push_two_b_to_a(t_ps *ps);
 void push_three_b_to_a(t_ps *ps);
 void push_four_b_to_a(t_ps *ps);
 void push_five_b_to_a(t_ps *ps);
-void level(t_ps *ps);
-
 void sort_top_three_a(t_ps *ps);
-void throw_and_catch(t_ps *ps, int range);
-
-
-void optimizer_b(t_ps *ps);
-
-void level_b_init(t_ps *ps);
-void push_n_and_sort_a(t_ps *ps, int count);
-int is_init(int *num, int count);
-
-void sort_top_three_b(t_ps *ps);
-void sort_top_small_b(t_ps *ps, int range);
-
+void push_less_than_five_b_to_a(t_ps *ps, int range);
 void sort_top_a(t_ps *ps, int range);
+void push_n_and_sort_a(t_ps *ps, int range);
 
 
 #endif

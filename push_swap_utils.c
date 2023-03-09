@@ -1,10 +1,6 @@
 #include "push_swap.h"
 
-void	error(char *msg, int error_code)
-{
-	perror(msg);
-	exit(error_code);
-}
+
 
 void	write_and_exit(void)
 {
@@ -38,18 +34,7 @@ void	free_int(int **num, int size)
 	free(num);
 }
 
-void	ft_print_int_array(int *int_arr, int len)
-{
-	int	i;
 
-	i = 0;
-	while (i < len)
-	{
-		ft_printf("%d  ", int_arr[i]);
-		i++;
-	}
-	//ft_printf("\n");
-}
 
 int	find_max(int *num, int start, int end)
 {
@@ -80,52 +65,39 @@ int find_min(int *num, int start, int end)
 	return(min);
 }
 
-void level(t_ps *ps)
-{
-	int	i;
-	int tmp;
 
-	i = 0;
-	ps->lvl = 0;
-	tmp = ps->len;;
-	while (tmp > 3)
-	{
-		tmp = tmp / 2 + tmp % 2;
-		ps->lvl++;
-	}
-	ft_printf("\n\n---------------------------------");
-	ft_printf("\nlvl in b is %d\n", ps->lvl);
-	ps->lvl_a = malloc(sizeof(int) * ps->lvl);
-	if (!ps->lvl_a)
-		error("malloc fail", 1);
-	tmp = ps->len;
-	while (tmp > 3)
-	{
-		ps->lvl_a[i] = tmp/2;
-		ft_printf("level %d is has %d numbers\n", i, ps->lvl_a[i]);
-		tmp = tmp / 2 + tmp % 2;
-		i++;
-	}
-	ft_printf("---------------------------------\n\n");
-	ps->lvl_b = ft_calloc(sizeof(int), ps->lvl + 2);
-	// allocate for two extra space
-	// last digit is used as a marker;
-	// second last digit is for leftovers;
-	if (!ps->lvl_b)
-		error("malloc fail", 1);
-	level_b_init(ps);
+
+
+void	error(char *msg, int error_code)
+{
+	perror(msg);
+	exit(error_code);
 }
 
-int is_sorted(int *num, int len)
+void optimizer(t_ps *ps)
 {
 	int i;
 
-	i = 0;
-	while (i < len - 1)
+	i = ps->len_a/2;
+	while (i > 0)
 	{
-		if (num[i] > num[i + 1])
-			return(0);
-		i++;
+		if (ps->a[ps->len_a-i] == find_min(ps->a, 0, ps->len_a - 1))
+			rra(ps);
+		i--;
 	}
-	return(1);
+	if (is_sorted(ps->a, ps->len) == 1)
+		exit(0);
+}
+
+void optimizer_b(t_ps *ps)
+{
+	int i;
+
+	i = ps->len_b/2;
+	while (i > 0)
+	{
+		if (ps->b[ps->len_b-i] == find_max(ps->b, 0, ps->len_b - 1))
+			rrb(ps);
+		i--;
+	}
 }

@@ -6,14 +6,14 @@
 #    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 17:23:01 by lsun              #+#    #+#              #
-#    Updated: 2023/02/27 17:23:05 by lsun             ###   ########.fr        #
+#    Updated: 2023/03/09 15:22:53 by lsun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = push_swap
 
-SRCS = is_valid.c push_swap_utils.c find_median.c bubble_sort.c actions.c sort_small.c main.c
+SRCS = is_valid.c push_swap_utils.c find_median.c bubble_sort.c actions.c sort_small_a.c sort_small_b.c main.c int_array_op.c
 
 OBJS = $(SRCS:.c=.o)
 
