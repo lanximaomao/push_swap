@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 09:32:40 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/10 09:39:05 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,21 @@ int main(int argc, char** argv)
 {
 	t_ps *ps;
 
-	ft_printf("hello world !!!!\n");
 	if (argc == 1)
 		return(0);
 	ps = malloc(sizeof(t_ps));
 	if (!ps)
 		error("malloc fail", 1);
 	ps_init(ps, argv); // error catch?
-
 	sort_algo(ps);
 
-	ft_printf("\n\nmain function - after sorting: ");
-	ft_printf("\na: ");
-	ft_print_int_array(ps->a, ps->len_a);
-	ft_printf("\nb: ");
-	ft_print_int_array(ps->b, ps->len_b);
-	ft_printf("\n");
-	ft_printf("my action count is now %d\n", ps->action_count);
+	//ft_printf("\n\nmain function - after sorting: ");
+	//ft_printf("\na: ");
+	//ft_print_int_array(ps->a, ps->len_a);
+	//ft_printf("\nb: ");
+	//ft_print_int_array(ps->b, ps->len_b);
+	//ft_printf("\n");
+	//ft_printf("my action count is now %d\n", ps->action_count);
 
 	free(ps->a);
 	free(ps->b);
@@ -79,11 +77,11 @@ int ps_init(t_ps *ps, char** argv)
 	if (ps->len_a <= 5)
 	{
 		sort_small_a(ps);
-		ft_printf("\na: ");
-		ft_print_int_array(ps->a, ps->len_a);
-		ft_printf("\nb: ");
-		ft_print_int_array(ps->b, ps->len_b);
-		ft_printf("\n");
+		//ft_printf("\na: ");
+		//ft_print_int_array(ps->a, ps->len_a);
+		//ft_printf("\nb: ");
+		//ft_print_int_array(ps->b, ps->len_b);
+		//ft_printf("\n");
 		exit(0);
 	}
 	ps->len = ps->len_a;
@@ -92,9 +90,9 @@ int ps_init(t_ps *ps, char** argv)
 	if (!ps->lvl_b)
 		error("malloc failure", 1);
 	ps->lvl_b[0] = 0;
-	ft_printf("\n\n---------------------------------");
-	ft_printf("\nstack a has %d numbers.\n", ps->len);
-	ft_printf("---------------------------------\n\n");
+	//ft_printf("\n\n---------------------------------");
+	//ft_printf("\nstack a has %d numbers.\n", ps->len);
+	//ft_printf("---------------------------------\n\n");
 	return(0);
 }
 
@@ -111,7 +109,7 @@ int sort_algo(t_ps *ps)
 
 	while (ps->lvl_b[0] != 0) // while level b is not zero
 	{
-		ft_printf("\n\n ********* loop through a chuck %d numbers!! **********\n\n", ps->lvl_b[0]);
+		//ft_printf("\n\n ********* loop through a chuck %d numbers!! **********\n\n", ps->lvl_b[0]);
 		if (ps->len_b == 0 && ps->len == ps->len_a && is_sorted(ps->a, ps->len_a))
 			break;
 		if (ps->lvl_b[0] <= 3)
@@ -122,13 +120,13 @@ int sort_algo(t_ps *ps)
 		}
 		else
 			divide_b_to_a(ps, ps->lvl_b[0]);
-		write(1, "\n", 1);
-		write(1, "a: ",3);
-		ft_print_int_array(ps->a, ps->len_a);
-		write(1, "\nb: ",4);
-		ft_print_int_array(ps->b, ps->len_b);
-		write(1, "\n", 1);
-		ft_printf("\n\n ********* finishing up loop **********\n\n");
+		//write(1, "\n", 1);
+		//write(1, "a: ",3);
+		//ft_print_int_array(ps->a, ps->len_a);
+		//write(1, "\nb: ",4);
+		//ft_print_int_array(ps->b, ps->len_b);
+		//write(1, "\n", 1);
+		//ft_printf("\n\n ********* finishing up loop **********\n\n");
 	}
 	return(0);
 }
@@ -156,18 +154,18 @@ int first_divide_a_to_b(t_ps *ps, int range)
 		return (1);
 	}
 
-	ft_printf("\n\n---------------------------------");
-	ft_printf("\nmsg from divide_a_to_b:\n\n");
-	write(1, "\n", 1);
-	write(1, "a: ",3);
-	ft_print_int_array(ps->a, ps->len_a);
-	write(1, "\nb: ",4);
-	ft_print_int_array(ps->b, ps->len_b);
-	write(1, "\n", 1);
+	//ft_printf("\n\n---------------------------------");
+	//ft_printf("\nmsg from divide_a_to_b:\n\n");
+	//write(1, "\n", 1);
+	//write(1, "a: ",3);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//write(1, "\nb: ",4);
+	//ft_print_int_array(ps->b, ps->len_b);
+	//write(1, "\n", 1);
 
 
 	median = find_median(ps->a, range);
-	ft_printf("\nDivision is based on median value %d\n\n", median);
+	//ft_printf("\nDivision is based on median value %d\n\n", median);
 
 	while ( ps->len_b - b_init_size  < range / 2 )
 	{
@@ -179,11 +177,11 @@ int first_divide_a_to_b(t_ps *ps, int range)
 			i++;
 		}
 	}
-	write(1, "\na: ", 4);
-	ft_print_int_array(ps->a, ps->len_a);
-	write(1, "\nb: ",4);
-	ft_print_int_array(ps->b, ps->len_b);
-	write(1, "\n", 1);
+	//write(1, "\na: ", 4);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//write(1, "\nb: ",4);
+	//ft_print_int_array(ps->b, ps->len_b);
+	//write(1, "\n", 1);
 
 	i = 0;
 	if( ps->len_b - b_init_size > 0)
@@ -191,10 +189,10 @@ int first_divide_a_to_b(t_ps *ps, int range)
 		add_one_num_front(ps, ps->len_b - b_init_size);
 		ps->lvl++;
 	}
-	ft_printf("\n\n!!!! lvl_b array is: ");
-	ft_print_int_array(ps->lvl_b, ps->lvl);
-	ft_printf("\nsucessfully sent %d numbers to stack b\n", ps->len_b - b_init_size );
-	ft_printf("---------------------------------\n\n");
+	//ft_printf("\n\n!!!! lvl_b array is: ");
+	//ft_print_int_array(ps->lvl_b, ps->lvl);
+	//ft_printf("\nsucessfully sent %d numbers to stack b\n", ps->len_b - b_init_size );
+	//ft_printf("---------------------------------\n\n");
 	//divide_a_to_b(ps, ps->len_b - b_init_size);
 	first_divide_a_to_b(ps, ps->len_a);
 	return(0);
@@ -222,18 +220,18 @@ int divide_a_to_b(t_ps *ps, int range)
 		return (1);
 	}
 
-	ft_printf("\n\n---------------------------------");
-	ft_printf("\nmsg from divide_a_to_b:\n\n");
-	write(1, "\n", 1);
-	write(1, "a: ",3);
-	ft_print_int_array(ps->a, ps->len_a);
-	write(1, "\nb: ",4);
-	ft_print_int_array(ps->b, ps->len_b);
-	write(1, "\n", 1);
+	//ft_printf("\n\n---------------------------------");
+	//ft_printf("\nmsg from divide_a_to_b:\n\n");
+	//write(1, "\n", 1);
+	//write(1, "a: ",3);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//write(1, "\nb: ",4);
+	//ft_print_int_array(ps->b, ps->len_b);
+	//write(1, "\n", 1);
 
 
 	median = find_median(ps->a, range);
-	ft_printf("\nDivision is based on median value %d\n\n", median);
+	//ft_printf("\nDivision is based on median value %d\n\n", median);
 
 	while ( ps->len_b - b_init_size  < range / 2 )
 	{
@@ -241,7 +239,7 @@ int divide_a_to_b(t_ps *ps, int range)
 			pb(ps); // push to b
 		else if (ps->a[0] == median && range %  2 == 0) // eg. a: 28 27 25 26
 		{
-			ft_printf("my range is %d and module is %d\n", range, range %2);
+			//ft_printf("my range is %d and module is %d\n", range, range %2);
 			pb(ps);
 		}
 		else if (ps->a[0] >= median)
@@ -255,26 +253,26 @@ int divide_a_to_b(t_ps *ps, int range)
 		rra(ps);
 		i--;
 	}
-	write(1, "\na: ", 4);
-	ft_print_int_array(ps->a, ps->len_a);
-	write(1, "\nb: ",4);
-	ft_print_int_array(ps->b, ps->len_b);
-	write(1, "\n", 1);
+	//write(1, "\na: ", 4);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//write(1, "\nb: ",4);
+	//ft_print_int_array(ps->b, ps->len_b);
+	//write(1, "\n", 1);
 
 	i = 0;
-	ft_printf("\nlen is %d\n", ps->lvl);
+	//ft_printf("\nlen is %d\n", ps->lvl);
 
-	ft_printf("ps->len_b - b_init_size is %d\n", ps->len_b - b_init_size);
+	//ft_printf("ps->len_b - b_init_size is %d\n", ps->len_b - b_init_size);
 	if( ps->len_b - b_init_size > 0)
 	{
 		add_one_num_front(ps, ps->len_b - b_init_size);
 		ps->lvl++;
 	}
-	ft_printf("\n\n!!!! lvl_b array is: ");
-	ft_print_int_array(ps->lvl_b, ps->lvl);
-	ft_printf("\nsucessfully sent %d numbers to stack b\n", ps->len_b - b_init_size );
-	ft_printf("---------------------------------\n\n");
-	ft_printf("!!!------***** %d \n",  a_init_size - ps->len_a);
+	//ft_printf("\n\n!!!! lvl_b array is: ");
+	//ft_print_int_array(ps->lvl_b, ps->lvl);
+	//ft_printf("\nsucessfully sent %d numbers to stack b\n", ps->len_b - b_init_size );
+	//ft_printf("---------------------------------\n\n");
+	//ft_printf("!!!------***** %d \n",  a_init_size - ps->len_a);
 	divide_a_to_b(ps, a_init_size - ps->len_a + range % 2);//this is not right
 	return(0);
 }
@@ -337,17 +335,17 @@ int divide_b_to_a(t_ps *ps, int range)
 		return (0);
 	}
 
-	ft_printf("\n\n---------------------------------");
-	ft_printf("\nmsg from divide_b_to_a:");
-	write(1, "\na: ",4);
-	ft_print_int_array(ps->a, ps->len_a);
-	write(1, "\nb: ",4);
-	ft_print_int_array(ps->b, ps->len_b);
-	write(1, "\n", 1);
+	//ft_printf("\n\n---------------------------------");
+	//ft_printf("\nmsg from divide_b_to_a:");
+	//write(1, "\na: ",4);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//write(1, "\nb: ",4);
+	//ft_print_int_array(ps->b, ps->len_b);
+	//write(1, "\n", 1);
 
 
 	median = find_median(ps->b, range);
-	ft_printf("\nDivision is based on median value %d\n\n", median);
+	//ft_printf("\nDivision is based on median value %d\n\n", median);
 
 	while (ps->len_a - a_init_size <  range / 2)
 	{
@@ -366,15 +364,15 @@ int divide_b_to_a(t_ps *ps, int range)
 	}
 	ps->lvl_b[0] = ps->lvl_b[0] - (ps->len_a - a_init_size);
 
-	write(1, "\n", 1);
-	write(1, "a: ",3);
-	ft_print_int_array(ps->a, ps->len_a);
-	write(1, "\nb: ",4);
-	ft_print_int_array(ps->b, ps->len_b);
-	write(1, "\n", 1);
+	//write(1, "\n", 1);
+	//write(1, "a: ",3);
+	//ft_print_int_array(ps->a, ps->len_a);
+	//write(1, "\nb: ",4);
+	//ft_print_int_array(ps->b, ps->len_b);
+	//write(1, "\n", 1);
 
-	ft_printf("\nsucessfully sent %d numbers back to stack a\n", ps->len_a - a_init_size);
-	ft_printf("---------------------------------\n\n");
+	//ft_printf("\nsucessfully sent %d numbers back to stack a\n", ps->len_a - a_init_size);
+	//ft_printf("---------------------------------\n\n");
 	if (ps->len_a - a_init_size <= 3)
 		sort_top_a(ps, ps->len_a - a_init_size);
 	divide_a_to_b(ps, ps->len_a - a_init_size);
