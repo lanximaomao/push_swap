@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/09 17:51:53 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/09 20:50:27 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,12 +206,14 @@ int divide_a_to_b(t_ps *ps, int range)
 	int i;
 	int median;
 	int b_init_size;
+	int a_init_size;
 	//int end_cpy;
 	//int end;
 
 	i = 0;
 	//end = range -1;
 	//end_cpy = end;
+	a_init_size = ps->len_a;
 	b_init_size = ps->len_b;
 
 	if (range <= 3)
@@ -237,9 +239,12 @@ int divide_a_to_b(t_ps *ps, int range)
 	{
 		if (ps->a[0] < median)
 			pb(ps); // push to b
-		if (ps->a[0] == median && range %  2 == 0) // eg. a: 28 27 25 26
+		else if (ps->a[0] == median && range %  2 == 0) // eg. a: 28 27 25 26
+		{
+			ft_printf("my range is %d and module is %d\n", range, range %2);
 			pb(ps);
-		else
+		}
+		else if (ps->a[0] >= median)
 		{
 			ra(ps); // the first one become the last one
 			i++;
@@ -269,7 +274,8 @@ int divide_a_to_b(t_ps *ps, int range)
 	ft_print_int_array(ps->lvl_b, ps->lvl);
 	ft_printf("\nsucessfully sent %d numbers to stack b\n", ps->len_b - b_init_size );
 	ft_printf("---------------------------------\n\n");
-	divide_a_to_b(ps, ps->len_b - b_init_size);
+	ft_printf("!!!------***** %d \n", ps->len_b - b_init_size);
+	divide_a_to_b(ps, ps->len_a - a_init_size);//this is not right
 	return(0);
 }
 
@@ -372,8 +378,6 @@ int divide_b_to_a(t_ps *ps, int range)
 	if (ps->len_a - a_init_size <= 3)
 		sort_top_a(ps, ps->len_a - a_init_size);
 	divide_a_to_b(ps, ps->len_a - a_init_size);
-
-
 	return(0);
 }
 
