@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:55:37 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 14:18:16 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/10 22:15:20 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void		write_and_exit(void);
 void		error(char *msg, int error_code);
 void		free_char(char **str);
 void		optimizer(t_ps *ps);
-void		optimizer_b(t_ps *ps);
 
 /* push_swap_utils part2 */
 int			find_max(int *num, int start, int end);

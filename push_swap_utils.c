@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:16:51 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 22:06:13 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/10 22:18:30 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,19 @@ void	free_char(char **str)
 void	optimizer(t_ps *ps)
 {
 	int	i;
+	int	j;
 
-	i = ps->len_a / 2;
-	while (i > 0)
+	i = 0;
+	j = 0;
+	while (i < ps->len_a / 2)
 	{
-		if (ps->a[ps->len_a - i] == find_min(ps->a, 0, ps->len_a - 1))
+		if (ps->a[ps->len_a - i] == find_min(ps->a, j, ps->len_a - 1))
+		{
 			rra(ps);
-		i--;
+			j++;
+		}
+		i++;
 	}
 	if (is_sorted(ps->a, ps->len) == 1)
 		exit(0);
-}
-
-void	optimizer_b(t_ps *ps)
-{
-	int	i;
-
-	i = ps->len_b / 2;
-	while (i > 0)
-	{
-		if (ps->b[ps->len_b - i] == find_max(ps->b, 0, ps->len_b - 1))
-			rrb(ps);
-		i--;
-	}
 }
