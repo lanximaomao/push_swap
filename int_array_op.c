@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:03:59 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/09 13:45:01 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/10 10:59:18 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,27 @@ int is_sorted(int *num, int len)
 		i++;
 	}
 	return(1);
+}
+
+int is_sorted_reverse(int *num, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len - 1)
+	{
+		if (num[i] < num[i + 1])
+			return(0);
+		i++;
+	}
+	return(1);
+}
+
+void push_b2a(t_ps *ps, int range)
+{
+	while (range > 0)
+	{
+		pa(ps);
+		range--;
+	}
 }

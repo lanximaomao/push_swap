@@ -61,13 +61,14 @@ int find_min(int *num, int start, int end);
 
 int ps_init(t_ps *ps, char** argv);
 void optimizer(t_ps *ps);
-int first_divide_a_to_b(t_ps *ps, int range);
-int divide_a_to_b(t_ps *ps, int range);
-int divide_b_to_a(t_ps *ps, int range);
+void first_divide_a_to_b(t_ps *ps, int range);
+void divide_a_to_b(t_ps *ps, int range);
+void divide_b_to_a(t_ps *ps, int range);
 int sort_algo(t_ps *ps);
 
 void optimizer_b(t_ps *ps);
-
+int is_sorted_reverse(int *num, int len);
+void push_b2a(t_ps *ps, int range);
 
 
 //int array operation
