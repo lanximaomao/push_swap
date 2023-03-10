@@ -3,27 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 00:06:57 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/10 13:46:54 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// gcc is_valid.c push_swap_utils.c libft/libft.a
-// ./push_swap "+1 -2 3 5abc" -3 34 "125"
-// ./push_swap "+"
-// should I save the parsing result linked before or after the validity check for all the input num?
-
-t_ps* is_uniq(t_ps *ps)
+t_ps	*is_uniq(t_ps *ps)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	if (ps->len_a == 1)
-		return(0);
+		return (0);
 	i = 0;
 	j = 1;
 	while (i < ps->len_a)
@@ -37,37 +32,38 @@ t_ps* is_uniq(t_ps *ps)
 		}
 		i++;
 	}
-	return(ps);
+	return (ps);
 }
 
-void is_numeric(char **str, int i, int j)
+void	is_numeric(char **str, int i, int j)
 {
-	int num;
-	char *res_itoa;
-	char *res_strjoin;
+	int		num;
+	char	*res_itoa;
+	char	*res_strjoin;
 
 	num = ft_atoi(str[j]);
 	res_itoa = ft_itoa(num);
 	res_strjoin = ft_strjoin("+", res_itoa);
-	if (str[j][0] == '+' && ft_strncmp(res_strjoin, str[i], ft_strlen(str[j])+1)!= 0)
+	if (str[j][0] == '+' && ft_strncmp(res_strjoin, str[i], ft_strlen(str[j])
+			+ 1) != 0)
 		write_and_exit();
-	else if (str[j][0] != '+' && ft_strncmp(res_itoa, str[j], ft_strlen(str[j])) != 0)
+	else if (str[j][0] != '+' && ft_strncmp(res_itoa, str[j],
+				ft_strlen(str[j])) != 0)
 		write_and_exit();
 	free(res_itoa);
 	free(res_strjoin);
 }
 
-t_ps* check_for_length(t_ps *ps)
+t_ps	*check_for_length(t_ps *ps)
 {
-	int i;
-	int j;
-	int num;
-	char **split_input;
+	int		i;
+	int		j;
+	int		num;
+	char	**split_input;
 
 	i = 0;
 	j = 0;
 	ps->len_a = 0;
-
 	while (ps->input[i])
 	{
 		split_input = ft_split(ps->input[i], ' ');
@@ -84,20 +80,19 @@ t_ps* check_for_length(t_ps *ps)
 		free_char(split_input);
 		i++;
 	}
-	return(ps);
+	return (ps);
 }
 
-t_ps* parsing(t_ps *ps)
+t_ps	*parsing(t_ps *ps)
 {
-	int i;
-	int j;
-	int k;
-	char **split_input;
+	int		i;
+	int		j;
+	int		k;
+	char	**split_input;
 
 	i = 0;
 	j = 0;
 	k = 0;
-
 	while (ps->input[i])
 	{
 		split_input = ft_split(ps->input[i], ' ');
@@ -113,8 +108,5 @@ t_ps* parsing(t_ps *ps)
 		free_char(split_input);
 		i++;
 	}
-	return(ps);
+	return (ps);
 }
-
-
-

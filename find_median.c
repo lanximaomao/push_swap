@@ -1,82 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_median.c                                      :+:      :+:    :+:   */
+/*   bubble_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/24 11:11:28 by lsun              #+#    #+#             */
-/*   Updated: 2023/02/24 14:19:59 by lsun             ###   ########.fr       */
+/*   Created: 2023/02/21 11:53:58 by lsun              #+#    #+#             */
+/*   Updated: 2023/03/10 13:47:47 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	find_median(int *num, int range)
+{
+	int	*num_dup;
+	int	median;
 
+	num_dup = bubble_sort(num, 0, range - 1);
+	if (range % 2 == 0)
+		median = num_dup[range / 2 - 1];
+	else
+		median = num_dup[range / 2];
+	free(num_dup);
+	return (median);
+}
 
-//int	main(void)
-//{
-//	int	median;
+int	*bubble_sort(int *num, int start, int end)
+{
+	int	i;
+	int	j;
+	int	temp;
+	int	*num_dup;
 
-//	int arr[] = {5, 2, 9, 3, 7, 4, 8, 1, 6}; // example integer array
-//	int n = sizeof(arr) / sizeof(arr[0]);    // number of elements in array
-//	// find the median value using quickselect algorithm
-//	if (n % 2 == 0)
-//	{
-//		median = (quickselect(arr, 0, n - 1, n / 2 - 1) + quickselect(arr, 0, n
-//					- 1, n / 2)) / 2;
-//	}
-//	else
-//	{
-//		median = quickselect(arr, 0, n - 1, n / 2);
-//	}
-//	printf("Median value: %d\n", median);
-//	return (0);
-//}
+	i = start;
+	num_dup = int_arr_dup(num, end - start + 1);
+	while (i < end)
+	{
+		j = i + 1;
+		while (j <= end)
+		{
+			if (num_dup[i] > num_dup[j])
+			{
+				temp = num_dup[i];
+				num_dup[i] = num_dup[j];
+				num_dup[j] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (num_dup);
+}
 
-//int	quickselect(int arr[], int left, int right, int k)
-//{
-//	int	pivot;
-//	int	i;
-//	int	j;
-//	int	temp;
+int	*int_arr_dup(int *num, int len)
+{
+	int	i;
+	int	*int_dup;
 
-//	if (left == right)
-//	{
-//		return (arr[left]);
-//	}
-//	pivot = arr[(left + right) / 2];
-//	i = left;
-//	j = right;
-//	while (i <= j)
-//	{
-//		while (arr[i] < pivot)
-//		{
-//			i++;
-//		}
-//		while (arr[j] > pivot)
-//		{
-//			j--;
-//		}
-//		if (i <= j)
-//		{
-//			temp = arr[i];
-//			arr[i] = arr[j];
-//			arr[j] = temp;
-//			i++;
-//			j--;
-//		}
-//	}
-//	if (k <= j)
-//	{
-//		return (quickselect(arr, left, j, k));
-//	}
-//	else if (k >= i)
-//	{
-//		return (quickselect(arr, i, right, k));
-//	}
-//	else
-//	{
-//		return (arr[k]);
-//	}
-//}
+	i = 0;
+	int_dup = malloc(sizeof(int) * len);
+	if (!int_dup)
+		error("malloc fail", 1);
+	while (i < len)
+	{
+		int_dup[i] = num[i];
+		i++;
+	}
+	return (int_dup);
+}

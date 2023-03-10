@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:28:10 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 13:28:38 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/10 14:07:13 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,43 @@ int	find_min(int *num, int start, int end)
 	return (min);
 }
 
-void	push_b2a(t_ps *ps, int range)
+void	ft_print_int_array(int *int_arr, int len)
 {
-	while (range > 0)
+	int	i;
+
+	i = 0;
+	while (i < len)
 	{
-		pa(ps);
-		range--;
+		ft_printf("%d  ", int_arr[i]);
+		i++;
 	}
+	ft_printf("\n");
+}
+
+int	is_sorted(int *num, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len - 1)
+	{
+		if (num[i] > num[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	is_sorted_reverse(int *num, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len - 1)
+	{
+		if (num[i] < num[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
 }

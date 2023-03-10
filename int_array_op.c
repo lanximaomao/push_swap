@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:03:59 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 13:17:23 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/10 14:06:54 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,45 +47,4 @@ void	add_one_num_front(t_ps *ps, int data)
 	}
 	free(ps->lvl_b);
 	ps->lvl_b = num_add;
-}
-
-void	ft_print_int_array(int *int_arr, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		ft_printf("%d  ", int_arr[i]);
-		i++;
-	}
-	ft_printf("\n");
-}
-
-int	is_sorted(int *num, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i < len - 1)
-	{
-		if (num[i] > num[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	is_sorted_reverse(int *num, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i < len - 1)
-	{
-		if (num[i] < num[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
 }
