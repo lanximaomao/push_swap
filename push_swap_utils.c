@@ -1,11 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/10 13:16:51 by lsun              #+#    #+#             */
+/*   Updated: 2023/03/10 13:31:33 by lsun             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-
-
 
 void	write_and_exit(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);
+}
+
+void	error(char *msg, int error_code)
+{
+	perror(msg);
+	exit(error_code);
 }
 
 void	free_char(char **str)
@@ -21,67 +37,14 @@ void	free_char(char **str)
 	free(str);
 }
 
-void	free_int(int **num, int size)
+void	optimizer(t_ps *ps)
 {
 	int	i;
 
-	i = 0;
-	while (i < size)
-	{
-		free(num[i]);
-		i++;
-	}
-	free(num);
-}
-
-
-
-int	find_max(int *num, int start, int end)
-{
-	int	max;
-
-	max = num[start];
-	while (start <= end)
-	{
-		if (num[start] > max)
-			max = num[start];
-		start++;
-	}
-	//ft_printf("my max is %d: \n", max);
-	return (max);
-}
-
-int find_min(int *num, int start, int end)
-{
-	int min;
-
-	min = num[start];
-	while (start <= end )
-	{
-		if (num[start] < min)
-			min = num[start];
-		start++;
-	}
-	return(min);
-}
-
-
-
-
-void	error(char *msg, int error_code)
-{
-	perror(msg);
-	exit(error_code);
-}
-
-void optimizer(t_ps *ps)
-{
-	int i;
-
-	i = ps->len_a/2;
+	i = ps->len_a / 2;
 	while (i > 0)
 	{
-		if (ps->a[ps->len_a-i] == find_min(ps->a, 0, ps->len_a - 1))
+		if (ps->a[ps->len_a - i] == find_min(ps->a, 0, ps->len_a - 1))
 			rra(ps);
 		i--;
 	}
@@ -89,14 +52,14 @@ void optimizer(t_ps *ps)
 		exit(0);
 }
 
-void optimizer_b(t_ps *ps)
+void	optimizer_b(t_ps *ps)
 {
-	int i;
+	int	i;
 
-	i = ps->len_b/2;
+	i = ps->len_b / 2;
 	while (i > 0)
 	{
-		if (ps->b[ps->len_b-i] == find_max(ps->b, 0, ps->len_b - 1))
+		if (ps->b[ps->len_b - i] == find_max(ps->b, 0, ps->len_b - 1))
 			rrb(ps);
 		i--;
 	}
