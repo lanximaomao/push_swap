@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:52:57 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/09 20:50:27 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/10 09:32:40 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,8 +274,8 @@ int divide_a_to_b(t_ps *ps, int range)
 	ft_print_int_array(ps->lvl_b, ps->lvl);
 	ft_printf("\nsucessfully sent %d numbers to stack b\n", ps->len_b - b_init_size );
 	ft_printf("---------------------------------\n\n");
-	ft_printf("!!!------***** %d \n", ps->len_b - b_init_size);
-	divide_a_to_b(ps, ps->len_a - a_init_size);//this is not right
+	ft_printf("!!!------***** %d \n",  a_init_size - ps->len_a);
+	divide_a_to_b(ps, a_init_size - ps->len_a + range % 2);//this is not right
 	return(0);
 }
 
