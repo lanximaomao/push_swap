@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_algo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:19:02 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 13:19:16 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/10 21:56:37 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 int	sort_algo(t_ps *ps)
 {
 	optimizer(ps);
-	if (is_sorted(ps->a, ps->len_a) == 1)
-		exit(0);
 	first_divide_a_to_b(ps, ps->len_a);
 	while (ps->lvl_b[0] != 0)
 	{
@@ -116,7 +114,7 @@ void	divide_b_to_a(t_ps *ps, int range)
 		else if (++count)
 			rb(ps);
 	}
-	while (count-- > 0)
+	while (count-- > 0 && range != ps->len_b)
 		rrb(ps);
 	ps->lvl_b[0] = ps->lvl_b[0] - (ps->len_a - a_init_size);
 	if (ps->len_a - a_init_size <= 3)
