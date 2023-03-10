@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:55:37 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 22:15:20 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/10 23:15:54 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ void		rrr(t_ps *ps);
 
 /* find_median */
 int			find_median(int *num, int range);
-int			*bubble_sort(int *num, int start, int end);
-int			*int_arr_dup(int *num, int len);
 
 /* int_array_op */
 void		add_one_num_front(t_ps *ps, int data);
