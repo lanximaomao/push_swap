@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 13:46:54 by lsun             ###   ########.fr       */
+/*   Updated: 2023/03/10 15:57:01 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ void	is_numeric(char **str, int i, int j)
 	num = ft_atoi(str[j]);
 	res_itoa = ft_itoa(num);
 	res_strjoin = ft_strjoin("+", res_itoa);
+	if (!res_itoa || !res_strjoin)
+		error("malloc failure", 1);
+	if (ft_strlen(str[j]) == 2 && str[j][0] == '-' && str[j][1] == '0')
+	{
+		free(res_itoa);
+		free(res_strjoin);
+		return ;
+	}
 	if (str[j][0] == '+' && ft_strncmp(res_strjoin, str[i], ft_strlen(str[j])
 			+ 1) != 0)
 		write_and_exit();
