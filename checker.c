@@ -6,36 +6,57 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 23:36:11 by linlinsun         #+#    #+#             */
-/*   Updated: 2023/03/11 08:52:34 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/13 00:39:51 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap_bonus.h"
-# include "libft/get_next_line.h"
+#include "libft/get_next_line.h"
+#include "push_swap_bonus.h"
 
 /*
 ** ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG
+** ARG="45a"; ./checker $ARG --> Error
+** ARG="45 32"; ./push_swap $ARG | ./checker $ARG -->
 */
 
-void read_stdout()
+void	apply_actions(char *buf, t_ps *ps)
 {
-	char *buf;
-	int read_num;
-
-	buf = malloc(sizeof(char)* BUFFER_SIZE);
-	if (!buf)
-		error("malloc fail", 1);
-	read_num = BUFFER_SIZE;
-	while (read_num != 0)
-	{
-		read_num = read(1, buf, BUFFER_SIZE);
-		ft_printf("I read %d chars.\n", read_num);
-	}
+	if (ft_strncmp(buf, "pa\n", 3) == 0)
+		pa(ps);
+	else if (ft_strncmp(buf, "pb\n", 3) == 0)
+		pb(ps);
+	else if (ft_strncmp(buf, "sa\n", 3) == 0)
+		sa(ps);
+	else if (ft_strncmp(buf, "sb\n", 3) == 0)
+		sb(ps);
+	else if (ft_strncmp(buf, "ss\n", 3) == 0)
+		ss(ps);
+	else if (ft_strncmp(buf, "ra\n", 3) == 0)
+		ra(ps);
+	else if (ft_strncmp(buf, "rb\n", 3) == 0)
+		rb(ps);
+	else if (ft_strncmp(buf, "rr\n", 3) == 0)
+		rr(ps);
+	else if (ft_strncmp(buf, "rra\n", 4) == 0)
+		rra(ps);
+	else if (ft_strncmp(buf, "rrb\n", 4) == 0)
+		rrb(ps);
+	else if (ft_strncmp(buf, "rrr\n", 4) == 0)
+		rrr(ps);
 }
 
-void apply_actions()
+void	read_and_play(t_ps *ps)
 {
-	return;
+	char	*buf;
+
+	while (1)
+	{
+		buf = get_next_line(0);
+		if (buf == NULL)
+			break ;
+		apply_actions(buf, ps);
+	}
+	free(buf);
 }
 
 int	main(int argc, char **argv)
@@ -48,30 +69,19 @@ int	main(int argc, char **argv)
 	if (!ps)
 		error("malloc fail", 1);
 	ps_init(ps, argv);
-
-	ft_printf("argv[0] = %s\n, argv[1] = %s\n, argv[2] = %s\n", argv[0], argv[1], argv[2]);
-	// read stdout
-	read_stdout();
-
-	//compare the strings
-	apply_actions();
-
-	//check if sorted or not
+	read_and_play(ps);
 	if (is_sorted(ps->a, ps->len_a) == 1 && ps->len_b == 0)
 	{
 		write(1, "OK\n", 3);
-		ft_printf("sorting %d numbers takes %d actions.\n", ps->len_a, ps->action_count);
-		ft_printf("\na: ");
+		ft_printf("--------------------------------------------");
+		ft_printf("\nAfter sorting stack a will be: ");
 		ft_print_int_array(ps->a, ps->len_a);
-		write(1, "\n", 1);
+		ft_printf("\nsorting %d numbers takes %d actions.\n", ps->len_a,
+			ps->action_count);
+		ft_printf("--------------------------------------------\n");
 	}
 	else
-	{
 		write(1, "KO\n", 3);
-		ft_printf("\na: ");
-		ft_print_int_array(ps->a, ps->len_a);
-		write(1, "\n", 1);
-	}
 	free(ps->a);
 	free(ps->b);
 	free(ps);

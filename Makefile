@@ -6,7 +6,7 @@
 #    By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 17:23:01 by lsun              #+#    #+#              #
-#    Updated: 2023/03/11 07:31:15 by linlinsun        ###   ########.fr        #
+#    Updated: 2023/03/13 00:11:38 by linlinsun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ SRCS_BONUS = checker.c\
 			is_valid.c \
 			push_swap_utils.c \
 			push_swap_utils_2.c\
-			actions_push.c\
-			actions_swap.c\
-			actions_rotate.c\
-			actions_reverse_rotate.c\
+			actions_push_bonus.c\
+			actions_swap_bonus.c\
+			actions_rotate_bonus.c\
+			actions_reverse_rotate_bonus.c\
 
 OBJS = $(SRCS:.c=.o)
 

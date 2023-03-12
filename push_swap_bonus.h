@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:55:37 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/12 23:05:55 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/12 23:30:55 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_ps
 }			t_ps;
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 6
 # endif
 
 /* main*/
