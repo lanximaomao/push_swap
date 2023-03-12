@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:19:02 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 21:56:37 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/12 22:59:30 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ void	divide_a_to_b(t_ps *ps, int range)
 	int	i;
 	int	median;
 	int	b_init_size;
-	int	a_init_size;
 
 	i = -1;
-	a_init_size = ps->len_a;
 	b_init_size = ps->len_b;
+	if (is_sorted(ps->a, ps->len_a) == 1)
+		return ;
 	if (range <= 3)
 		return (sort_top_a(ps, range));
 	median = find_median(ps->a, range);
@@ -88,9 +88,9 @@ void	divide_a_to_b(t_ps *ps, int range)
 	}
 	while (i-- > 0)
 		rra(ps);
-	if (ps->len_b - b_init_size > 0 && ++ ps->lvl)
+	if (ps->len_b - b_init_size > 0 && ++ps->lvl)
 		add_one_num_front(ps, ps->len_b - b_init_size);
-	divide_a_to_b(ps, a_init_size - ps->len_a + range % 2);
+	divide_a_to_b(ps, ps->len - b_init_size - ps->len_a + range % 2);
 }
 
 void	divide_b_to_a(t_ps *ps, int range)
@@ -101,7 +101,7 @@ void	divide_b_to_a(t_ps *ps, int range)
 
 	count = -1;
 	a_init_size = ps->len_a;
-	if (range <= 3 && -- ps->lvl)
+	if (range <= 3 && --ps->lvl)
 	{
 		sort_top_b(ps, range);
 		remove_one_num_front(ps);

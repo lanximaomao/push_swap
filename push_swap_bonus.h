@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:55:37 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/12 23:09:21 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/12 23:05:55 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 
 # include "libft/ft_printf.h"
 # include "libft/libft.h"
@@ -31,8 +31,13 @@ typedef struct s_ps
 	int		action_count;
 }			t_ps;
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
 /* main*/
 int			main(int argc, char **argv);
+void		checker(t_ps *ps);
 int			ps_init(t_ps *ps, char **argv);
 
 /* actions */
@@ -48,13 +53,6 @@ void		rra(t_ps *ps);
 void		rrb(t_ps *ps);
 void		rrr(t_ps *ps);
 
-/* find_median */
-int			find_median(int *num, int range);
-
-/* int_array_op */
-void		add_one_num_front(t_ps *ps, int data);
-void		remove_one_num_front(t_ps *ps);
-
 /* is_valid */
 t_ps		*is_uniq(t_ps *ps);
 void		is_numeric(char **str, int i, int j);
@@ -65,30 +63,9 @@ t_ps		*parsing(t_ps *ps);
 void		write_and_exit(void);
 void		error(char *msg, int error_code);
 void		free_char(char **str);
-void		optimizer(t_ps *ps);
 
 /* push_swap_utils part2 */
-int			find_max(int *num, int start, int end);
-int			find_min(int *num, int start, int end);
-void		ft_print_int_array(int *int_arr, int len);
 int			is_sorted(int *num, int len);
-int			is_sorted_reverse(int *num, int len);
-
-/* sort_algo */
-int			sort_algo(t_ps *ps);
-void		op(t_ps *ps, int range);
-void		first_divide_a_to_b(t_ps *ps, int range);
-void		divide_a_to_b(t_ps *ps, int range);
-void		divide_b_to_a(t_ps *ps, int range);
-
-/* sort_small_a */
-void		sort_small_a(t_ps *ps);
-void		sort_two_a(t_ps *ps);
-void		sort_three_a(t_ps *ps);
-
-/* sort_top*/
-void		sort_top_a(t_ps *ps, int range);
-void		sort_top_b(t_ps *ps, int range);
-void		push_b2a(t_ps *ps, int range);
+void		ft_print_int_array(int *int_arr, int len);
 
 #endif

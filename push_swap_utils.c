@@ -6,7 +6,7 @@
 /*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:16:51 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 22:18:30 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/12 22:59:21 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	optimizer(t_ps *ps)
 
 	i = 0;
 	j = 0;
+	if (is_sorted(ps->a, ps->len) == 1)
+		exit(0);
 	while (i < ps->len_a / 2)
 	{
 		if (ps->a[ps->len_a - i] == find_min(ps->a, j, ps->len_a - 1))
@@ -53,6 +55,4 @@ void	optimizer(t_ps *ps)
 		}
 		i++;
 	}
-	if (is_sorted(ps->a, ps->len) == 1)
-		exit(0);
 }
