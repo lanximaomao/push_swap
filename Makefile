@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+         #
+#    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 17:23:01 by lsun              #+#    #+#              #
-#    Updated: 2023/03/13 00:11:38 by linlinsun        ###   ########.fr        #
+#    Updated: 2023/03/13 11:25:53 by lsun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ $(NAME):$(OBJS)
 $(OBJS):$(SRCS)
 	cc -c $(FLAGS) $(SRCS)
 
-bonus: $(NAME_BONUS)
+bonus: $(NAME) $(NAME_BONUS)
 
 $(NAME_BONUS):$(OBJS_BONUS)
 	cc $(FLAGS) $(SRCS_BONUS) -o $(NAME_BONUS) libft/libft.a

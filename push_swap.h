@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:55:37 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/12 23:09:21 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/03/13 11:03:53 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		remove_one_num_front(t_ps *ps);
 
 /* is_valid */
 t_ps		*is_uniq(t_ps *ps);
-void		is_numeric(char **str, int i, int j);
+void		is_numeric(char **str, int j);
 t_ps		*check_for_length(t_ps *ps);
 t_ps		*parsing(t_ps *ps);
 
