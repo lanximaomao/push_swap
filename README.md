@@ -30,7 +30,7 @@ The goal is to sort in ascending order numbers into stack a with lowest possible
 
 ## Algorithm
 
-![Algo](https://github.com/lanximaomao/push_swap/blob/46babb5b0899727e44a3320a2cb55fcd45ce0569/push_swap_algo.png)
+![Algo](https://github.com/lanximaomao/push_swap/blob/c8ecf17ce4c0090923dd1631a4c0be7213315a4d/images/algo.png)
 
 <br>
 
