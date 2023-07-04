@@ -6,11 +6,11 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:34:07 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 14:07:19 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/04 19:18:29 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	sort_top_a(t_ps *ps, int range)
 {

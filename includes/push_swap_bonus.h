@@ -6,15 +6,15 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:55:37 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/13 11:03:35 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/04 19:33:47 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_BONUS_H
 # define PUSH_SWAP_BONUS_H
 
-# include "libft/ft_printf.h"
-# include "libft/libft.h"
+# include "../libft/ft_printf.h"
+# include "../libft/libft.h"
 # include <stdio.h>
 # include <unistd.h>
 

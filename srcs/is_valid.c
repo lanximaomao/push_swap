@@ -6,11 +6,11 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:07:34 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/13 11:15:18 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/04 19:18:03 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 t_ps	*check_for_length(t_ps *ps)
 {

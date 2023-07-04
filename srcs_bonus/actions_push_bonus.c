@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions_push.c                                     :+:      :+:    :+:   */
+/*   actions_push_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 11:19:18 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 13:43:11 by lsun             ###   ########.fr       */
+/*   Created: 2023/03/13 11:12:52 by lsun              #+#    #+#             */
+/*   Updated: 2023/07/04 19:17:17 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	pa(t_ps *ps)
 {
@@ -36,7 +36,6 @@ void	pa(t_ps *ps)
 	ps->len_b--;
 	ps->len_a++;
 	ps->action_count++;
-	write(1, "pa\n", 3);
 }
 
 void	pb(t_ps *ps)
@@ -63,5 +62,4 @@ void	pb(t_ps *ps)
 	ps->len_a--;
 	ps->len_b++;
 	ps->action_count++;
-	write(1, "pb\n", 3);
 }

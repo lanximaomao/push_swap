@@ -6,11 +6,11 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:28:10 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 14:07:13 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/04 19:18:15 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int	find_max(int *num, int start, int end)
 {

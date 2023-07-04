@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions_reverse_rotate_bonus.c                     :+:      :+:    :+:   */
+/*   actions_reverse_rotate.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:13:03 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/13 11:13:06 by lsun             ###   ########.fr       */
+/*   Created: 2023/03/10 13:42:00 by lsun              #+#    #+#             */
+/*   Updated: 2023/07/04 19:17:28 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	rra(t_ps *ps)
 {
@@ -26,6 +26,7 @@ void	rra(t_ps *ps)
 	}
 	ps->a[0] = last;
 	ps->action_count++;
+	write(1, "rra\n", 4);
 }
 
 void	rrb(t_ps *ps)
@@ -42,6 +43,7 @@ void	rrb(t_ps *ps)
 	}
 	ps->b[0] = last;
 	ps->action_count++;
+	write(1, "rrb\n", 4);
 }
 
 void	rrr(t_ps *ps)

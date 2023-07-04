@@ -1,58 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   find_median.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:14:21 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/13 11:14:23 by lsun             ###   ########.fr       */
+/*   Created: 2023/03/13 11:13:50 by lsun              #+#    #+#             */
+/*   Updated: 2023/07/04 19:17:57 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
-void	write_and_exit(void)
-{
-	write(2, "Error\n", 6);
-	exit(1);
-}
-
-void	error(char *msg, int error_code)
-{
-	perror(msg);
-	exit(error_code);
-}
-
-void	free_char(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
-void	optimizer(t_ps *ps)
+int	find_median(int *num, int range)
 {
 	int	i;
 	int	j;
+	int	count;
 
 	i = 0;
 	j = 0;
-	if (is_sorted(ps->a, ps->len) == 1)
-		exit(0);
-	while (i < ps->len_a / 2)
+	count = 0;
+	while (i < range)
 	{
-		if (ps->a[ps->len_a - i] == find_min(ps->a, j, ps->len_a - 1))
+		j = 0;
+		count = 0;
+		while (j < range)
 		{
-			rra(ps);
+			if (i != j && num[i] < num[j])
+				count++;
 			j++;
+		}
+		if (count == range / 2)
+		{
+			return (num[i]);
 		}
 		i++;
 	}
+	ft_printf("median not found!\n");
+	return (0);
 }

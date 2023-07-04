@@ -6,11 +6,11 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:03:59 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/10 14:06:54 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/04 19:18:00 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	remove_one_num_front(t_ps *ps)
 {

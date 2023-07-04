@@ -1,52 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions_rotate_bonus.c                             :+:      :+:    :+:   */
+/*   actions_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:13:14 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/13 11:13:17 by lsun             ###   ########.fr       */
+/*   Created: 2023/03/10 13:40:43 by lsun              #+#    #+#             */
+/*   Updated: 2023/07/04 19:17:40 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
-void	ra(t_ps *ps)
+void	sa(t_ps *ps)
 {
-	int	i;
-	int	first;
+	int	temp;
 
-	i = 1;
-	first = ps->a[0];
-	while (i < ps->len_a)
-	{
-		ps->a[i - 1] = ps->a[i];
-		i++;
-	}
-	ps->a[ps->len_a - 1] = first;
+	if (ps->len_a < 2)
+		return ;
+	temp = ps->a[0];
+	ps->a[0] = ps->a[1];
+	ps->a[1] = temp;
 	ps->action_count++;
+	write(1, "sa\n", 3);
 }
 
-void	rb(t_ps *ps)
+void	sb(t_ps *ps)
 {
-	int	i;
-	int	first;
+	int	temp;
 
-	i = 1;
-	first = ps->b[0];
-	while (i < ps->len_b)
-	{
-		ps->b[i - 1] = ps->b[i];
-		i++;
-	}
-	ps->b[ps->len_b - 1] = first;
+	if (ps->len_b < 2)
+		return ;
+	temp = ps->b[0];
+	ps->b[0] = ps->b[1];
+	ps->b[1] = temp;
 	ps->action_count++;
+	write(1, "sb\n", 3);
 }
 
-void	rr(t_ps *ps)
+void	ss(t_ps *ps)
 {
-	ra(ps);
-	rb(ps);
+	if (ps->len_a < 2 || ps->len_b < 2)
+		return ;
+	sa(ps);
+	sb(ps);
 	ps->action_count++;
 }

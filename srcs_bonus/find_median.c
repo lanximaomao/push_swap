@@ -6,11 +6,11 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:13:50 by lsun              #+#    #+#             */
-/*   Updated: 2023/03/13 11:13:52 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/04 19:17:57 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int	find_median(int *num, int range)
 {
