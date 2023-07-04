@@ -50,6 +50,7 @@ If after executing those instructions, the stack a is actually sorted and the st
 **1- To compile the programme:**
 
     Make
+	Make bonus
 
 **2- Run your program with arguments:**
 
