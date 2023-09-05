@@ -3,7 +3,7 @@
 ## Description
 Sorting values is simple. To sort them the fastest way possible is less simple. Especially because from integers configuration to another, the most efficient sorting solution can differ.
 
-In the programme, we will have a stacks named a and b. At the beginning, stack a contains a random amount of negative and/or positive numbers which cannot be duplicated. The stack b is empty. The goal is to sort in ascending order numbers into stack a with lowest possible number of operations. Detailed project requirements can be found [here](Push_swwap.pdf).
+In the programme, we will have a stacks named a and b. At the beginning, stack a contains a random amount of negative and/or positive numbers which cannot be duplicated. The stack b is empty. The goal is to sort in ascending order numbers into stack a with lowest possible number of operations. Detailed project requirements can be found [here](Push_swap.pdf).
 
 Only following operations are allowed:
 
